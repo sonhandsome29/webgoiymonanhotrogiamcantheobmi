@@ -1,0 +1,1106 @@
+[
+  {
+    "_id": "ingredient-1",
+    "name": "ức gà",
+    "price": 85000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/uc_ga.jpg"
+  },
+  {
+    "_id": "ingredient-2",
+    "name": "đùi gà",
+    "price": 75000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/dui_ga.jpg"
+  },
+  {
+    "_id": "ingredient-3",
+    "name": "nạc heo",
+    "price": 120000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/nac_heo.jpg"
+  },
+  {
+    "_id": "ingredient-4",
+    "name": "bò thăn",
+    "price": 250000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/bo_than.jpg"
+  },
+  {
+    "_id": "ingredient-5",
+    "name": "cá hồi",
+    "price": 350000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/ca_hoi.jpg"
+  },
+  {
+    "_id": "ingredient-6",
+    "name": "cá lóc",
+    "price": 95000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/ca_loc.jpg"
+  },
+  {
+    "_id": "ingredient-7",
+    "name": "cá thu",
+    "price": 85000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/ca_thu.jpg"
+  },
+  {
+    "_id": "ingredient-8",
+    "name": "cá ngừ",
+    "price": 150000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/ca_ngu.jpg"
+  },
+  {
+    "_id": "ingredient-9",
+    "name": "tôm",
+    "price": 180000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/tom.jpg"
+  },
+  {
+    "_id": "ingredient-10",
+    "name": "mực",
+    "price": 120000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/muc.jpg"
+  },
+  {
+    "_id": "ingredient-11",
+    "name": "cua",
+    "price": 200000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/cua.jpg"
+  },
+  {
+    "_id": "ingredient-12",
+    "name": "bông cải xanh",
+    "price": 35000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/bong_cai_xanh.jpg"
+  },
+  {
+    "_id": "ingredient-13",
+    "name": "cải thìa",
+    "price": 15000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/cai_thia.jpg"
+  },
+  {
+    "_id": "ingredient-14",
+    "name": "cà rốt",
+    "price": 18000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/ca_rot.jpg"
+  },
+  {
+    "_id": "ingredient-15",
+    "name": "bí ngòi",
+    "price": 12000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/bi_ngoi.jpg"
+  },
+  {
+    "_id": "ingredient-16",
+    "name": "măng tây",
+    "price": 65000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/mang_tay.jpg"
+  },
+  {
+    "_id": "ingredient-17",
+    "name": "ớt chuông",
+    "price": 40000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/ot_chuong.jpg"
+  },
+  {
+    "_id": "ingredient-18",
+    "name": "cải bó xôi",
+    "price": 20000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/cai_bo_xoi.jpg"
+  },
+  {
+    "_id": "ingredient-19",
+    "name": "đậu Hà Lan",
+    "price": 35000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/dau_ha_lan.jpg"
+  },
+  {
+    "_id": "ingredient-20",
+    "name": "bí đỏ",
+    "price": 15000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/bi_do.jpg"
+  },
+  {
+    "_id": "ingredient-21",
+    "name": "cải ngọt",
+    "price": 12000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/cai_ngot.jpg"
+  },
+  {
+    "_id": "ingredient-22",
+    "name": "xà lách",
+    "price": 25000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/xa_lach.jpg"
+  },
+  {
+    "_id": "ingredient-23",
+    "name": "dưa leo",
+    "price": 15000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/dua_leo.jpg"
+  },
+  {
+    "_id": "ingredient-24",
+    "name": "cà chua",
+    "price": 20000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/ca_chua.jpg"
+  },
+  {
+    "_id": "ingredient-25",
+    "name": "rau muống",
+    "price": 8000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/rau_muong.jpg"
+  },
+  {
+    "_id": "ingredient-26",
+    "name": "tỏi",
+    "price": 45000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/toi.jpg"
+  },
+  {
+    "_id": "ingredient-27",
+    "name": "hành lá",
+    "price": 30000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/hanh_la.jpg"
+  },
+  {
+    "_id": "ingredient-28",
+    "name": "gừng",
+    "price": 35000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/gung.jpg"
+  },
+  {
+    "_id": "ingredient-29",
+    "name": "sả",
+    "price": 25000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/sa.jpg"
+  },
+  {
+    "_id": "ingredient-30",
+    "name": "ớt",
+    "price": 40000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/ot.jpg"
+  },
+  {
+    "_id": "ingredient-31",
+    "name": "nghệ",
+    "price": 50000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/nghe.jpg"
+  },
+  {
+    "_id": "ingredient-32",
+    "name": "chanh",
+    "price": 35000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/chanh.jpg"
+  },
+  {
+    "_id": "ingredient-33",
+    "name": "lá chanh",
+    "price": 15000,
+    "unit": "100g",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/la_chanh.jpg"
+  },
+  {
+    "_id": "ingredient-34",
+    "name": "lá lốt",
+    "price": 20000,
+    "unit": "100g",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/la_lot.jpg"
+  },
+  {
+    "_id": "ingredient-35",
+    "name": "rau thơm",
+    "price": 10000,
+    "unit": "bó",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/rau_thom.jpg"
+  },
+  {
+    "_id": "ingredient-36",
+    "name": "rau mùi",
+    "price": 8000,
+    "unit": "bó",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/rau_mui.jpg"
+  },
+  {
+    "_id": "ingredient-37",
+    "name": "nấm rơm",
+    "price": 45000,
+    "unit": "kg",
+    "category": "nấm",
+    "image_url": "/images/ingredients/nam_rom.jpg"
+  },
+  {
+    "_id": "ingredient-38",
+    "name": "nấm đông cô",
+    "price": 120000,
+    "unit": "kg",
+    "category": "nấm",
+    "image_url": "/images/ingredients/nam_dong_co.jpg"
+  },
+  {
+    "_id": "ingredient-39",
+    "name": "trứng",
+    "price": 35000,
+    "unit": "vỉ 10",
+    "category": "sữa trứng",
+    "image_url": "/images/ingredients/trung.jpg"
+  },
+  {
+    "_id": "ingredient-40",
+    "name": "sữa tươi",
+    "price": 32000,
+    "unit": "lít",
+    "category": "sữa trứng",
+    "image_url": "/images/ingredients/sua_tuoi.jpg"
+  },
+  {
+    "_id": "ingredient-41",
+    "name": "sữa chua",
+    "price": 5000,
+    "unit": "hộp",
+    "category": "sữa trứng",
+    "image_url": "/images/ingredients/sua_chua.jpg"
+  },
+  {
+    "_id": "ingredient-42",
+    "name": "gạo lứt",
+    "price": 35000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/gao_lut.jpg"
+  },
+  {
+    "_id": "ingredient-43",
+    "name": "bánh mì nguyên cám",
+    "price": 40000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/banh_mi_nguyen_cam.jpg"
+  },
+  {
+    "_id": "ingredient-44",
+    "name": "hạnh nhân",
+    "price": 350000,
+    "unit": "kg",
+    "category": "hạt",
+    "image_url": "/images/ingredients/hanh_nhan.jpg"
+  },
+  {
+    "_id": "ingredient-45",
+    "name": "óc chó",
+    "price": 450000,
+    "unit": "kg",
+    "category": "hạt",
+    "image_url": "/images/ingredients/oc_cho.jpg"
+  },
+  {
+    "_id": "ingredient-46",
+    "name": "đậu phộng",
+    "price": 75000,
+    "unit": "kg",
+    "category": "hạt",
+    "image_url": "/images/ingredients/dau_phong.jpg"
+  },
+  {
+    "_id": "ingredient-47",
+    "name": "chuối",
+    "price": 25000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/chuoi.jpg"
+  },
+  {
+    "_id": "ingredient-48",
+    "name": "táo",
+    "price": 65000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/tao.jpg"
+  },
+  {
+    "_id": "ingredient-49",
+    "name": "cam",
+    "price": 35000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/cam.jpg"
+  },
+  {
+    "_id": "ingredient-50",
+    "name": "xoài",
+    "price": 45000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/xoai.jpg"
+  },
+  {
+    "_id": "ingredient-51",
+    "name": "dâu tây",
+    "price": 180000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/dau_tay.jpg"
+  },
+  {
+    "_id": "ingredient-52",
+    "name": "bơ",
+    "price": 85000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/bo.jpg"
+  },
+  {
+    "_id": "ingredient-53",
+    "name": "đậu hũ",
+    "price": 25000,
+    "unit": "kg",
+    "category": "đậu",
+    "image_url": "/images/ingredients/dau_hu.jpg"
+  },
+  {
+    "_id": "ingredient-54",
+    "name": "khoai lang",
+    "price": 18000,
+    "unit": "kg",
+    "category": "củ",
+    "image_url": "/images/ingredients/khoai_lang.jpg"
+  },
+  {
+    "_id": "ingredient-55",
+    "name": "muối",
+    "price": 8000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/muoi.jpg"
+  },
+  {
+    "_id": "ingredient-56",
+    "name": "tiêu",
+    "price": 120000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/tieu.jpg"
+  },
+  {
+    "_id": "ingredient-57",
+    "name": "dầu ô liu",
+    "price": 180000,
+    "unit": "lít",
+    "category": "dầu ăn",
+    "image_url": "/images/ingredients/dau_o_liu.jpg"
+  },
+  {
+    "_id": "ingredient-58",
+    "name": "nước dừa",
+    "price": 15000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/nuoc_dua.jpg"
+  },
+  {
+    "_id": "ingredient-59",
+    "name": "mật ong",
+    "price": 150000,
+    "unit": "kg",
+    "category": "khác",
+    "image_url": "/images/ingredients/mat_ong.jpg"
+  },
+  {
+    "_id": "ingredient-60",
+    "name": "rosemary",
+    "price": 250000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/rosemary.jpg"
+  },
+  {
+    "_id": "ingredient-61",
+    "name": "thyme",
+    "price": 280000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/thyme.jpg"
+  },
+  {
+    "_id": "ingredient-62",
+    "name": "cà chua bi",
+    "price": 35000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/ca_chua_bi.jpg"
+  },
+  {
+    "_id": "ingredient-63",
+    "name": "tiêu xanh",
+    "price": 350000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/tieu_xanh.jpg"
+  },
+  {
+    "_id": "ingredient-64",
+    "name": "quinoa",
+    "price": 180000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/quinoa.jpg"
+  },
+  {
+    "_id": "ingredient-65",
+    "name": "bắp cải",
+    "price": 12000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/bap_cai.jpg"
+  },
+  {
+    "_id": "ingredient-66",
+    "name": "cá trích",
+    "price": 65000,
+    "unit": "kg",
+    "category": "hải sản",
+    "image_url": "/images/ingredients/ca_trich.jpg"
+  },
+  {
+    "_id": "ingredient-67",
+    "name": "rau sống",
+    "price": 15000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/rau_song.jpg"
+  },
+  {
+    "_id": "ingredient-68",
+    "name": "me",
+    "price": 45000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/me.jpg"
+  },
+  {
+    "_id": "ingredient-69",
+    "name": "dọc mùng",
+    "price": 12000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/doc_mung.jpg"
+  },
+  {
+    "_id": "ingredient-70",
+    "name": "su su",
+    "price": 15000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/su_su.jpg"
+  },
+  {
+    "_id": "ingredient-71",
+    "name": "khoai tây",
+    "price": 25000,
+    "unit": "kg",
+    "category": "củ",
+    "image_url": "/images/ingredients/khoai_tay.jpg"
+  },
+  {
+    "_id": "ingredient-72",
+    "name": "bí xanh",
+    "price": 10000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/bi_xanh.jpg"
+  },
+  {
+    "_id": "ingredient-73",
+    "name": "rau dớn",
+    "price": 8000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/rau_don.jpg"
+  },
+  {
+    "_id": "ingredient-74",
+    "name": "bún",
+    "price": 35000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/bun.jpg"
+  },
+  {
+    "_id": "ingredient-75",
+    "name": "bánh tráng",
+    "price": 55000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/banh_trang.jpg"
+  },
+  {
+    "_id": "ingredient-76",
+    "name": "bánh phở",
+    "price": 28000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/banh_pho.jpg"
+  },
+  {
+    "_id": "ingredient-77",
+    "name": "nước dùng",
+    "price": 25000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/nuoc_dung.jpg"
+  },
+  {
+    "_id": "ingredient-78",
+    "name": "cơm",
+    "price": 30000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/com.jpg"
+  },
+  {
+    "_id": "ingredient-79",
+    "name": "xôi",
+    "price": 35000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/xoi.jpg"
+  },
+  {
+    "_id": "ingredient-80",
+    "name": "bột gạo",
+    "price": 22000,
+    "unit": "kg",
+    "category": "ngũ cốc",
+    "image_url": "/images/ingredients/bot_gao.jpg"
+  },
+  {
+    "_id": "ingredient-81",
+    "name": "giá",
+    "price": 10000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/gia.jpg"
+  },
+  {
+    "_id": "ingredient-82",
+    "name": "chả",
+    "price": 95000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/cha.jpg"
+  },
+  {
+    "_id": "ingredient-83",
+    "name": "sườn",
+    "price": 135000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/suon.jpg"
+  },
+  {
+    "_id": "ingredient-84",
+    "name": "thịt heo băm",
+    "price": 110000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/thit_heo_bam.jpg"
+  },
+  {
+    "_id": "ingredient-85",
+    "name": "lá dứa",
+    "price": 8000,
+    "unit": "bó",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/la_dua.jpg"
+  },
+  {
+    "_id": "ingredient-86",
+    "name": "nem",
+    "price": 85000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/nem.jpg"
+  },
+  {
+    "_id": "ingredient-87",
+    "name": "bì",
+    "price": 65000,
+    "unit": "kg",
+    "category": "thịt",
+    "image_url": "/images/ingredients/bi.jpg"
+  },
+  {
+    "_id": "ingredient-88",
+    "name": "pate",
+    "price": 75000,
+    "unit": "kg",
+    "category": "khác",
+    "image_url": "/images/ingredients/pate.jpg"
+  },
+  {
+    "_id": "ingredient-89",
+    "name": "khổ qua",
+    "price": 18000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/kho_qua.jpg"
+  },
+  {
+    "_id": "ingredient-90",
+    "name": "nước mắm chay",
+    "price": 35000,
+    "unit": "lít",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/nuoc_mam_chay.jpg"
+  },
+  {
+    "_id": "ingredient-91",
+    "name": "ngó sen",
+    "price": 45000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/ngo_sen.jpg"
+  },
+  {
+    "_id": "ingredient-92",
+    "name": "bắp",
+    "price": 15000,
+    "unit": "kg",
+    "category": "rau củ",
+    "image_url": "/images/ingredients/bap.jpg"
+  },
+  {
+    "_id": "ingredient-93",
+    "name": "mè đen",
+    "price": 85000,
+    "unit": "kg",
+    "category": "hạt",
+    "image_url": "/images/ingredients/me_den.jpg"
+  },
+  {
+    "_id": "ingredient-94",
+    "name": "hạt chia",
+    "price": 320000,
+    "unit": "kg",
+    "category": "hạt",
+    "image_url": "/images/ingredients/hat_chia.jpg"
+  },
+  {
+    "_id": "ingredient-95",
+    "name": "đường",
+    "price": 18000,
+    "unit": "kg",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/duong.jpg"
+  },
+  {
+    "_id": "ingredient-96",
+    "name": "vitamin a",
+    "price": 150000,
+    "unit": "hộp",
+    "category": "khác",
+    "image_url": "/images/ingredients/vitamin_a.jpg"
+  },
+  {
+    "_id": "ingredient-97",
+    "name": "vitamin d3",
+    "price": 180000,
+    "unit": "hộp",
+    "category": "khác",
+    "image_url": "/images/ingredients/vitamin_d3.jpg"
+  },
+  {
+    "_id": "ingredient-98",
+    "name": "vitamin c",
+    "price": 120000,
+    "unit": "hộp",
+    "category": "khác",
+    "image_url": "/images/ingredients/vitamin_c.jpg"
+  },
+  {
+    "_id": "ingredient-99",
+    "name": "hương liệu",
+    "price": 25000,
+    "unit": "lọ",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/huong_lieu.jpg"
+  },
+  {
+    "_id": "ingredient-100",
+    "name": "hương dâu",
+    "price": 35000,
+    "unit": "lọ",
+    "category": "gia vị",
+    "image_url": "/images/ingredients/huong_dau.jpg"
+  },
+  {
+    "_id": "ingredient-101",
+    "name": "sữa bột",
+    "price": 250000,
+    "unit": "kg",
+    "category": "sữa trứng",
+    "image_url": "/images/ingredients/sua_bot.jpg"
+  },
+  {
+    "_id": "ingredient-102",
+    "name": "men cái",
+    "price": 45000,
+    "unit": "gói",
+    "category": "khác",
+    "image_url": "/images/ingredients/men_cai.jpg"
+  },
+  {
+    "_id": "ingredient-103",
+    "name": "yến mạch",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/yen_mach.jpg"
+  },
+  {
+    "_id": "ingredient-104",
+    "name": "nước",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/nuoc.jpg"
+  },
+  {
+    "_id": "ingredient-105",
+    "name": "phở khô",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/banh_pho.jpg"
+  },
+  {
+    "_id": "ingredient-106",
+    "name": "sữa nguyên kem",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/sua_tuoi.jpg"
+  },
+  {
+    "_id": "ingredient-107",
+    "name": "cơm dừa tươi",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/dua_tuoi.jpg"
+  },
+  {
+    "_id": "ingredient-108",
+    "name": "hồng tươi",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/hong.jpg"
+  },
+  {
+    "_id": "ingredient-109",
+    "name": "ổi tươi",
+    "price": 5000,
+    "unit": "lít",
+    "category": "nước",
+    "image_url": "/images/ingredients/oi.jpg"
+  },
+  {
+    "_id": "ingredient-110",
+    "name": "dưa",
+    "price": 28000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/dua.jpg"
+  },
+  {
+    "_id": "ingredient-111",
+    "name": "dưa hấu",
+    "price": 18000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/dua_hau.jpg"
+  },
+  {
+    "_id": "ingredient-112",
+    "name": "thanh long",
+    "price": 25000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/thanh_long.jpg"
+  },
+  {
+    "_id": "ingredient-113",
+    "name": "ổi",
+    "price": 22000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/oi.jpg"
+  },
+  {
+    "_id": "ingredient-114",
+    "name": "lê",
+    "price": 55000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/le.jpg"
+  },
+  {
+    "_id": "ingredient-115",
+    "name": "kiwi",
+    "price": 95000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/kiwi.jpg"
+  },
+  {
+    "_id": "ingredient-116",
+    "name": "chanh dây",
+    "price": 45000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/chanh_day.jpg"
+  },
+  {
+    "_id": "ingredient-117",
+    "name": "nho",
+    "price": 85000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/nho.jpg"
+  },
+  {
+    "_id": "ingredient-118",
+    "name": "bưởi",
+    "price": 32000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/buoi.jpg"
+  },
+  {
+    "_id": "ingredient-119",
+    "name": "mận",
+    "price": 55000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/man.jpg"
+  },
+  {
+    "_id": "ingredient-120",
+    "name": "đu đủ",
+    "price": 18000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/du_du.jpg"
+  },
+  {
+    "_id": "ingredient-121",
+    "name": "sầu riêng",
+    "price": 120000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/sau_rieng.jpg"
+  },
+  {
+    "_id": "ingredient-122",
+    "name": "vải",
+    "price": 65000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/vai.jpg"
+  },
+  {
+    "_id": "ingredient-123",
+    "name": "dừa tươi",
+    "price": 15000,
+    "unit": "trái",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/dua_tuoi.jpg"
+  },
+  {
+    "_id": "ingredient-124",
+    "name": "hồng",
+    "price": 55000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/hong.jpg"
+  },
+  {
+    "_id": "ingredient-125",
+    "name": "lựu",
+    "price": 75000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/luu.jpg"
+  },
+  {
+    "_id": "ingredient-126",
+    "name": "chôm chôm",
+    "price": 35000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/chom_chom.jpg"
+  },
+  {
+    "_id": "ingredient-127",
+    "name": "mít",
+    "price": 28000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/mit.jpg"
+  },
+  {
+    "_id": "ingredient-128",
+    "name": "sapoche",
+    "price": 32000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/sapoche.jpg"
+  },
+  {
+    "_id": "ingredient-129",
+    "name": "dưa lưới",
+    "price": 45000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/dua_luoi.jpg"
+  },
+  {
+    "_id": "ingredient-130",
+    "name": "quýt",
+    "price": 38000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/quyt.jpg"
+  },
+  {
+    "_id": "ingredient-131",
+    "name": "nhãn",
+    "price": 42000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/nhan.jpg"
+  },
+  {
+    "_id": "ingredient-132",
+    "name": "việt quất",
+    "price": 250000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/viet_quat.jpg"
+  },
+  {
+    "_id": "ingredient-133",
+    "name": "đào",
+    "price": 85000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/dao.jpg"
+  },
+  {
+    "_id": "ingredient-134",
+    "name": "khế",
+    "price": 22000,
+    "unit": "kg",
+    "category": "trái cây",
+    "image_url": "/images/ingredients/khe.jpg"
+  },
+  {
+    "_id": "ingredient-135",
+    "name": "1 ổ bánh mì",
+    "price": 4000,
+    "unit": "kg",
+    "category": "khác",
+    "image_url": "/images/ingredients/banh_my.jpg"
+  },
+  {
+    "_id": "ingredient-136",
+    "name": "sữa chua không đường",
+    "price": 7000,
+    "unit": "kg",
+    "category": "khác",
+    "image_url": "/images/ingredients/sua_chua.jpg"
+  },
+  {
+    "_id": "ingredient-137",
+    "name": "sữa chua ít đường",
+    "price": 7000,
+    "unit": "kg",
+    "category": "khác",
+    "image_url": "/images/ingredients/sua_chua.jpg"
+  },
+  {
+    "_id": "ingredient-138",
+    "name": "sữa chua có đường",
+    "price": 7000,
+    "unit": "kg",
+    "category": "khác",
+    "image_url": "/images/ingredients/sua_chua.jpg"
+  }
+]

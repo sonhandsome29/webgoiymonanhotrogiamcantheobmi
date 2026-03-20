@@ -1,0 +1,3550 @@
+[
+  {
+    "_id": "meal-1",
+    "name": "Gà nướng chanh tỏi",
+    "protein": 26,
+    "fat": 6,
+    "carbs": 2,
+    "calories": 200,
+    "ingredients": [
+      "100g ức gà",
+      "20g chanh",
+      "10g tỏi",
+      "2g muối",
+      "5g tiêu"
+    ],
+    "instructions": "Ướp 100g ức gà với nước cốt chanh, tỏi băm, muối, tiêu. Nướng 180°C 20 phút.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng chanh tỏi.jpg"
+  },
+  {
+    "_id": "meal-2",
+    "name": "Salad gà và bơ",
+    "protein": 20,
+    "fat": 15,
+    "carbs": 5,
+    "calories": 300,
+    "ingredients": [
+      "100g ức gà",
+      "50g bơ",
+      "100g xà lách",
+      "100g cà chua bi"
+    ],
+    "instructions": "Luộc 100g ức gà, xé nhỏ, trộn với bơ, xà lách, cà chua bi.",
+    "group": "gà",
+    "image_url": "/images/Salad gà và bơ.jpg"
+  },
+  {
+    "_id": "meal-3",
+    "name": "Gà xào rau củ",
+    "protein": 25,
+    "fat": 5,
+    "carbs": 10,
+    "calories": 250,
+    "ingredients": [
+      "100g ức gà",
+      "100g ớt chuông",
+      "100g bông cải xanh"
+    ],
+    "instructions": "Xào 100g ức gà với ớt chuông, bông cải xanh.",
+    "group": "gà",
+    "image_url": "/images/Gà xào rau củ.jpg"
+  },
+  {
+    "_id": "meal-4",
+    "name": "Súp gà rau củ",
+    "protein": 15,
+    "fat": 3,
+    "carbs": 10,
+    "calories": 150,
+    "ingredients": [
+      "100g ức gà",
+      "100g cà rốt",
+      "100g bí ngòi"
+    ],
+    "instructions": "Nấu 200ml súp từ 50g gà, thêm cà rốt, bí ngòi.",
+    "group": "gà",
+    "image_url": "/images/Súp gà rau củ.jpg"
+  },
+  {
+    "_id": "meal-5",
+    "name": "Gà áp chảo thảo mộc",
+    "protein": 27,
+    "fat": 7,
+    "carbs": 0,
+    "calories": 220,
+    "ingredients": [
+      "100g ức gà",
+      "100g rosemary",
+      "100g thyme"
+    ],
+    "instructions": "Áp chảo 100g ức gà với rosemary, thyme.",
+    "group": "gà",
+    "image_url": "/images/Gà áp chảo thảo mộc.jpg"
+  },
+  {
+    "_id": "meal-6",
+    "name": "Gà luộc lá chanh",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g đùi gà",
+      "20g lá chanh",
+      "20g gừng"
+    ],
+    "instructions": "Luộc 100g đùi gà với lá chanh, gừng.",
+    "group": "gà",
+    "image_url": "/images/Gà luộc lá chanh.jpg"
+  },
+  {
+    "_id": "meal-7",
+    "name": "Gà nướng mật ong",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 230,
+    "ingredients": [
+      "100g ức gà",
+      "1 thìa mật ong",
+      "20g tỏi"
+    ],
+    "instructions": "Ướp 100g gà với mật ong, tỏi, nướng 190°C.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng mật ong.jpg"
+  },
+  {
+    "_id": "meal-8",
+    "name": "Gà cuốn rau củ",
+    "protein": 22,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 200,
+    "ingredients": [
+      "100g ức gà",
+      "100g cà rốt",
+      "100g dưa leo"
+    ],
+    "instructions": "Cuốn 100g gà luộc với cà rốt, dưa leo.",
+    "group": "gà",
+    "image_url": "/images/Gà cuốn rau củ.jpg"
+  },
+  {
+    "_id": "meal-9",
+    "name": "Gà hấp sả ớt",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 1,
+    "calories": 190,
+    "ingredients": [
+      "100g đùi gà",
+      "20g sả",
+      "20g ớt"
+    ],
+    "instructions": "Hấp 100g đùi gà với sả, ớt.",
+    "group": "gà",
+    "image_url": "/images/Gà hấp sả ớt.jpg"
+  },
+  {
+    "_id": "meal-10",
+    "name": "Gỏi gà bắp cải",
+    "protein": 20,
+    "fat": 2,
+    "carbs": 5,
+    "calories": 170,
+    "ingredients": [
+      "100g ức gà",
+      "100g bắp cải",
+      "20g rau mùi"
+    ],
+    "instructions": "Trộn 100g gà luộc xé sợi với bắp cải, rau mùi.",
+    "group": "gà",
+    "image_url": "/images/Gỏi gà bắp cải.jpg"
+  },
+  {
+    "_id": "meal-11",
+    "name": "Gà nướng nghệ",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 2,
+    "calories": 210,
+    "ingredients": [
+      "100g ức gà",
+      "20g nghệ",
+      "20g tỏi"
+    ],
+    "instructions": "Ướp 100g gà với nghệ, tỏi, nướng 180°C.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng nghệ.jpg"
+  },
+  {
+    "_id": "meal-12",
+    "name": "Gà xào nấm",
+    "protein": 23,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 240,
+    "ingredients": [
+      "100g ức gà",
+      "50g nấm rơm"
+    ],
+    "instructions": "Xào 100g gà với nấm rơm.",
+    "group": "gà",
+    "image_url": "/images/Gà xào nấm.jpg"
+  },
+  {
+    "_id": "meal-13",
+    "name": "Gà hấp hành gừng",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 0,
+    "calories": 185,
+    "ingredients": [
+      "100g đùi gà",
+      "20g hành lá",
+      "20g gừng"
+    ],
+    "instructions": "Hấp 100g gà với hành lá, gừng.",
+    "group": "gà",
+    "image_url": "/images/Gà hấp hành gừng.jpg"
+  },
+  {
+    "_id": "meal-14",
+    "name": "Gà nướng tiêu xanh",
+    "protein": 26,
+    "fat": 6,
+    "carbs": 1,
+    "calories": 215,
+    "ingredients": [
+      "100g ức gà",
+      "20g tiêu xanh"
+    ],
+    "instructions": "Ướp 100g gà với tiêu xanh, nướng 190°C.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng tiêu xanh.jpg"
+  },
+  {
+    "_id": "meal-15",
+    "name": "Gà luộc rau thơm",
+    "protein": 24,
+    "fat": 5,
+    "carbs": 0,
+    "calories": 175,
+    "ingredients": [
+      "100g đùi gà",
+      "20g rau thơm"
+    ],
+    "instructions": "Luộc 100g gà với rau thơm.",
+    "group": "gà",
+    "image_url": "/images/Gà luộc rau thơm.jpg"
+  },
+  {
+    "_id": "meal-16",
+    "name": "Gà xào bí đỏ",
+    "protein": 23,
+    "fat": 5,
+    "carbs": 10,
+    "calories": 230,
+    "ingredients": [
+      "100g ức gà",
+      "50g bí đỏ"
+    ],
+    "instructions": "Xào 100g gà với bí đỏ.",
+    "group": "gà",
+    "image_url": "/images/Gà xào bí đỏ.jpg"
+  },
+  {
+    "_id": "meal-17",
+    "name": "Gà nướng rau củ",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 10,
+    "calories": 260,
+    "ingredients": [
+      "100g ức gà",
+      "100g cà rốt",
+      "100g khoai lang"
+    ],
+    "instructions": "Nướng 100g gà với cà rốt, khoai lang.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng rau củ.jpg"
+  },
+  {
+    "_id": "meal-18",
+    "name": "Gà hấp lá lốt",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 1,
+    "calories": 195,
+    "ingredients": [
+      "100g đùi gà",
+      "100g lá lốt"
+    ],
+    "instructions": "Hấp 100g gà với lá lốt.",
+    "group": "gà",
+    "image_url": "/images/Gà hấp lá lốt.jpg"
+  },
+  {
+    "_id": "meal-19",
+    "name": "Gà xào cải bó xôi",
+    "protein": 23,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 220,
+    "ingredients": [
+      "100g ức gà",
+      "100g cải bó xôi"
+    ],
+    "instructions": "Xào 100g gà với cải bó xôi.",
+    "group": "gà",
+    "image_url": "/images/Gà xào cải bó xôi.jpg"
+  },
+  {
+    "_id": "meal-20",
+    "name": "Gà nướng ớt chuông",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 240,
+    "ingredients": [
+      "100g ức gà",
+      "100g ớt chuông"
+    ],
+    "instructions": "Nướng 100g gà với ớt chuông.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng ớt chuông.jpg"
+  },
+  {
+    "_id": "meal-21",
+    "name": "Gà luộc nghệ",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 0,
+    "calories": 185,
+    "ingredients": [
+      "100g đùi gà",
+      "20g nghệ"
+    ],
+    "instructions": "Luộc 100g gà với nghệ.",
+    "group": "gà",
+    "image_url": "/images/Gà luộc nghệ.jpg"
+  },
+  {
+    "_id": "meal-22",
+    "name": "Gà xào đậu Hà Lan",
+    "protein": 23,
+    "fat": 5,
+    "carbs": 8,
+    "calories": 235,
+    "ingredients": [
+      "100g ức gà",
+      "100g đậu Hà Lan"
+    ],
+    "instructions": "Xào 100g gà với đậu Hà Lan.",
+    "group": "gà",
+    "image_url": "/images/Gà xào đậu Hà Lan.jpg"
+  },
+  {
+    "_id": "meal-23",
+    "name": "Gà nướng lá chanh",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 1,
+    "calories": 225,
+    "ingredients": [
+      "100g ức gà",
+      "20g lá chanh"
+    ],
+    "instructions": "Nướng 100g gà với lá chanh.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng lá chanh.jpg"
+  },
+  {
+    "_id": "meal-24",
+    "name": "Gà hấp tỏi",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g đùi gà",
+      "20g tỏi"
+    ],
+    "instructions": "Hấp 100g gà với tỏi.",
+    "group": "gà",
+    "image_url": "/images/Gà hấp tỏi.jpg"
+  },
+  {
+    "_id": "meal-25",
+    "name": "Gà xào măng tây",
+    "protein": 23,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 245,
+    "ingredients": [
+      "100g ức gà",
+      "100g măng tây"
+    ],
+    "instructions": "Xào 100g gà với măng tây.",
+    "group": "gà",
+    "image_url": "/images/Gà xào măng tây.jpg"
+  },
+  {
+    "_id": "meal-26",
+    "name": "Gà nướng bí ngòi",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 230,
+    "ingredients": [
+      "100g ức gà",
+      "100g bí ngòi"
+    ],
+    "instructions": "Nướng 100g gà với bí ngòi.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng bí ngòi.jpg"
+  },
+  {
+    "_id": "meal-27",
+    "name": "Gà luộc sả",
+    "protein": 24,
+    "fat": 5,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g đùi gà",
+      "20g sả"
+    ],
+    "instructions": "Luộc 100g gà với sả.",
+    "group": "gà",
+    "image_url": "/images/Gà luộc sả.jpg"
+  },
+  {
+    "_id": "meal-28",
+    "name": "Gà xào cải ngọt",
+    "protein": 23,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 225,
+    "ingredients": [
+      "100g ức gà",
+      "100g cải ngọt"
+    ],
+    "instructions": "Xào 100g gà với cải ngọt.",
+    "group": "gà",
+    "image_url": "/images/Gà xào cải ngọt.jpg"
+  },
+  {
+    "_id": "meal-29",
+    "name": "Gà nướng cà rốt",
+    "protein": 25,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 235,
+    "ingredients": [
+      "100g ức gà",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g gà với cà rốt.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng cà rốt.jpg"
+  },
+  {
+    "_id": "meal-30",
+    "name": "Gà hấp rau củ",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 205,
+    "ingredients": [
+      "100g đùi gà",
+      "100g cà rốt",
+      "100g bông cải"
+    ],
+    "instructions": "Hấp 100g gà với cà rốt, bông cải.",
+    "group": "gà",
+    "image_url": "/images/Gà hấp rau củ.jpg"
+  },
+  {
+    "_id": "meal-31",
+    "name": "Cá hồi nướng chanh",
+    "protein": 23,
+    "fat": 12,
+    "carbs": 1,
+    "calories": 250,
+    "ingredients": [
+      "100g cá hồi",
+      "20g chanh",
+      "2g muối"
+    ],
+    "instructions": "Ướp 100g cá hồi với chanh, muối, nướng 200°C.",
+    "group": "cá",
+    "image_url": "/images/Cá hồi nướng chanh.jpg"
+  },
+  {
+    "_id": "meal-32",
+    "name": "Cá hấp gừng",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g cá lóc",
+      "10g gừng",
+      "20g hành lá"
+    ],
+    "instructions": "Hấp 100g cá với gừng, hành lá.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp gừng.jpg"
+  },
+  {
+    "_id": "meal-33",
+    "name": "Salad cá ngừ",
+    "protein": 20,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 200,
+    "ingredients": [
+      "100g cá ngừ hộp",
+      "100g xà lách",
+      "100g dưa leo"
+    ],
+    "instructions": "Trộn 100g cá ngừ với xà lách, dưa leo.",
+    "group": "cá",
+    "image_url": "/images/Salad cá ngừ.jpg"
+  },
+  {
+    "_id": "meal-34",
+    "name": "Cá thu nướng nghệ",
+    "protein": 25,
+    "fat": 10,
+    "carbs": 2,
+    "calories": 240,
+    "ingredients": [
+      "100g cá thu",
+      "20g nghệ",
+      "50g tỏi"
+    ],
+    "instructions": "Ướp 100g cá thu với nghệ, tỏi, nướng 180°C.",
+    "group": "cá",
+    "image_url": "/images/Cá thu nướng nghệ.jpg"
+  },
+  {
+    "_id": "meal-35",
+    "name": "Cá kho tộ ít dầu",
+    "protein": 20,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 220,
+    "ingredients": [
+      "100g cá lóc"
+    ],
+    "instructions": "Kho 100g cá với nước dừa, ít dầu.",
+    "group": "cá",
+    "image_url": "/images/Cá kho tộ ít dầu.jpg"
+  },
+  {
+    "_id": "meal-36",
+    "name": "Cá hấp sả",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 1,
+    "calories": 190,
+    "ingredients": [
+      "100g cá lóc",
+      "20g sả",
+      "20g ớt"
+    ],
+    "instructions": "Hấp 100g cá với sả, ớt.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp sả.jpg"
+  },
+  {
+    "_id": "meal-37",
+    "name": "Cá nướng rau củ",
+    "protein": 23,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 260,
+    "ingredients": [
+      "100g cá hồi",
+      "100g ớt chuông",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g cá với ớt chuông, cà rốt.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng rau củ.jpg"
+  },
+  {
+    "_id": "meal-38",
+    "name": "Cá luộc lá lốt",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 175,
+    "ingredients": [
+      "100g cá lóc",
+      "100g lá lốt"
+    ],
+    "instructions": "Luộc 100g cá với lá lốt.",
+    "group": "cá",
+    "image_url": "/images/Cá luộc lá lốt.jpg"
+  },
+  {
+    "_id": "meal-39",
+    "name": "Cá xào bông cải",
+    "protein": 23,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 230,
+    "ingredients": [
+      "100g cá thu",
+      "100g bông cải xanh"
+    ],
+    "instructions": "Xào 100g cá với bông cải.",
+    "group": "cá",
+    "image_url": "/images/Cá xào bông cải.jpg"
+  },
+  {
+    "_id": "meal-40",
+    "name": "Cá hồi áp chảo",
+    "protein": 23,
+    "fat": 15,
+    "carbs": 0,
+    "calories": 270,
+    "ingredients": [
+      "100g cá hồi",
+      "2g muối"
+    ],
+    "instructions": "Áp chảo 100g cá hồi với ít dầu.",
+    "group": "cá",
+    "image_url": "/images/Cá hồi áp chảo.jpg"
+  },
+  {
+    "_id": "meal-41",
+    "name": "Cá hấp hành",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 185,
+    "ingredients": [
+      "100g cá lóc",
+      "10g hành lá"
+    ],
+    "instructions": "Hấp 100g cá với hành lá.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp hành.jpg"
+  },
+  {
+    "_id": "meal-42",
+    "name": "Cá nướng tiêu",
+    "protein": 25,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 245,
+    "ingredients": [
+      "100g cá thu",
+      "5g tiêu"
+    ],
+    "instructions": "Ướp 100g cá với tiêu, nướng 180°C.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng tiêu.jpg"
+  },
+  {
+    "_id": "meal-43",
+    "name": "Cá luộc nghệ",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g cá lóc",
+      "20g nghệ"
+    ],
+    "instructions": "Luộc 100g cá với nghệ.",
+    "group": "cá",
+    "image_url": "/images/Cá luộc nghệ.jpg"
+  },
+  {
+    "_id": "meal-44",
+    "name": "Cá xào măng tây",
+    "protein": 23,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 255,
+    "ingredients": [
+      "100g cá hồi",
+      "100g măng tây"
+    ],
+    "instructions": "Xào 100g cá với măng tây.",
+    "group": "cá",
+    "image_url": "/images/Cá xào măng tây.jpg"
+  },
+  {
+    "_id": "meal-45",
+    "name": "Cá nướng bí ngòi",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 235,
+    "ingredients": [
+      "100g cá thu",
+      "100g bí ngòi"
+    ],
+    "instructions": "Nướng 100g cá với bí ngòi.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng bí ngòi.jpg"
+  },
+  {
+    "_id": "meal-46",
+    "name": "Cá hấp lá chanh",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 1,
+    "calories": 190,
+    "ingredients": [
+      "100g cá lóc",
+      "20g lá chanh"
+    ],
+    "instructions": "Hấp 100g cá với lá chanh.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp lá chanh.jpg"
+  },
+  {
+    "_id": "meal-47",
+    "name": "Cá xào cải thìa",
+    "protein": 20,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 225,
+    "ingredients": [
+      "100g cá lóc",
+      "100g cải thìa"
+    ],
+    "instructions": "Xào 100g cá với cải thìa.",
+    "group": "cá",
+    "image_url": "/images/Cá xào cải thìa.jpg"
+  },
+  {
+    "_id": "meal-48",
+    "name": "Cá nướng cà rốt",
+    "protein": 23,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 260,
+    "ingredients": [
+      "100g cá hồi",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g cá với cà rốt.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng cà rốt.jpg"
+  },
+  {
+    "_id": "meal-49",
+    "name": "Cá luộc sả ớt",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 1,
+    "calories": 185,
+    "ingredients": [
+      "100g cá thu",
+      "20g sả",
+      "20g ớt"
+    ],
+    "instructions": "Luộc 100g cá với sả, ớt.",
+    "group": "cá",
+    "image_url": "/images/Cá luộc sả ớt.jpg"
+  },
+  {
+    "_id": "meal-50",
+    "name": "Cá xào nấm",
+    "protein": 23,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 230,
+    "ingredients": [
+      "100g cá lóc",
+      "100g nấm rơm"
+    ],
+    "instructions": "Xào 100g cá với nấm rơm.",
+    "group": "cá",
+    "image_url": "/images/Cá xào nấm.jpg"
+  },
+  {
+    "_id": "meal-51",
+    "name": "Cá nướng ớt chuông",
+    "protein": 23,
+    "fat": 12,
+    "carbs": 5,
+    "calories": 265,
+    "ingredients": [
+      "100g cá hồi",
+      "100g ớt chuông"
+    ],
+    "instructions": "Nướng 100g cá với ớt chuông.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng ớt chuông.jpg"
+  },
+  {
+    "_id": "meal-52",
+    "name": "Cá hấp rau củ",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 5,
+    "calories": 200,
+    "ingredients": [
+      "100g cá lóc",
+      "100g cà rốt",
+      "100g bông cải"
+    ],
+    "instructions": "Hấp 100g cá với cà rốt, bông cải.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp rau củ.jpg"
+  },
+  {
+    "_id": "meal-53",
+    "name": "Cá xào đậu Hà Lan",
+    "protein": 23,
+    "fat": 6,
+    "carbs": 8,
+    "calories": 240,
+    "ingredients": [
+      "100g cá thu",
+      "100g đậu Hà Lan"
+    ],
+    "instructions": "Xào 100g cá với đậu Hà Lan.",
+    "group": "cá",
+    "image_url": "/images/Cá xào đậu Hà Lan.jpg"
+  },
+  {
+    "_id": "meal-54",
+    "name": "Cá nướng lá lốt",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 1,
+    "calories": 220,
+    "ingredients": [
+      "100g cá lóc",
+      "100g lá lốt"
+    ],
+    "instructions": "Nướng 100g cá với lá lốt.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng lá lốt.jpg"
+  },
+  {
+    "_id": "meal-55",
+    "name": "Cá luộc rau thơm",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g cá lóc",
+      "100g rau thơm"
+    ],
+    "instructions": "Luộc 100g cá với rau thơm.",
+    "group": "cá",
+    "image_url": "/images/Cá luộc rau thơm.jpg"
+  },
+  {
+    "_id": "meal-56",
+    "name": "Cá xào cải bó xôi",
+    "protein": 23,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 245,
+    "ingredients": [
+      "100g cá hồi",
+      "100g cải bó xôi"
+    ],
+    "instructions": "Xào 100g cá với cải bó xôi.",
+    "group": "cá",
+    "image_url": "/images/Cá xào cải bó xôi.jpg"
+  },
+  {
+    "_id": "meal-57",
+    "name": "Cá nướng nghệ gừng",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 2,
+    "calories": 235,
+    "ingredients": [
+      "100g cá thu",
+      "20g nghệ",
+      "20g gừng"
+    ],
+    "instructions": "Nướng 100g cá với nghệ, gừng.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng nghệ gừng.jpg"
+  },
+  {
+    "_id": "meal-58",
+    "name": "Cá hấp tỏi",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g cá lóc",
+      "20g tỏi"
+    ],
+    "instructions": "Hấp 100g cá với tỏi.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp tỏi.jpg"
+  },
+  {
+    "_id": "meal-59",
+    "name": "Cá xào bí đỏ",
+    "protein": 23,
+    "fat": 10,
+    "carbs": 8,
+    "calories": 250,
+    "ingredients": [
+      "100g cá hồi",
+      "100g bí đỏ"
+    ],
+    "instructions": "Xào 100g cá với bí đỏ.",
+    "group": "cá",
+    "image_url": "/images/Cá xào bí đỏ.jpg"
+  },
+  {
+    "_id": "meal-60",
+    "name": "Cá nướng hành lá",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 1,
+    "calories": 230,
+    "ingredients": [
+      "100g cá thu",
+      "50g hành lá"
+    ],
+    "instructions": "Nướng 100g cá với hành lá.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng hành lá.jpg"
+  },
+  {
+    "_id": "meal-61",
+    "name": "Thịt heo nướng tỏi",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 230,
+    "ingredients": [
+      "100g nạc heo",
+      "20g tỏi",
+      "2g muối"
+    ],
+    "instructions": "Ướp 100g heo với tỏi, muối, nướng 190°C.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng tỏi.jpg"
+  },
+  {
+    "_id": "meal-62",
+    "name": "Thịt heo xào cải thìa",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 210,
+    "ingredients": [
+      "100g nạc heo",
+      "100g cải thìa"
+    ],
+    "instructions": "Xào 100g heo với cải thìa.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào cải thìa.jpg"
+  },
+  {
+    "_id": "meal-63",
+    "name": "Thịt heo hấp sả",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 1,
+    "calories": 200,
+    "ingredients": [
+      "100g nạc heo",
+      "20g sả"
+    ],
+    "instructions": "Hấp 100g heo với sả.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo hấp sả.jpg"
+  },
+  {
+    "_id": "meal-64",
+    "name": "Súp heo rau củ",
+    "protein": 15,
+    "fat": 5,
+    "carbs": 10,
+    "calories": 160,
+    "ingredients": [
+      "100g nạc heo",
+      "100g cà rốt",
+      "100g khoai tây"
+    ],
+    "instructions": "Nấu 200ml súp với 50g heo, rau củ.",
+    "group": "thịt heo",
+    "image_url": "/images/Súp heo rau củ.jpg"
+  },
+  {
+    "_id": "meal-65",
+    "name": "Thịt heo áp chảo",
+    "protein": 27,
+    "fat": 11,
+    "carbs": 0,
+    "calories": 240,
+    "ingredients": [
+      "100g nạc heo",
+      "50g rosemary"
+    ],
+    "instructions": "Áp chảo 100g heo với rosemary.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo áp chảo.jpg"
+  },
+  {
+    "_id": "meal-66",
+    "name": "Thịt heo luộc gừng",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g nạc heo",
+      "20g gừng"
+    ],
+    "instructions": "Luộc 100g heo với gừng.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo luộc gừng.jpg"
+  },
+  {
+    "_id": "meal-67",
+    "name": "Thịt heo nướng nghệ",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 225,
+    "ingredients": [
+      "100g nạc heo",
+      "20g nghệ"
+    ],
+    "instructions": "Nướng 100g heo với nghệ.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng nghệ.jpg"
+  },
+  {
+    "_id": "meal-68",
+    "name": "Thịt heo xào bông cải",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 220,
+    "ingredients": [
+      "100g nạc heo",
+      "100g bông cải xanh"
+    ],
+    "instructions": "Xào 100g heo với bông cải.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào bông cải.jpg"
+  },
+  {
+    "_id": "meal-69",
+    "name": "Thịt heo hấp hành",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 195,
+    "ingredients": [
+      "100g nạc heo",
+      "20g hành lá"
+    ],
+    "instructions": "Hấp 100g heo với hành lá.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo hấp hành.jpg"
+  },
+  {
+    "_id": "meal-70",
+    "name": "Thịt heo nướng rau củ",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 250,
+    "ingredients": [
+      "100g nạc heo",
+      "100g ớt chuông",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g heo với rau củ.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng rau củ.jpg"
+  },
+  {
+    "_id": "meal-71",
+    "name": "Thịt heo luộc sả",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 185,
+    "ingredients": [
+      "100g nạc heo",
+      "20g sả"
+    ],
+    "instructions": "Luộc 100g heo với sả.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo luộc sả.jpg"
+  },
+  {
+    "_id": "meal-72",
+    "name": "Thịt heo xào nấm",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 235,
+    "ingredients": [
+      "100g nạc heo",
+      "100g nấm rơm"
+    ],
+    "instructions": "Xào 100g heo với nấm rơm.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào nấm.jpg"
+  },
+  {
+    "_id": "meal-73",
+    "name": "Thịt heo nướng tiêu",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 230,
+    "ingredients": [
+      "100g nạc heo",
+      "20g tiêu"
+    ],
+    "instructions": "Nướng 100g heo với tiêu.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng tiêu.jpg"
+  },
+  {
+    "_id": "meal-74",
+    "name": "Thịt heo hấp lá chanh",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 1,
+    "calories": 200,
+    "ingredients": [
+      "100g nạc heo",
+      "20g lá chanh"
+    ],
+    "instructions": "Hấp 100g heo với lá chanh.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo hấp lá chanh.jpg"
+  },
+  {
+    "_id": "meal-75",
+    "name": "Thịt heo xào măng tây",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 6,
+    "calories": 245,
+    "ingredients": [
+      "100g nạc heo",
+      "100g măng tây"
+    ],
+    "instructions": "Xào 100g heo với măng tây.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào măng tây.jpg"
+  },
+  {
+    "_id": "meal-76",
+    "name": "Thịt heo nướng bí ngòi",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 235,
+    "ingredients": [
+      "100g nạc heo",
+      "100g bí ngòi"
+    ],
+    "instructions": "Nướng 100g heo với bí ngòi.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng bí ngòi.jpg"
+  },
+  {
+    "_id": "meal-77",
+    "name": "Thịt heo luộc nghệ",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g nạc heo",
+      "20g nghệ"
+    ],
+    "instructions": "Luộc 100g heo với nghệ.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo luộc nghệ.jpg"
+  },
+  {
+    "_id": "meal-78",
+    "name": "Thịt heo xào đậu Hà Lan",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 8,
+    "calories": 240,
+    "ingredients": [
+      "100g nạc heo",
+      "100g đậu Hà Lan"
+    ],
+    "instructions": "Xào 100g heo với đậu Hà Lan.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào đậu Hà Lan.jpg"
+  },
+  {
+    "_id": "meal-79",
+    "name": "Thịt heo nướng ớt chuông",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 255,
+    "ingredients": [
+      "100g nạc heo",
+      "100g ớt chuông"
+    ],
+    "instructions": "Nướng 100g heo với ớt chuông.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng ớt chuông.jpg"
+  },
+  {
+    "_id": "meal-80",
+    "name": "Thịt heo hấp rau củ",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 205,
+    "ingredients": [
+      "100g nạc heo",
+      "100g cà rốt",
+      "100g bông cải"
+    ],
+    "instructions": "Hấp 100g heo với cà rốt, bông cải.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo hấp rau củ.jpg"
+  },
+  {
+    "_id": "meal-81",
+    "name": "Thịt heo xào cải bó xôi",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 230,
+    "ingredients": [
+      "100g nạc heo",
+      "100g cải bó xôi"
+    ],
+    "instructions": "Xào 100g heo với cải bó xôi.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào cải bó xôi.jpg"
+  },
+  {
+    "_id": "meal-82",
+    "name": "Thịt heo nướng cà rốt",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 245,
+    "ingredients": [
+      "100g nạc heo",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g heo với cà rốt.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng cà rốt.jpg"
+  },
+  {
+    "_id": "meal-83",
+    "name": "Thịt heo luộc rau thơm",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 185,
+    "ingredients": [
+      "100g nạc heo",
+      "100g rau thơm"
+    ],
+    "instructions": "Luộc 100g heo với rau thơm.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo luộc rau thơm.jpg"
+  },
+  {
+    "_id": "meal-84",
+    "name": "Thịt heo xào bí đỏ",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 10,
+    "calories": 250,
+    "ingredients": [
+      "100g nạc heo",
+      "100g bí đỏ"
+    ],
+    "instructions": "Xào 100g heo với bí đỏ.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào bí đỏ.jpg"
+  },
+  {
+    "_id": "meal-85",
+    "name": "Thịt heo nướng lá lốt",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 225,
+    "ingredients": [
+      "100g nạc heo",
+      "100g lá lốt"
+    ],
+    "instructions": "Nướng 100g heo với lá lốt.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng lá lốt.jpg"
+  },
+  {
+    "_id": "meal-86",
+    "name": "Thịt heo hấp tỏi",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 195,
+    "ingredients": [
+      "100g nạc heo",
+      "20g tỏi"
+    ],
+    "instructions": "Hấp 100g heo với tỏi.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo hấp tỏi.jpg"
+  },
+  {
+    "_id": "meal-87",
+    "name": "Thịt heo xào cải ngọt",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 230,
+    "ingredients": [
+      "100g nạc heo",
+      "100g cải ngọt"
+    ],
+    "instructions": "Xào 100g heo với cải ngọt.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào cải ngọt.jpg"
+  },
+  {
+    "_id": "meal-88",
+    "name": "Thịt heo nướng hành lá",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 240,
+    "ingredients": [
+      "100g nạc heo",
+      "50g hành lá"
+    ],
+    "instructions": "Nướng 100g heo với hành lá.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng hành lá.jpg"
+  },
+  {
+    "_id": "meal-89",
+    "name": "Thịt heo luộc lá chanh",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g nạc heo",
+      "20g lá chanh"
+    ],
+    "instructions": "Luộc 100g heo với lá chanh.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo luộc lá chanh.jpg"
+  },
+  {
+    "_id": "meal-90",
+    "name": "Thịt heo xào nấm đông cô",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 6,
+    "calories": 245,
+    "ingredients": [
+      "100g nạc heo",
+      "100g nấm đông cô"
+    ],
+    "instructions": "Xào 100g heo với nấm đông cô.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào nấm đông cô.jpg"
+  },
+  {
+    "_id": "meal-91",
+    "name": "Thịt bò áp chảo",
+    "protein": 28,
+    "fat": 12,
+    "carbs": 0,
+    "calories": 280,
+    "ingredients": [
+      "100g bò ",
+      "50g rosemary"
+    ],
+    "instructions": "Áp chảo 100g bò với rosemary.",
+    "group": "thịt bò",
+    "image_url": "/images/Thịt bò áp chảo.jpg"
+  },
+  {
+    "_id": "meal-92",
+    "name": "Bò xào bông cải",
+    "protein": 27,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 260,
+    "ingredients": [
+      "100g bò",
+      "100g bông cải xanh"
+    ],
+    "instructions": "Xào 100g bò với bông cải.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào bông cải.jpg"
+  },
+  {
+    "_id": "meal-93",
+    "name": "Bò nướng rau củ",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 290,
+    "ingredients": [
+      "100g bò",
+      "100gớt chuông",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g bò với rau củ.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng rau củ.jpg"
+  },
+  {
+    "_id": "meal-94",
+    "name": "Salad bò quinoa",
+    "protein": 25,
+    "fat": 10,
+    "carbs": 20,
+    "calories": 320,
+    "ingredients": [
+      "100g bò",
+      "50g quinoa",
+      "100g xà lách"
+    ],
+    "instructions": "Áp chảo 100g bò, trộn với quinoa, xà lách.",
+    "group": "thịt bò",
+    "image_url": "/images/Salad bò quinoa.jpg"
+  },
+  {
+    "_id": "meal-95",
+    "name": "Bò hấp gừng",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 250,
+    "ingredients": [
+      "100g bò",
+      "20g gừng"
+    ],
+    "instructions": "Hấp 100g bò với gừng.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp gừng.jpg"
+  },
+  {
+    "_id": "meal-96",
+    "name": "Bò nướng tỏi",
+    "protein": 28,
+    "fat": 11,
+    "carbs": 1,
+    "calories": 275,
+    "ingredients": [
+      "100g bò thăn",
+      "50g tỏi"
+    ],
+    "instructions": "Nướng 100g bò với tỏi.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng tỏi.jpg"
+  },
+  {
+    "_id": "meal-97",
+    "name": "Bò xào nấm",
+    "protein": 27,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 270,
+    "ingredients": [
+      "100g bò",
+      "100g nấm rơm"
+    ],
+    "instructions": "Xào 100g bò với nấm rơm.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào nấm.jpg"
+  },
+  {
+    "_id": "meal-98",
+    "name": "Bò luộc sả",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 240,
+    "ingredients": [
+      "100g bò",
+      "20g sả"
+    ],
+    "instructions": "Luộc 100g bò với sả.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò luộc sả.jpg"
+  },
+  {
+    "_id": "meal-99",
+    "name": "Bò nướng nghệ",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 265,
+    "ingredients": [
+      "100g bò",
+      "20g nghệ"
+    ],
+    "instructions": "Nướng 100g bò với nghệ.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng nghệ.jpg"
+  },
+  {
+    "_id": "meal-100",
+    "name": "Bò xào măng tây",
+    "protein": 27,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 280,
+    "ingredients": [
+      "100g bò",
+      "100g măng tây"
+    ],
+    "instructions": "Xào 100g bò với măng tây.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào măng tây.jpg"
+  },
+  {
+    "_id": "meal-101",
+    "name": "Bò hấp lá lốt",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 1,
+    "calories": 255,
+    "ingredients": [
+      "100g bò",
+      "100g lá lốt"
+    ],
+    "instructions": "Hấp 100g bò với lá lốt.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp lá lốt.jpg"
+  },
+  {
+    "_id": "meal-102",
+    "name": "Bò nướng ớt chuông",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 295,
+    "ingredients": [
+      "100g bò",
+      "100g ớt chuông"
+    ],
+    "instructions": "Nướng 100g bò với ớt chuông.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng ớt chuông.jpg"
+  },
+  {
+    "_id": "meal-103",
+    "name": "Bò xào cải thìa",
+    "protein": 27,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 260,
+    "ingredients": [
+      "100g bò",
+      "100g cải thìa"
+    ],
+    "instructions": "Xào 100g bò với cải thìa.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào cải thìa.jpg"
+  },
+  {
+    "_id": "meal-104",
+    "name": "Bò luộc nghệ",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 245,
+    "ingredients": [
+      "100g bò",
+      "20g nghệ"
+    ],
+    "instructions": "Luộc 100g bò với nghệ.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò luộc nghệ.jpg"
+  },
+  {
+    "_id": "meal-105",
+    "name": "Bò nướng bí ngòi",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 270,
+    "ingredients": [
+      "100g bò",
+      "100g bí ngòi"
+    ],
+    "instructions": "Nướng 100g bò với bí ngòi.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng bí ngòi.jpg"
+  },
+  {
+    "_id": "meal-106",
+    "name": "Bò xào đậu Hà Lan",
+    "protein": 27,
+    "fat": 10,
+    "carbs": 8,
+    "calories": 285,
+    "ingredients": [
+      "100g bò",
+      "100g đậu Hà Lan"
+    ],
+    "instructions": "Xào 100g bò với đậu Hà Lan.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào đậu Hà Lan.jpg"
+  },
+  {
+    "_id": "meal-107",
+    "name": "Bò hấp hành",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 250,
+    "ingredients": [
+      "100g bò",
+      "50g hành lá"
+    ],
+    "instructions": "Hấp 100g bò với hành lá.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp hành.jpg"
+  },
+  {
+    "_id": "meal-108",
+    "name": "Bò nướng cà rốt",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 290,
+    "ingredients": [
+      "100g bò",
+      "100g cà rốt"
+    ],
+    "instructions": "Nướng 100g bò với cà rốt.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng cà rốt.jpg"
+  },
+  {
+    "_id": "meal-109",
+    "name": "Bò xào cải bó xôi",
+    "protein": 27,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 275,
+    "ingredients": [
+      "100g bò",
+      "100g cải bó xôi"
+    ],
+    "instructions": "Xào 100g bò với cải bó xôi.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào cải bó xôi.jpg"
+  },
+  {
+    "_id": "meal-110",
+    "name": "Bò nướng lá chanh",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 280,
+    "ingredients": [
+      "100g bò",
+      "100g lá chanh"
+    ],
+    "instructions": "Nướng 100g bò với lá chanh.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng lá chanh.jpg"
+  },
+  {
+    "_id": "meal-111",
+    "name": "Bò hấp sả",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 1,
+    "calories": 260,
+    "ingredients": [
+      "100g bò",
+      "20g sả"
+    ],
+    "instructions": "Hấp 100g bò với sả.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp sả.jpg"
+  },
+  {
+    "_id": "meal-112",
+    "name": "Bò xào bí đỏ",
+    "protein": 27,
+    "fat": 10,
+    "carbs": 10,
+    "calories": 295,
+    "ingredients": [
+      "100g bò",
+      "100g bí đỏ"
+    ],
+    "instructions": "Xào 100g bò với bí đỏ.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào bí đỏ.jpg"
+  },
+  {
+    "_id": "meal-113",
+    "name": "Bò nướng hành lá",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 270,
+    "ingredients": [
+      "100g bò",
+      "50g hành lá"
+    ],
+    "instructions": "Nướng 100g bò với hành lá.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng hành lá.jpg"
+  },
+  {
+    "_id": "meal-114",
+    "name": "Bò luộc rau thơm",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 245,
+    "ingredients": [
+      "100g bò",
+      "100g rau thơm"
+    ],
+    "instructions": "Luộc 100g bò với rau thơm.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò luộc rau thơm.jpg"
+  },
+  {
+    "_id": "meal-115",
+    "name": "Bò xào nấm đông cô",
+    "protein": 27,
+    "fat": 10,
+    "carbs": 6,
+    "calories": 285,
+    "ingredients": [
+      "100g bò",
+      "100g nấm đông cô"
+    ],
+    "instructions": "Xào 100g bò với nấm đông cô.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào nấm đông cô.jpg"
+  },
+  {
+    "_id": "meal-116",
+    "name": "Bò nướng tiêu xanh",
+    "protein": 28,
+    "fat": 11,
+    "carbs": 1,
+    "calories": 290,
+    "ingredients": [
+      "100g bò",
+      "50g tiêu xanh"
+    ],
+    "instructions": "Nướng 100g bò với tiêu xanh.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng tiêu xanh.jpg"
+  },
+  {
+    "_id": "meal-117",
+    "name": "Bò hấp tỏi",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 260,
+    "ingredients": [
+      "100g bò",
+      "50g tỏi"
+    ],
+    "instructions": "Hấp 100g bò với tỏi.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp tỏi.jpg"
+  },
+  {
+    "_id": "meal-118",
+    "name": "Bò xào cải ngọt",
+    "protein": 27,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 275,
+    "ingredients": [
+      "100g bò",
+      "100g cải ngọt"
+    ],
+    "instructions": "Xào 100g bò với cải ngọt.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào cải ngọt.jpg"
+  },
+  {
+    "_id": "meal-119",
+    "name": "Bò nướng khoai lang",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 15,
+    "calories": 300,
+    "ingredients": [
+      "100g bò",
+      "100g khoai lang"
+    ],
+    "instructions": "Nướng 100g bò với khoai lang.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò nướng khoai lang.jpg"
+  },
+  {
+    "_id": "meal-120",
+    "name": "Bò hấp rau củ",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 5,
+    "calories": 265,
+    "ingredients": [
+      "100g bò",
+      "cà rốt",
+      "100g bông cải"
+    ],
+    "instructions": "Hấp 100g bò với cà rốt, bông cải.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp rau củ.jpg"
+  },
+  {
+    "_id": "meal-121",
+    "name": "Sữa chua không đường",
+    "protein": 3.5,
+    "fat": 3,
+    "carbs": 4,
+    "calories": 70,
+    "ingredients": [
+      "sữa tươi",
+      "men cái"
+    ],
+    "instructions": "Lên men sữa tươi không đường.",
+    "group": "sữa chua",
+    "image_url": "/images/Sữa chua không đường.jpg"
+  },
+  {
+    "_id": "meal-122",
+    "name": "Sữa chua ít đường",
+    "protein": 3.5,
+    "fat": 3,
+    "carbs": 8,
+    "calories": 100,
+    "ingredients": [
+      "sữa tươi",
+      "men cái",
+      "đường"
+    ],
+    "instructions": "Lên men sữa với ít đường.",
+    "group": "sữa chua",
+    "image_url": "/images/Sữa chua ít đường.jpg"
+  },
+  {
+    "_id": "meal-123",
+    "name": "Sữa chua có đường",
+    "protein": 3,
+    "fat": 3,
+    "carbs": 15,
+    "calories": 130,
+    "ingredients": [
+      "sữa tươi",
+      "men cái",
+      "đường",
+      "hương liệu"
+    ],
+    "instructions": "Lên men sữa với đường và hương liệu.",
+    "group": "sữa chua",
+    "image_url": "/images/Sữa chua có đường.jpg"
+  },
+  {
+    "_id": "meal-124",
+    "name": "Chuối",
+    "protein": 1.1,
+    "fat": 0.3,
+    "carbs": 23,
+    "calories": 90,
+    "ingredients": [
+      "chuối"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Chuối.jpg"
+  },
+  {
+    "_id": "meal-125",
+    "name": "Táo",
+    "protein": 0.3,
+    "fat": 0.2,
+    "carbs": 14,
+    "calories": 52,
+    "ingredients": [
+      "táo"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Táo.jpg"
+  },
+  {
+    "_id": "meal-126",
+    "name": "Cam",
+    "protein": 0.9,
+    "fat": 0.1,
+    "carbs": 12,
+    "calories": 47,
+    "ingredients": [
+      "cam"
+    ],
+    "instructions": "Ăn trực tiếp hoặc ép nước.",
+    "group": "trái cây",
+    "image_url": "/images/Cam.jpg"
+  },
+  {
+    "_id": "meal-127",
+    "name": "Xoài",
+    "protein": 0.8,
+    "fat": 0.4,
+    "carbs": 15,
+    "calories": 60,
+    "ingredients": [
+      "xoài"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Xoài.jpg"
+  },
+  {
+    "_id": "meal-128",
+    "name": "Dứa",
+    "protein": 0.5,
+    "fat": 0.1,
+    "carbs": 13,
+    "calories": 50,
+    "ingredients": [
+      "dứa"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Dứa.jpg"
+  },
+  {
+    "_id": "meal-129",
+    "name": "Dưa hấu",
+    "protein": 0.6,
+    "fat": 0.2,
+    "carbs": 8,
+    "calories": 30,
+    "ingredients": [
+      "dưa hấu"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Dưa hấu.jpg"
+  },
+  {
+    "_id": "meal-130",
+    "name": "Thanh long",
+    "protein": 1.1,
+    "fat": 0.4,
+    "carbs": 13,
+    "calories": 60,
+    "ingredients": [
+      "thanh long"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Thanh long.jpg"
+  },
+  {
+    "_id": "meal-131",
+    "name": "Ổi",
+    "protein": 2.6,
+    "fat": 0.9,
+    "carbs": 14,
+    "calories": 68,
+    "ingredients": [
+      "ổi"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Ổi.jpg"
+  },
+  {
+    "_id": "meal-132",
+    "name": "Lê",
+    "protein": 0.4,
+    "fat": 0.1,
+    "carbs": 15,
+    "calories": 57,
+    "ingredients": [
+      "lê"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Lê.jpg"
+  },
+  {
+    "_id": "meal-133",
+    "name": "Dâu tây",
+    "protein": 0.7,
+    "fat": 0.3,
+    "carbs": 8,
+    "calories": 33,
+    "ingredients": [
+      "dâu tây"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Dâu tây.jpg"
+  },
+  {
+    "_id": "meal-134",
+    "name": "Kiwi",
+    "protein": 1.1,
+    "fat": 0.5,
+    "carbs": 15,
+    "calories": 61,
+    "ingredients": [
+      "kiwi"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Kiwi.jpg"
+  },
+  {
+    "_id": "meal-135",
+    "name": "Chanh dây",
+    "protein": 2.2,
+    "fat": 0.7,
+    "carbs": 23,
+    "calories": 97,
+    "ingredients": [
+      "chanh dây"
+    ],
+    "instructions": "Ăn trực tiếp hoặc pha nước.",
+    "group": "trái cây",
+    "image_url": "/images/Chanh dây.jpg"
+  },
+  {
+    "_id": "meal-136",
+    "name": "Nho",
+    "protein": 0.7,
+    "fat": 0.2,
+    "carbs": 18,
+    "calories": 69,
+    "ingredients": [
+      "nho"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Nho.jpg"
+  },
+  {
+    "_id": "meal-137",
+    "name": "Bưởi",
+    "protein": 0.8,
+    "fat": 0.1,
+    "carbs": 10,
+    "calories": 38,
+    "ingredients": [
+      "bưởi"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Bưởi.jpg"
+  },
+  {
+    "_id": "meal-138",
+    "name": "Mận",
+    "protein": 0.7,
+    "fat": 0.3,
+    "carbs": 11,
+    "calories": 46,
+    "ingredients": [
+      "mận"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Mận.jpg"
+  },
+  {
+    "_id": "meal-139",
+    "name": "Đu đủ",
+    "protein": 0.5,
+    "fat": 0.3,
+    "carbs": 11,
+    "calories": 43,
+    "ingredients": [
+      "đu đủ"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Đu đủ.jpg"
+  },
+  {
+    "_id": "meal-140",
+    "name": "Sầu riêng",
+    "protein": 1.5,
+    "fat": 5.3,
+    "carbs": 27,
+    "calories": 147,
+    "ingredients": [
+      "sầu riêng"
+    ],
+    "instructions": "Ăn trực tiếp (dùng ít).",
+    "group": "trái cây",
+    "image_url": "/images/Sầu riêng.jpg"
+  },
+  {
+    "_id": "meal-141",
+    "name": "Vải",
+    "protein": 0.8,
+    "fat": 0.4,
+    "carbs": 17,
+    "calories": 66,
+    "ingredients": [
+      "vải"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Vải.jpg"
+  },
+  {
+    "_id": "meal-142",
+    "name": "Hồng",
+    "protein": 0.8,
+    "fat": 0.2,
+    "carbs": 18,
+    "calories": 70,
+    "ingredients": [
+      "hồng"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Hồng.jpg"
+  },
+  {
+    "_id": "meal-143",
+    "name": "Lựu",
+    "protein": 1.7,
+    "fat": 1.2,
+    "carbs": 19,
+    "calories": 83,
+    "ingredients": [
+      "lựu"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Lựu.jpg"
+  },
+  {
+    "_id": "meal-144",
+    "name": "Dưa lưới",
+    "protein": 0.8,
+    "fat": 0.2,
+    "carbs": 8,
+    "calories": 34,
+    "ingredients": [
+      "dưa lưới"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Dưa lưới.jpg"
+  },
+  {
+    "_id": "meal-145",
+    "name": "Quýt",
+    "protein": 0.8,
+    "fat": 0.3,
+    "carbs": 13,
+    "calories": 53,
+    "ingredients": [
+      "quýt"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Quýt.jpg"
+  },
+  {
+    "_id": "meal-146",
+    "name": "Việt quất",
+    "protein": 0.7,
+    "fat": 0.3,
+    "carbs": 14,
+    "calories": 57,
+    "ingredients": [
+      "việt quất"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Việt quất.jpg"
+  },
+  {
+    "_id": "meal-147",
+    "name": "Đào",
+    "protein": 0.9,
+    "fat": 0.3,
+    "carbs": 10,
+    "calories": 39,
+    "ingredients": [
+      "đào"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Đào.jpg"
+  },
+  {
+    "_id": "meal-148",
+    "name": "Khế",
+    "protein": 0.4,
+    "fat": 0.3,
+    "carbs": 7,
+    "calories": 31,
+    "ingredients": [
+      "khế"
+    ],
+    "instructions": "Ăn trực tiếp.",
+    "group": "trái cây",
+    "image_url": "/images/Khế.jpg"
+  },
+  {
+    "_id": "meal-149",
+    "name": "Gà luộc chấm muối tiêu chanh",
+    "protein": 25,
+    "fat": 5,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g ức gà",
+      "2g muối",
+      "10g tiêu",
+      "10g chanh"
+    ],
+    "instructions": "Luộc 100g ức gà, chấm muối tiêu chanh.",
+    "group": "gà",
+    "image_url": "/images/Gà luộc chấm muối tiêu chanh.jpg"
+  },
+  {
+    "_id": "meal-150",
+    "name": "Gà nướng sả ớt",
+    "protein": 26,
+    "fat": 6,
+    "carbs": 2,
+    "calories": 220,
+    "ingredients": [
+      "100g ức gà",
+      "2g sả",
+      "10g ớt",
+      "10g tỏi"
+    ],
+    "instructions": "Ướp 100g ức gà với sả, ớt, tỏi, nướng 180°C 20 phút.",
+    "group": "gà",
+    "image_url": "/images/Gà nướng sả ớt.jpg"
+  },
+  {
+    "_id": "meal-151",
+    "name": "Gỏi gà xé bắp cải",
+    "protein": 20,
+    "fat": 2,
+    "carbs": 5,
+    "calories": 170,
+    "ingredients": [
+      "100g ức gà",
+      "100g bắp cải",
+      "10g rau mùi"
+    ],
+    "instructions": "Luộc 100g gà, xé nhỏ, trộn bắp cải, rau mùi.",
+    "group": "gà",
+    "image_url": "/images/Gỏi gà xé bắp cải.jpg"
+  },
+  {
+    "_id": "meal-152",
+    "name": "Gà hấp lá chanh",
+    "protein": 24,
+    "fat": 6,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g đùi gà",
+      "10g lá chanh",
+      "10g gừng"
+    ],
+    "instructions": "Hấp 100g đùi gà với lá chanh, gừng.",
+    "group": "gà",
+    "image_url": "/images/Gà hấp lá chanh.jpg"
+  },
+  {
+    "_id": "meal-153",
+    "name": "Súp gà rau củ",
+    "protein": 15,
+    "fat": 3,
+    "carbs": 10,
+    "calories": 150,
+    "ingredients": [
+      "100g ức gà",
+      "100g cà rốt",
+      "100g bí ngòi"
+    ],
+    "instructions": "Nấu 200ml súp với 50g gà, cà rốt, bí ngòi.",
+    "group": "gà",
+    "image_url": "/images/Súp gà rau củ.jpg"
+  },
+  {
+    "_id": "meal-154",
+    "name": "Cá hấp sả gừng",
+    "protein": 22,
+    "fat": 4,
+    "carbs": 0,
+    "calories": 180,
+    "ingredients": [
+      "100g cá lóc",
+      "10g sả",
+      "10g gừng"
+    ],
+    "instructions": "Hấp 100g cá với sả, gừng.",
+    "group": "cá",
+    "image_url": "/images/Cá hấp sả gừng.jpg"
+  },
+  {
+    "_id": "meal-155",
+    "name": "Cá nướng nghệ",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 3,
+    "calories": 240,
+    "ingredients": [
+      "100g cá thu",
+      "10 nghệ",
+      "10 tỏi"
+    ],
+    "instructions": "Ướp 100g cá thu với nghệ, tỏi, nướng 180°C.",
+    "group": "cá",
+    "image_url": "/images/Cá nướng nghệ.jpg"
+  },
+  {
+    "_id": "meal-156",
+    "name": "Canh chua cá lóc",
+    "protein": 15,
+    "fat": 5,
+    "carbs": 10,
+    "calories": 200,
+    "ingredients": [
+      "100g cá lóc",
+      "100g cà chua",
+      "100g dọc mùng",
+      "10g me"
+    ],
+    "instructions": "Nấu 200ml canh với 100g cá, rau, me.",
+    "group": "cá",
+    "image_url": "/images/Canh chua cá lóc.jpg"
+  },
+  {
+    "_id": "meal-157",
+    "name": "Cá hồi áp chảo",
+    "protein": 23,
+    "fat": 15,
+    "carbs": 0,
+    "calories": 270,
+    "ingredients": [
+      "100g cá hồi",
+      "3g muối",
+      "10g tiêu"
+    ],
+    "instructions": "Áp chảo 100g cá hồi với ít dầu.",
+    "group": "cá",
+    "image_url": "/images/Cá hồi áp chảo.jpg"
+  },
+  {
+    "_id": "meal-158",
+    "name": "Gỏi cá trích cuốn rau",
+    "protein": 18,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 200,
+    "ingredients": [
+      "100g cá trích",
+      "100g rau sống"
+    ],
+    "instructions": "Cuốn 50g cá trích với rau sống.",
+    "group": "cá",
+    "image_url": "/images/Gỏi cá trích cuốn rau.jpg"
+  },
+  {
+    "_id": "meal-159",
+    "name": "Thịt heo luộc rau thơm",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 0,
+    "calories": 190,
+    "ingredients": [
+      "100g nạc heo",
+      "100g rau thơm",
+      "10ggừng"
+    ],
+    "instructions": "Luộc 100g nạc heo với rau thơm, gừng.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo luộc rau thơm.jpg"
+  },
+  {
+    "_id": "meal-160",
+    "name": "Thịt heo nướng tỏi",
+    "protein": 26,
+    "fat": 10,
+    "carbs": 1,
+    "calories": 230,
+    "ingredients": [
+      "100g nạc heo",
+      "50g tỏi",
+      "50g tiêu"
+    ],
+    "instructions": "Ướp 100g nạc heo với tỏi, tiêu, nướng 190°C.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng tỏi.jpg"
+  },
+  {
+    "_id": "meal-161",
+    "name": "Thịt heo xào măng tây",
+    "protein": 23,
+    "fat": 8,
+    "carbs": 6,
+    "calories": 245,
+    "ingredients": [
+      "100g nạc heo",
+      "100g măng tây",
+      "50g tỏi"
+    ],
+    "instructions": "Xào 100g heo với măng tây, tỏi.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo nướng tỏi.jpg"
+  },
+  {
+    "_id": "meal-162",
+    "name": "Chả lá lốt nướng",
+    "protein": 20,
+    "fat": 12,
+    "carbs": 2,
+    "calories": 220,
+    "ingredients": [
+      "100g thịt heo băm",
+      "100g lá lốt"
+    ],
+    "instructions": "Nướng 100g thịt băm gói lá lốt.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào măng tây.jpg"
+  },
+  {
+    "_id": "meal-163",
+    "name": "Canh bí đỏ thịt heo",
+    "protein": 15,
+    "fat": 5,
+    "carbs": 15,
+    "calories": 200,
+    "ingredients": [
+      "100g nạc heo",
+      "100g bí đỏ"
+    ],
+    "instructions": "Nấu 200ml canh với 50g heo, bí đỏ.",
+    "group": "thịt heo",
+    "image_url": "/images/Thịt heo xào măng tây.jpg"
+  },
+  {
+    "_id": "meal-164",
+    "name": "Bò nướng rau củ",
+    "protein": 28,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 290,
+    "ingredients": [
+      "100g bò thăn",
+      "ớt chuông",
+      "cà rốt"
+    ],
+    "instructions": "Nướng 100g bò với rau củ.",
+    "group": "thịt bò",
+    "image_url": "/images/Canh bí đỏ thịt heo.jpg"
+  },
+  {
+    "_id": "meal-165",
+    "name": "Bò xào cải thìa",
+    "protein": 25,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 260,
+    "ingredients": [
+      "100g bò",
+      "100g cải thìa"
+    ],
+    "instructions": "Xào 100g bò với cải thìa.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò xào cải thìa.jpg"
+  },
+  {
+    "_id": "meal-166",
+    "name": "Bò hấp sả gừng",
+    "protein": 27,
+    "fat": 9,
+    "carbs": 0,
+    "calories": 250,
+    "ingredients": [
+      "100g bò",
+      "5g sả",
+      "5g gừng"
+    ],
+    "instructions": "Hấp 100g bò với sả, gừng.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò hấp sả gừng.jpg"
+  },
+  {
+    "_id": "meal-167",
+    "name": "Phở bò ít bánh",
+    "protein": 20,
+    "fat": 5,
+    "carbs": 50,
+    "calories": 350,
+    "ingredients": [
+      "100g bò",
+      "100g bánh phở",
+      "nước dùng"
+    ],
+    "instructions": "Nấu 200ml nước dùng với 50g bò, ít bánh.",
+    "group": "thịt bò",
+    "image_url": "/images/Phở bò ít bánh.jpg"
+  },
+  {
+    "_id": "meal-168",
+    "name": "Bò áp chảo tiêu xanh",
+    "protein": 28,
+    "fat": 11,
+    "carbs": 1,
+    "calories": 280,
+    "ingredients": [
+      "100g bò",
+      "10g tiêu xanh"
+    ],
+    "instructions": "Áp chảo 100g bò với tiêu xanh.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò áp chảo tiêu xanh.jpg"
+  },
+  {
+    "_id": "meal-169",
+    "name": "Đậu hũ hấp nấm",
+    "protein": 10,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 150,
+    "ingredients": [
+      "100g đậu hũ",
+      "50g nấm"
+    ],
+    "instructions": "Hấp 100g đậu hũ với nấm.",
+    "group": "chay",
+    "image_url": "/images/Đậu hũ hấp nấm.jpg"
+  },
+  {
+    "_id": "meal-170",
+    "name": "Canh rau muống nấu nấm",
+    "protein": 5,
+    "fat": 2,
+    "carbs": 15,
+    "calories": 100,
+    "ingredients": [
+      "100g rau muống",
+      "50g nấm"
+    ],
+    "instructions": "Nấu 200ml canh với rau muống, nấm.",
+    "group": "chay",
+    "image_url": "/images/Canh rau muống nấu nấm.jpg"
+  },
+  {
+    "_id": "meal-171",
+    "name": "Gỏi ngó sen chay",
+    "protein": 3,
+    "fat": 2,
+    "carbs": 25,
+    "calories": 120,
+    "ingredients": [
+      "100g ngó sen",
+      "rau"
+    ],
+    "instructions": "Trộn 100g ngó sen với rau.",
+    "group": "chay",
+    "image_url": "/images/Gỏi ngó sen chay.jpg"
+  },
+  {
+    "_id": "meal-172",
+    "name": "Bún riêu chay",
+    "protein": 8,
+    "fat": 5,
+    "carbs": 45,
+    "calories": 250,
+    "ingredients": [
+      "200g bún",
+      "nước dùng chay"
+    ],
+    "instructions": "Nấu 200g bún với nước dùng chay.",
+    "group": "chay",
+    "image_url": "/images/Gỏi ngó sen chay.jpg"
+  },
+  {
+    "_id": "meal-173",
+    "name": "Chả giò chay nướng",
+    "protein": 6,
+    "fat": 8,
+    "carbs": 20,
+    "calories": 180,
+    "ingredients": [
+      "100g nấm",
+      "100g bắp",
+      "bánh tráng"
+    ],
+    "instructions": "Cuốn nấm, bắp, nướng 2 cuốn.",
+    "group": "chay",
+    "image_url": "/images/Bún riêu chay.jpg"
+  },
+  {
+    "_id": "meal-174",
+    "name": "Canh mướp nấu tôm",
+    "protein": 12,
+    "fat": 2,
+    "carbs": 10,
+    "calories": 140,
+    "ingredients": [
+      "100g tôm",
+      "mướp"
+    ],
+    "instructions": "Nấu 200ml canh với 50g tôm, mướp.",
+    "group": "hải sản",
+    "image_url": "/images/Canh mướp nấu tôm.jpg"
+  },
+  {
+    "_id": "meal-175",
+    "name": "Canh bí xanh tôm",
+    "protein": 10,
+    "fat": 2,
+    "carbs": 10,
+    "calories": 130,
+    "ingredients": [
+      "100g tôm",
+      "bí xanh"
+    ],
+    "instructions": "Nấu 200ml canh với 50g tôm, bí xanh.",
+    "group": "hải sản",
+    "image_url": "/images/Canh bí xanh tôm.jpg"
+  },
+  {
+    "_id": "meal-176",
+    "name": "Canh cải ngọt cá",
+    "protein": 15,
+    "fat": 3,
+    "carbs": 5,
+    "calories": 150,
+    "ingredients": [
+      "100g cá lóc",
+      "cải ngọt"
+    ],
+    "instructions": "Nấu 200ml canh với 50g cá, cải ngọt.",
+    "group": "cá",
+    "image_url": "/images/Canh cải ngọt cá.jpg"
+  },
+  {
+    "_id": "meal-177",
+    "name": "Súp bắp cua",
+    "protein": 10,
+    "fat": 5,
+    "carbs": 15,
+    "calories": 160,
+    "ingredients": [
+      "100g cua",
+      "bắp"
+    ],
+    "instructions": "Nấu 200ml súp với 50g cua, bắp.",
+    "group": "hải sản",
+    "image_url": "/images/Súp bắp cua.jpg"
+  },
+  {
+    "_id": "meal-178",
+    "name": "Canh rau dền tôm",
+    "protein": 10,
+    "fat": 2,
+    "carbs": 8,
+    "calories": 120,
+    "ingredients": [
+      "100g tôm",
+      "rau dền"
+    ],
+    "instructions": "Nấu 200ml canh với 50g tôm, rau dền.",
+    "group": "hải sản",
+    "image_url": "/images/Canh rau dền tôm.jpg"
+  },
+  {
+    "_id": "meal-179",
+    "name": "Gỏi cuốn tôm",
+    "protein": 10,
+    "fat": 2,
+    "carbs": 20,
+    "calories": 150,
+    "ingredients": [
+      "100g tôm",
+      "bánh tráng",
+      "rau sống"
+    ],
+    "instructions": "Cuốn 50g tôm với rau sống trong bánh tráng.",
+    "group": "hải sản",
+    "image_url": "/images/Gỏi cuốn tôm.jpg"
+  },
+  {
+    "_id": "meal-180",
+    "name": "Bò cuốn lá cải",
+    "protein": 20,
+    "fat": 8,
+    "carbs": 5,
+    "calories": 200,
+    "ingredients": [
+      "100g bò",
+      "lá cải"
+    ],
+    "instructions": "Cuốn 100g bò luộc với lá cải.",
+    "group": "thịt bò",
+    "image_url": "/images/Bò cuốn lá cải.jpg"
+  },
+  {
+    "_id": "meal-181",
+    "name": "Gỏi cuốn chay",
+    "protein": 3,
+    "fat": 2,
+    "carbs": 25,
+    "calories": 120,
+    "ingredients": [
+      "bún",
+      "rau sống",
+      "bánh tráng"
+    ],
+    "instructions": "Cuốn bún, rau trong bánh tráng.",
+    "group": "chay",
+    "image_url": "/images/Gỏi cuốn chay.jpg"
+  },
+  {
+    "_id": "meal-182",
+    "name": "Cá cuốn rau muống",
+    "protein": 15,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 180,
+    "ingredients": [
+      "100g cá lóc",
+      "rau muống"
+    ],
+    "instructions": "Cuốn 50g cá luộc với rau muống.",
+    "group": "cá",
+    "image_url": "/images/Cá cuốn rau muống.jpg"
+  },
+  {
+    "_id": "meal-183",
+    "name": "Gà cuốn nấm",
+    "protein": 22,
+    "fat": 6,
+    "carbs": 5,
+    "calories": 210,
+    "ingredients": [
+      "100g ức gà",
+      "nấm"
+    ],
+    "instructions": "Cuốn 100g gà luộc với nấm.",
+    "group": "gà",
+    "image_url": "/images/Gà cuốn nấm.jpg"
+  },
+  {
+    "_id": "meal-184",
+    "name": "Bún chả nướng ít dầu",
+    "protein": 15,
+    "fat": 10,
+    "carbs": 40,
+    "calories": 300,
+    "ingredients": [
+      "100g bún",
+      "50g chả"
+    ],
+    "instructions": "Nướng 50g chả, ăn với 100g bún.",
+    "group": "thịt heo",
+    "image_url": "/images/Bún chả nướng ít dầu.jpg"
+  },
+  {
+    "_id": "meal-185",
+    "name": "Bánh xèo chay nướng",
+    "protein": 5,
+    "fat": 10,
+    "carbs": 35,
+    "calories": 250,
+    "ingredients": [
+      "100g bột gạo",
+      "50g nấm",
+      "50g giá"
+    ],
+    "instructions": "Nướng 1 bánh với nấm, giá.",
+    "group": "chay",
+    "image_url": "/images/Bánh xèo chay nướng.jpg"
+  },
+  {
+    "_id": "meal-186",
+    "name": "Cơm tấm sườn nướng",
+    "protein": 20,
+    "fat": 15,
+    "carbs": 40,
+    "calories": 350,
+    "ingredients": [
+      "100g cơm",
+      "50g sườn"
+    ],
+    "instructions": "Nướng 50g sườn, ăn với 100g cơm.",
+    "group": "thịt heo",
+    "image_url": "/images/Cơm tấm sườn nướng.jpg"
+  },
+  {
+    "_id": "meal-187",
+    "name": "Cháo gà ít gạo",
+    "protein": 15,
+    "fat": 5,
+    "carbs": 25,
+    "calories": 200,
+    "ingredients": [
+      "100g ức gà",
+      "100g gạo"
+    ],
+    "instructions": "Nấu 200ml cháo với 50g gà, ít gạo.",
+    "group": "gà",
+    "image_url": "/images/Cháo gà ít gạo.jpg"
+  },
+  {
+    "_id": "meal-188",
+    "name": "Bánh cuốn chay",
+    "protein": 5,
+    "fat": 5,
+    "carbs": 30,
+    "calories": 180,
+    "ingredients": [
+      "bột gạo",
+      "nấm"
+    ],
+    "instructions": "Làm 2 bánh với nhân nấm.",
+    "group": "chay",
+    "image_url": "/images/Bánh cuốn chay.jpg"
+  },
+  {
+    "_id": "meal-189",
+    "name": "Phở cuốn thịt heo",
+    "protein": 15,
+    "fat": 8,
+    "carbs": 25,
+    "calories": 220,
+    "ingredients": [
+      "100g heo",
+      "bánh phở"
+    ],
+    "instructions": "Cuốn 50g heo luộc với bánh phở.",
+    "group": "thịt heo",
+    "image_url": "/images/Phở cuốn thịt heo.jpg"
+  },
+  {
+    "_id": "meal-190",
+    "name": "Cá kho tộ ít dầu",
+    "protein": 20,
+    "fat": 10,
+    "carbs": 5,
+    "calories": 220,
+    "ingredients": [
+      "100g cá lóc",
+      "nước dừa"
+    ],
+    "instructions": "Kho 100g cá với nước dừa, ít dầu.",
+    "group": "cá",
+    "image_url": "/images/Cá kho tộ ít dầu.jpg"
+  },
+  {
+    "_id": "meal-191",
+    "name": "Mực nướng sả ớt",
+    "protein": 25,
+    "fat": 5,
+    "carbs": 5,
+    "calories": 200,
+    "ingredients": [
+      "100g mực",
+      "sả",
+      "ớt"
+    ],
+    "instructions": "Nướng 100g mực với sả, ớt.",
+    "group": "hải sản",
+    "image_url": "/images/Mực nướng sả ớt.jpg"
+  },
+  {
+    "_id": "meal-192",
+    "name": "Tôm hấp lá dứa",
+    "protein": 20,
+    "fat": 2,
+    "carbs": 5,
+    "calories": 180,
+    "ingredients": [
+      "100g tôm",
+      "lá dứa"
+    ],
+    "instructions": "Hấp 100g tôm với lá dứa.",
+    "group": "hải sản",
+    "image_url": "/images/Tôm hấp lá dứa.jpg"
+  },
+  {
+    "_id": "meal-193",
+    "name": "Rau luộc chấm kho quẹt chay",
+    "protein": 5,
+    "fat": 2,
+    "carbs": 15,
+    "calories": 100,
+    "ingredients": [
+      "200g rau",
+      "nước mắm chay"
+    ],
+    "instructions": "Luộc 200g rau, chấm kho quẹt chay.",
+    "group": "chay",
+    "image_url": "/images/Rau luộc chấm kho quẹt chay.jpg"
+  },
+  {
+    "_id": "meal-194",
+    "name": "Bún nước lèo cá",
+    "protein": 15,
+    "fat": 5,
+    "carbs": 50,
+    "calories": 300,
+    "ingredients": [
+      "200g bún",
+      "100g cá lóc"
+    ],
+    "instructions": "Nấu 200g bún với nước lèo, 50g cá.",
+    "group": "cá",
+    "image_url": "/images/Bún nước lèo cá.jpg"
+  },
+  {
+    "_id": "meal-195",
+    "name": "Nem chua rán ít dầu",
+    "protein": 10,
+    "fat": 15,
+    "carbs": 20,
+    "calories": 250,
+    "ingredients": [
+      "100g thịt băm",
+      "bì"
+    ],
+    "instructions": "Nướng 2 nem với ít dầu.",
+    "group": "thịt heo",
+    "image_url": "/images/Nem chua rán ít dầu.jpg"
+  },
+  {
+    "_id": "meal-196",
+    "name": "Xôi gà nướng",
+    "protein": 20,
+    "fat": 10,
+    "carbs": 50,
+    "calories": 350,
+    "ingredients": [
+      "100g xôi",
+      "100g ức gà"
+    ],
+    "instructions": "Nướng 50g gà, ăn với 100g xôi.",
+    "group": "gà",
+    "image_url": "/images/Xôi gà nướng.jpg"
+  },
+  {
+    "_id": "meal-197",
+    "name": "Bánh mì pate ít bơ",
+    "protein": 15,
+    "fat": 10,
+    "carbs": 45,
+    "calories": 300,
+    "ingredients": [
+      "1 ổ bánh mì",
+      "pate"
+    ],
+    "instructions": "Làm 1 ổ với pate, ít bơ.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì pate ít bơ.jpg"
+  },
+  {
+    "_id": "meal-198",
+    "name": "Canh khổ qua nhồi nạc",
+    "protein": 15,
+    "fat": 8,
+    "carbs": 10,
+    "calories": 200,
+    "ingredients": [
+      "1 quả khổ qua",
+      "100g nạc heo"
+    ],
+    "instructions": "Nhồi 50g nạc vào khổ qua, nấu canh.",
+    "group": "thịt heo",
+    "image_url": "/images/Canh khổ qua nhồi nạc.jpg"
+  },
+  {
+    "_id": "meal-199",
+    "name": "Bánh mì bơ đậu phộng ít đường",
+    "protein": 5,
+    "fat": 7,
+    "carbs": 15,
+    "calories": 150,
+    "ingredients": [
+      "100g bánh mì nguyên cám",
+      "10g bơ đậu phộng ít đường"
+    ],
+    "instructions": "Phết 10g bơ đậu phộng lên 30g bánh mì.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì bơ đậu phộng ít đường.jpg"
+  },
+  {
+    "_id": "meal-200",
+    "name": "Ức gà xào rau củ",
+    "protein": 25,
+    "fat": 5,
+    "carbs": 10,
+    "calories": 250,
+    "ingredients": [
+      "100g ức gà",
+      "100g bông cải xanh",
+      "100g cà rốt"
+    ],
+    "instructions": "Xào 100g ức gà với bông cải, cà rốt.",
+    "group": "gà",
+    "image_url": "/images/Ức gà xào rau củ.jpg"
+  },
+  {
+    "_id": "meal-201",
+    "name": "Cơm gạo lứt",
+    "protein": 3,
+    "fat": 1,
+    "carbs": 32,
+    "calories": 150,
+    "ingredients": [
+      "100g gạo lứt"
+    ],
+    "instructions": "Nấu 100g gạo lứt thành cơm.",
+    "group": "cơm",
+    "image_url": "/images/gao_luc.jpg"
+  },
+  {
+    "_id": "meal-202",
+    "name": "Phở gà ít bánh",
+    "protein": 25,
+    "fat": 5,
+    "carbs": 35,
+    "calories": 300,
+    "ingredients": [
+      "100g bánh phở",
+      "100g ức gà",
+      "nước dùng",
+      "rau thơm"
+    ],
+    "instructions": "Nấu 50g bánh phở với 100g gà và nước dùng.",
+    "group": "gà",
+    "image_url": "/images/Phở gà ít bánh.jpg"
+  },
+  {
+    "_id": "meal-203",
+    "name": "Salad rau củ",
+    "protein": 2,
+    "fat": 10,
+    "carbs": 10,
+    "calories": 150,
+    "ingredients": [
+      "100g xà lách",
+      "100g cà chua",
+      "100g dưa leo",
+      "1 thìa dầu ô liu"
+    ],
+    "instructions": "Trộn rau củ với 1 thìa dầu ô liu.",
+    "group": "rau củ",
+    "image_url": "/images/Salad rau củ.jpg"
+  },
+  {
+    "_id": "meal-204",
+    "name": "Su su luộc",
+    "protein": 1,
+    "fat": 0,
+    "carbs": 4,
+    "calories": 20,
+    "ingredients": [
+      "100g su su"
+    ],
+    "instructions": "Luộc 100g su su.",
+    "group": "rau củ",
+    "image_url": "/images/Su su luộc.jpg"
+  },
+  {
+    "_id": "meal-205",
+    "name": "Sữa tươi ",
+    "protein": 6,
+    "fat": 8,
+    "carbs": 10,
+    "calories": 150,
+    "ingredients": [
+      "200ml sữa tươi"
+    ],
+    "instructions": "Uống trực tiếp 200ml sữa.",
+    "group": "sữa bò",
+    "image_url": "/images/Sữa tươi nguyên kem.jpg"
+  },
+  {
+    "_id": "meal-206",
+    "name": "Bánh mì trứng ốp la",
+    "protein": 10,
+    "fat": 8,
+    "carbs": 30,
+    "calories": 230,
+    "ingredients": [
+      "60g bánh mì nguyên cám",
+      "1 quả trứng"
+    ],
+    "instructions": "Ốp la 1 quả trứng, ăn với 2 lát bánh mì.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì trứng ốp la.jpg"
+  },
+  {
+    "_id": "meal-207",
+    "name": "Yến mạch sữa",
+    "protein": 5,
+    "fat": 5,
+    "carbs": 30,
+    "calories": 200,
+    "ingredients": [
+      "100g yến mạch",
+      "100ml sữa tươi"
+    ],
+    "instructions": "Trộn 50g yến mạch với 100ml sữa ấm.",
+    "group": "yến mạch",
+    "image_url": "/images/Yến mạch sữa.jpg"
+  },
+  {
+    "_id": "meal-208",
+    "name": "Khoai lang nướng",
+    "protein": 2,
+    "fat": 0,
+    "carbs": 30,
+    "calories": 130,
+    "ingredients": [
+      "150g khoai lang"
+    ],
+    "instructions": "Nướng 150g khoai lang ở 200°C.",
+    "group": "khoai",
+    "image_url": "/images/Khoai lang nướng.jpg"
+  },
+  {
+    "_id": "meal-209",
+    "name": "Hạt hạnh nhân",
+    "protein": 10,
+    "fat": 25,
+    "carbs": 10,
+    "calories": 300,
+    "ingredients": [
+      "50g hạnh nhân"
+    ],
+    "instructions": "Ăn trực tiếp 50g hạnh nhân.",
+    "group": "hạt",
+    "image_url": "/images/Hạt hạnh nhân.jpg"
+  },
+  {
+    "_id": "meal-210",
+    "name": "Hạt óc chó",
+    "protein": 7,
+    "fat": 30,
+    "carbs": 7,
+    "calories": 320,
+    "ingredients": [
+      "50g óc chó"
+    ],
+    "instructions": "Ăn trực tiếp 50g óc chó.",
+    "group": "hạt",
+    "image_url": "/images/Hạt óc chó.jpg"
+  },
+  {
+    "_id": "meal-211",
+    "name": "Cháo yến mạch gà",
+    "protein": 30,
+    "fat": 6,
+    "carbs": 35,
+    "calories": 350,
+    "ingredients": [
+      "100g yến mạch",
+      "100g ức gà",
+      "200ml nước"
+    ],
+    "instructions": "Nấu cháo từ 50g yến mạch và 100g gà.",
+    "group": "gà",
+    "image_url": "/images/Cháo yến mạch gà.jpg"
+  },
+  {
+    "_id": "meal-212",
+    "name": "Phở khô bò xào nấm",
+    "protein": 35,
+    "fat": 12,
+    "carbs": 53,
+    "calories": 595,
+    "ingredients": [
+      "150g phở khô",
+      "100g bò",
+      "50g nấm rơm"
+    ],
+    "instructions": "Xào 100g bò với nấm, ăn với 150g phở khô luộc.",
+    "group": "thịt bò",
+    "image_url": "/images/Phở khô bò xào nấm.jpg"
+  },
+  {
+    "_id": "meal-213",
+    "name": "Xôi gà nướng",
+    "protein": 15,
+    "fat": 10,
+    "carbs": 50,
+    "calories": 350,
+    "ingredients": [
+      "100g xôi",
+      "100g gà"
+    ],
+    "instructions": "Nướng 50g gà, ăn với 100g xôi.",
+    "group": "gà",
+    "image_url": "/images/Xôi gà nướng.jpg"
+  },
+  {
+    "_id": "meal-214",
+    "name": "Măng tây xào tỏi",
+    "protein": 3,
+    "fat": 1,
+    "carbs": 8,
+    "calories": 50,
+    "ingredients": [
+      "100g măng tây",
+      "tỏi"
+    ],
+    "instructions": "Xào 100g măng tây với tỏi và ít dầu.",
+    "group": "rau củ",
+    "image_url": "/images/Măng tây xào tỏi.jpg"
+  },
+  {
+    "_id": "meal-215",
+    "name": "Bông cải xanh xào tỏi",
+    "protein": 3,
+    "fat": 1,
+    "carbs": 8,
+    "calories": 50,
+    "ingredients": [
+      "100g bông cải xanh",
+      "tỏi"
+    ],
+    "instructions": "Xào 100g bông cải với tỏi và ít dầu.",
+    "group": "rau củ",
+    "image_url": "/images/Bông cải xanh xào tỏi.jpg"
+  },
+  {
+    "_id": "meal-216",
+    "name": "Yến mạch sữa chuối",
+    "protein": 12.1,
+    "fat": 10.3,
+    "carbs": 60,
+    "calories": 390,
+    "ingredients": [
+      "100g yến mạch",
+      "200ml sữa tươi",
+      "100g chuối"
+    ],
+    "instructions": "Trộn 50g yến mạch với 200ml sữa ấm, thêm chuối thái lát.",
+    "group": "yến mạch",
+    "image_url": "/images/Yến mạch sữa chuối.jpg"
+  },
+  {
+    "_id": "meal-217",
+    "name": "Bánh mì nguyên cám sữa chua xoài",
+    "protein": 6.8,
+    "fat": 4.4,
+    "carbs": 47,
+    "calories": 280,
+    "ingredients": [
+      "100g bánh mì nguyên cám",
+      "100g sữa chua có đường",
+      "100g xoài"
+    ],
+    "instructions": "Ăn bánh mì kèm sữa chua và xoài.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì nguyên cám sữa chua xoài.jpg"
+  },
+  {
+    "_id": "meal-218",
+    "name": "Bánh mì trứng luộc rau củ",
+    "protein": 10,
+    "fat": 6.3,
+    "carbs": 34,
+    "calories": 227,
+    "ingredients": [
+      "100g bánh mì nguyên cám",
+      "1 quả trứng",
+      "100g dưa leo"
+    ],
+    "instructions": "Luộc trứng, ăn với bánh mì và dưa leo.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì trứng luộc rau củ.jpg"
+  },
+  {
+    "_id": "meal-219",
+    "name": "Yến mạch sữa không đường + táo",
+    "protein": 8.3,
+    "fat": 2.2,
+    "carbs": 46,
+    "calories": 237,
+    "ingredients": [
+      "100g yến mạch",
+      "100ml sữa tươi",
+      "100g táo"
+    ],
+    "instructions": "Trộn yến mạch với sữa, thêm táo cắt lát.",
+    "group": "yến mạch",
+    "image_url": "/images/Yến mạch sữa không đường + táo.jpg"
+  },
+  {
+    "_id": "meal-220",
+    "name": "Bánh mì nguyên cám sữa chua chuối",
+    "protein": 10.6,
+    "fat": 5.3,
+    "carbs": 61,
+    "calories": 340,
+    "ingredients": [
+      "100g bánh mì nguyên cám",
+      "100g sữa chua không đường",
+      "100g chuối"
+    ],
+    "instructions": "Ăn bánh mì kèm sữa chua và chuối.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì nguyên cám sữa chua chuối.jpg"
+  },
+  {
+    "_id": "meal-221",
+    "name": "Bánh mì sữa chua xoài",
+    "protein": 6.8,
+    "fat": 4.4,
+    "carbs": 47,
+    "calories": 280,
+    "ingredients": [
+      "100g bánh mì nguyên cám",
+      "100g sữa chua có đường",
+      "100g xoài"
+    ],
+    "instructions": "Ăn bánh mì kèm sữa chua và xoài.",
+    "group": "bánh mì",
+    "image_url": "/images/Bánh mì sữa chua xoài.jpg"
+  },
+  {
+    "_id": "meal-222",
+    "name": "Cháo yến mạch giảm cân",
+    "protein": 5.5,
+    "fat": 2,
+    "carbs": 32,
+    "calories": 170,
+    "ingredients": [
+      "100g yến mạch",
+      "200ml sữa tươi",
+      "50g bí đỏ"
+    ],
+    "instructions": "Nấu 50g yến mạch với 200ml nước, thêm bí đỏ hấp nghiền, khuấy đều.",
+    "group": "yến mạch",
+    "image_url": "/images/Cháo yến mạch giảm cân.jpg"
+  },
+  {
+    "_id": "meal-223",
+    "name": "Sữa yến mạch hạt chia",
+    "protein": 5,
+    "fat": 4.5,
+    "carbs": 21,
+    "calories": 140,
+    "ingredients": [
+      "100g yến mạch",
+      "200ml sữa tươi",
+      "10g hạt chia"
+    ],
+    "instructions": "Ngâm yến mạch với nước qua đêm, thêm hạt chia, khuấy đều.",
+    "group": "yến mạch",
+    "image_url": "/images/Sữa yến mạch hạt chia.jpg"
+  },
+  {
+    "_id": "meal-224",
+    "name": "Cháo yến mạch dâu tây + trứng",
+    "protein": 17.3,
+    "fat": 15.1,
+    "carbs": 41,
+    "calories": 386,
+    "ingredients": [
+      "50g yến mạch",
+      "200ml sữa tươi ",
+      "50g dâu tây",
+      "1 quả trứng"
+    ],
+    "instructions": "Nấu yến mạch với sữa, thêm dâu tây cắt nhỏ, ăn kèm trứng luộc.",
+    "group": "yến mạch",
+    "image_url": "/images/Cháo yến mạch dâu tây + trứng.jpg"
+  },
+  {
+    "_id": "meal-225",
+    "name": "Bánh chuối yến mạch + sữa chua",
+    "protein": 9.6,
+    "fat": 5.3,
+    "carbs": 54,
+    "calories": 310,
+    "ingredients": [
+      "50g yến mạch",
+      "100g chuối",
+      "100g sữa chua không đường"
+    ],
+    "instructions": "Nghiền chuối trộn với yến mạch, nướng 180°C, ăn kèm sữa chua.",
+    "group": "yến mạch",
+    "image_url": "/images/Bánh chuối yến mạch + sữa chua.jpg"
+  },
+  {
+    "_id": "meal-226",
+    "name": "Sữa yến mạch mè đen",
+    "protein": 6,
+    "fat": 5,
+    "carbs": 20,
+    "calories": 180,
+    "ingredients": [
+      "100g yến mạch",
+      "200ml sữa tươi",
+      "10g mè đen"
+    ],
+    "instructions": "Ngâm yến mạch với nước, thêm mè đen rang, khuấy đều.",
+    "group": "yến mạch",
+    "image_url": "/images/Sữa yến mạch mè đen.jpg"
+  },
+  {
+    "_id": "meal-227",
+    "name": "Bánh ngũ cốc yến mạch",
+    "protein": 4,
+    "fat": 3,
+    "carbs": 25,
+    "calories": 160,
+    "ingredients": [
+      "100g yến mạch",
+      "100ml sữa tươi"
+    ],
+    "instructions": "Trộn yến mạch với sữa, nướng 180°C.",
+    "group": "yến mạch",
+    "image_url": "/images/Bánh ngũ cốc yến mạch.jpg"
+  },
+  {
+    "_id": "meal-228",
+    "name": "Sữa tươi Vinamilk 100% có đường 180ml",
+    "protein": 6,
+    "fat": 6,
+    "carbs": 12,
+    "calories": 120,
+    "ingredients": [
+      "sữa tươi",
+      "đường",
+      "vitamin A, D3, C"
+    ],
+    "instructions": "Lắc đều và uống trực tiếp.",
+    "group": "sữa bò",
+    "image_url": "/images/Sữa tươi Vinamilk 100% có đường 180ml.jpg"
+  },
+  {
+    "_id": "meal-229",
+    "name": "Sữa tươi Vinamilk 100% không đường 180ml",
+    "protein": 6,
+    "fat": 6,
+    "carbs": 8,
+    "calories": 100,
+    "ingredients": [
+      "sữa tươi",
+      "vitamin D3, A"
+    ],
+    "instructions": "Lắc đều và uống trực tiếp.",
+    "group": "sữa bò",
+    "image_url": "/images/Sữa tươi Vinamilk 100% không đường 180ml.jpg"
+  },
+  {
+    "_id": "meal-230",
+    "name": "Sữa tươi Vinamilk 100% ít đường 180ml",
+    "protein": 6,
+    "fat": 6,
+    "carbs": 10,
+    "calories": 110,
+    "ingredients": [
+      "sữa tươi",
+      "ít đường",
+      "vitamin D3, A"
+    ],
+    "instructions": "Lắc đều và uống trực tiếp.",
+    "group": "sữa bò",
+    "image_url": "/images/Sữa tươi Vinamilk 100% ít đường 180ml.jpg"
+  },
+  {
+    "_id": "meal-231",
+    "name": "Sữa hạt cao đạm Vinamilk 180ml",
+    "protein": 9,
+    "fat": 5,
+    "carbs": 13,
+    "calories": 140,
+    "ingredients": [
+      "đậu Hà Lan",
+      "hạnh nhân",
+      "óc chó",
+      "vitamin D3"
+    ],
+    "instructions": "Lắc đều và uống trực tiếp.",
+    "group": "sữa hạt",
+    "image_url": "/images/Sữa hạt cao đạm Vinamilk 180ml.jpg"
+  },
+  {
+    "_id": "meal-232",
+    "name": "Sữa yến mạch Vinamilk 180ml",
+    "protein": 3,
+    "fat": 2,
+    "carbs": 25,
+    "calories": 130,
+    "ingredients": [
+      "yến mạch",
+      "nước",
+      "vitamin A, D3"
+    ],
+    "instructions": "Lắc đều và uống trực tiếp.",
+    "group": "sữa yến mạch",
+    "image_url": "/images/Sữa yến mạch Vinamilk 180ml.jpg"
+  },
+  {
+    "_id": "meal-233",
+    "name": "Sữa Vinamilk ADM Gold dâu 180ml",
+    "protein": 6,
+    "fat": 5,
+    "carbs": 18,
+    "calories": 140,
+    "ingredients": [
+      "sữa bột",
+      "đường",
+      "hương dâu",
+      "vitamin A, D3"
+    ],
+    "instructions": "Lắc đều và uống trực tiếp.",
+    "group": "sữa bò",
+    "image_url": "/images/Sữa Vinamilk ADM Gold dâu 180ml.jpg"
+  }
+]

@@ -6,6 +6,11 @@ const STORAGE_KEYS = {
   familyMenus: 'sone_local_family_menus',
 }
 
+const ADMIN_EMAILS = String(import.meta.env.VITE_ADMIN_EMAILS || 'admin@example.com')
+  .split(',')
+  .map((email) => normalizeEmail(email))
+  .filter(Boolean)
+
 function readJson(key, fallback) {
   try {
     const rawValue = window.localStorage.getItem(key)
@@ -39,6 +44,7 @@ function sanitizeUser(user) {
     email: user.email,
     role: user.role || 'user',
     createdAt: user.createdAt || new Date().toISOString(),
+    latestPlannerProfile: user.latestPlannerProfile || null,
   }
 }
 
@@ -85,8 +91,9 @@ export function registerLocalUser({ email, password }) {
     userId: createId(),
     email: normalizedEmail,
     password: trimmedPassword,
-    role: 'user',
+    role: ADMIN_EMAILS.includes(normalizedEmail) ? 'admin' : 'user',
     createdAt: new Date().toISOString(),
+    latestPlannerProfile: null,
   }
 
   saveUsers([...users, user])
@@ -107,6 +114,21 @@ export function loginLocalUser({ email, password }) {
 
   setStoredSession(user)
   return sanitizeUser(user)
+}
+
+export function updateStoredUserProfile(userId, updates) {
+  const users = getStoredUsers()
+  const nextUsers = users.map((user) => (user.userId === userId ? { ...user, ...updates } : user))
+  saveUsers(nextUsers)
+
+  const updatedUser = nextUsers.find((user) => user.userId === userId) || null
+  const session = getStoredSession()
+
+  if (session?.user?.userId === userId && updatedUser) {
+    setStoredSession(updatedUser)
+  }
+
+  return sanitizeUser(updatedUser)
 }
 
 function readScopedMap(key) {
@@ -170,4 +192,27 @@ export function setStoredFamilyMenu(userId, menu) {
   const familyMenus = readScopedMap(STORAGE_KEYS.familyMenus)
   familyMenus[userId] = menu
   writeScopedMap(STORAGE_KEYS.familyMenus, familyMenus)
+}
+
+export function getAdminOverviewLocal() {
+  const users = getStoredUsers().filter((user) => user.role !== 'admin')
+  const mealHistory = readScopedMap(STORAGE_KEYS.mealHistory)
+  const familyMenus = readScopedMap(STORAGE_KEYS.familyMenus)
+  const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
+
+  return {
+    registeredUsersCount: users.length,
+    users: users.map((user) => ({
+      userId: user.userId,
+      email: user.email,
+      createdAt: user.createdAt,
+      bmi: user.latestPlannerProfile?.bmi || null,
+      hasFamilyMenu: Boolean(familyMenus[user.userId]),
+      weekMeals: weekDays.reduce((result, day) => {
+        const history = (mealHistory[user.userId] || []).find((entry) => entry.day === day)
+        result[day] = (history?.meals || []).map((meal) => meal.mealName)
+        return result
+      }, {}),
+    })),
+  }
 }

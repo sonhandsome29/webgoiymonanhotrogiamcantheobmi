@@ -4,6 +4,7 @@ import { AppContext } from './app-context'
 import { api } from '../lib/api'
 import {
   clearStoredSession,
+  getAdminOverviewLocal,
   getStoredFamilyMenu,
   getStoredMealHistory,
   getStoredMealHistoryDay,
@@ -15,6 +16,7 @@ import {
   saveStoredMealHistoryDay,
   setStoredFamilyMenu,
   setStoredPlannerPlan,
+  updateStoredUserProfile,
 } from '../lib/localData'
 import { formatCurrency, formatNumber, getDayLabel, getGroupLabel, normalizeSearchText, parseOptionalNumber } from '../utils/formatters'
 import { buildDislikesPayload, flattenPlanMeals } from '../utils/planner'
@@ -293,8 +295,19 @@ export function AppProvider({ children }) {
   }, [historyDay, ingredients, setLoadingKey, setSectionError, user])
 
   const refreshAdminOverview = useCallback(async () => {
-    resetAdminState()
-  }, [resetAdminState])
+    setLoadingKey('adminOverview', true)
+    setSectionError('adminOverview', '')
+
+    try {
+      const result = getAdminOverviewLocal()
+      setAdminUsersOverview(result.users || [])
+      setRegisteredUsersCount(result.registeredUsersCount || 0)
+    } catch (error) {
+      setSectionError('adminOverview', error.message)
+    } finally {
+      setLoadingKey('adminOverview', false)
+    }
+  }, [setLoadingKey, setSectionError])
 
   useEffect(() => {
     if (!user?.userId || !isAdmin) {
@@ -400,6 +413,23 @@ export function AppProvider({ children }) {
 
       if (user?.userId) {
         setStoredPlannerPlan(user.userId, result)
+        const updatedUser = updateStoredUserProfile(user.userId, {
+          latestPlannerProfile: {
+            weight: payload.weight,
+            height: payload.height,
+            age: payload.age ?? null,
+            gender: payload.gender,
+            activity_level: payload.activity_level,
+            goal: result.goal,
+            bmi: Number.parseFloat(result.bmi),
+            targetCaloriesPerDay: result.targetCaloriesPerDay,
+            updatedAt: new Date().toISOString(),
+          },
+        })
+
+        if (updatedUser) {
+          updateSession({ user: updatedUser })
+        }
       }
 
       setNotice({
@@ -454,7 +484,30 @@ export function AppProvider({ children }) {
 
   async function handleIngredientSubmit(event) {
     event.preventDefault()
-    setSectionError('ingredient', 'Ingredient editing is disabled in static demo mode.')
+    setLoadingKey('ingredient', true)
+    setSectionError('ingredient', '')
+
+    const payload = {
+      name: ingredientForm.name.trim(),
+      price: parseOptionalNumber(ingredientForm.price) ?? 0,
+      unit: ingredientForm.unit.trim() || 'kg',
+      category: ingredientForm.category.trim() || undefined,
+      image_url: ingredientForm.image_url.trim() || undefined,
+    }
+
+    try {
+      await api.upsertIngredient(payload)
+      await refreshPricing()
+      resetIngredientForm()
+      setNotice({
+        tone: 'success',
+        message: `Updated pricing for ingredient ${payload.name}.`,
+      })
+    } catch (error) {
+      setSectionError('ingredient', error.message)
+    } finally {
+      setLoadingKey('ingredient', false)
+    }
   }
 
   async function handleFamilySubmit(event) {
