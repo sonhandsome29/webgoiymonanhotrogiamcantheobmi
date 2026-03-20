@@ -11,6 +11,7 @@ function PlannerPage() {
   const {
     errors,
     handlePlannerSubmit,
+    handleReplaceMeal,
     handleSavePlan,
     isAdmin,
     loading,
@@ -69,14 +70,21 @@ function PlannerPage() {
           title="Suggest meals by calories and preferences"
           description=""
           actions={
-            <button className="ghost-button" type="button" onClick={resetPlannerForm}>
-              Reset preset
-            </button>
+            <div className="action-row">
+              {mealPlan ? (
+                <button className="ghost-button" type="submit" form="planner-form" disabled={loading.planner}>
+                  {loading.planner ? 'Refreshing...' : 'Try another plan'}
+                </button>
+              ) : null}
+              <button className="ghost-button" type="button" onClick={resetPlannerForm}>
+                Reset preset
+              </button>
+            </div>
           }
         />
 
       <div className="planner-layout gap-6 xl:grid xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
-        <form className="panel-stack tw-surface-soft p-5 md:p-6" onSubmit={handlePlannerSubmit}>
+        <form className="panel-stack tw-surface-soft p-5 md:p-6" id="planner-form" onSubmit={handlePlannerSubmit}>
           <div className="field-grid field-grid--wide">
             <label className="field">
               <span>Weight (kg)</span>
@@ -146,7 +154,7 @@ function PlannerPage() {
             </label>
 
             <label className="field">
-              <span>Calories override</span>
+              <span>Custom calorie target (optional)</span>
               <input
                 type="number"
                 min="0"
@@ -157,7 +165,7 @@ function PlannerPage() {
                     overrideTargetCalories: event.target.value,
                   }))
                 }
-                placeholder="Leave empty for backend auto-calc"
+                placeholder="Leave empty to auto-calculate"
               />
             </label>
           </div>
@@ -258,12 +266,17 @@ function PlannerPage() {
                   <div className="meal-section" key={section.meal}>
                     <div className="meal-section__header">
                       <h3>{section.meal}</h3>
-                          <span>{(section.details || []).length} selected meals</span>
+                      <span>{(section.details || []).length} selected meals</span>
                     </div>
 
                     <div className="meal-card-grid">
                       {(section.details || []).map((meal) => (
-                        <MealCard key={meal._id} caption={section.meal} meal={meal} />
+                        <div className="panel-stack" key={meal._id}>
+                          <MealCard caption={section.meal} meal={meal} />
+                          <button className="ghost-button" type="button" onClick={() => handleReplaceMeal(section.meal, meal._id)}>
+                            Replace this meal
+                          </button>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -273,7 +286,7 @@ function PlannerPage() {
           ) : (
             <EmptyState
               title="No meal plan yet"
-              description="Enter your body data on the left and the backend will generate a day plan for breakfast, lunch, and dinner."
+              description="Enter your body data on the left and SonE will generate a day plan for breakfast, lunch, and dinner."
             />
           )}
         </div>

@@ -383,6 +383,65 @@ export function AppProvider({ children }) {
     setPlannerForm(initialPlannerForm)
   }
 
+  function persistMealPlan(nextPlan) {
+    setMealPlan(nextPlan)
+
+    if (user?.userId) {
+      setStoredPlannerPlan(user.userId, nextPlan)
+    }
+  }
+
+  function findReplacementMeal(sectionName, currentMealId) {
+    const dislikes = buildDislikesPayload(plannerForm)
+    const takenMealIds = new Set(
+      flattenPlanMeals(mealPlan)
+        .map((meal) => meal.mealId)
+        .filter((mealId) => mealId && mealId !== currentMealId),
+    )
+
+    const dislikedIngredients = (dislikes.dislikedIngredients || []).map((item) => String(item).toLowerCase())
+    const currentMeal = meals.find((meal) => meal._id === currentMealId)
+
+    const candidates = meals.filter((meal) => {
+      if (meal._id === currentMealId) return false
+      if (takenMealIds.has(meal._id)) return false
+      if (dislikes.dislikedMeals?.includes(meal.name)) return false
+      if (dislikes.dislikedGroups?.includes(meal.group)) return false
+
+      const ingredientText = (meal.ingredients || []).join(' ').toLowerCase()
+      if (dislikedIngredients.some((ingredient) => ingredientText.includes(ingredient))) return false
+
+      if (sectionName === 'Breakfast') {
+        return meal.group === currentMeal?.group || /bánh mì|phở|bún|xôi|cháo/i.test(meal.name)
+      }
+
+      if (sectionName === 'Lunch' || sectionName === 'Dinner') {
+        return meal.group === currentMeal?.group
+      }
+
+      return true
+    })
+
+    if (!candidates.length) {
+      throw new Error('No similar replacement meal is available for this slot.')
+    }
+
+    return candidates[Math.floor(Math.random() * candidates.length)]
+  }
+
+  function recalculateMealPlan(nextSections) {
+    const selectedCalories = nextSections.reduce(
+      (sum, section) => sum + (section.details || []).reduce((mealSum, meal) => mealSum + (meal.calories || 0), 0),
+      0,
+    )
+
+    return {
+      ...mealPlan,
+      selectedCalories,
+      meals: nextSections,
+    }
+  }
+
   function resetIngredientForm() {
     setIngredientForm(initialIngredientForm)
   }
@@ -479,6 +538,26 @@ export function AppProvider({ children }) {
       return false
     } finally {
       setLoadingKey('savePlan', false)
+    }
+  }
+
+  function handleReplaceMeal(sectionName, currentMealId) {
+    try {
+      const replacement = findReplacementMeal(sectionName, currentMealId)
+      const nextSections = (mealPlan?.meals || []).map((section) => {
+        if (section.meal !== sectionName) return section
+
+        return {
+          ...section,
+          details: (section.details || []).map((meal) => (meal._id === currentMealId ? replacement : meal)),
+        }
+      })
+
+      const nextPlan = recalculateMealPlan(nextSections)
+      persistMealPlan(nextPlan)
+      setNotice({ tone: 'success', message: `Replaced one ${sectionName.toLowerCase()} item with ${replacement.name}.` })
+    } catch (error) {
+      setSectionError('planner', error.message)
     }
   }
 
@@ -595,6 +674,7 @@ export function AppProvider({ children }) {
     resetPlannerForm,
     resetIngredientForm,
     handlePlannerSubmit,
+    handleReplaceMeal,
     handleSavePlan,
     handleIngredientSubmit,
     handleFamilySubmit,

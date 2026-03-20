@@ -1,13 +1,22 @@
 import { resolveImageUrl } from '../../lib/api'
 import { formatNumber, getGroupLabel, makeInitials } from '../../utils/formatters'
 
-function MealCard({ meal, caption }) {
-  const imageSrc = resolveImageUrl(meal.image_url)
+function MealCard({ meal, caption, onClick, actionLabel = 'View details' }) {
+  const imageSrc = resolveImageUrl(meal.image_url, meal.name, meal.group)
   const ingredientPreview = (meal.ingredients || []).slice(0, 4)
   const extraIngredients = Math.max((meal.ingredients || []).length - ingredientPreview.length, 0)
+  const CardTag = onClick ? 'button' : 'article'
 
   return (
-    <article className="meal-card tw-surface tw-lift group h-full overflow-hidden">
+    <CardTag
+      className="meal-card tw-surface tw-lift group h-full overflow-hidden"
+      {...(onClick
+        ? {
+            type: 'button',
+            onClick: () => onClick(meal),
+          }
+        : {})}
+    >
       <div className="meal-card__visual relative overflow-hidden">
         <div className="visual-fallback">
           <span>{makeInitials(meal.name || 'M')}</span>
@@ -57,8 +66,10 @@ function MealCard({ meal, caption }) {
               : meal.instructions}
           </p>
         ) : null}
+
+        {onClick ? <strong className="text-left text-sone-strong">{actionLabel}</strong> : null}
       </div>
-    </article>
+    </CardTag>
   )
 }
 

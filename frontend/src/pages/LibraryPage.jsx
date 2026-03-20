@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import MealCard from '../components/cards/MealCard'
+import MealDetailModal from '../components/ui/MealDetailModal'
 import Notice from '../components/ui/Notice'
 import SectionHeading from '../components/ui/SectionHeading'
 import { useAppContext } from '../hooks/useAppContext'
 import { api } from '../lib/api'
-import { formatNumber, getGroupLabel } from '../utils/formatters'
+import { formatNumber, getGroupLabel, resolveGroupKey } from '../utils/formatters'
 
 const initialMealForm = {
   name: '',
@@ -36,11 +37,25 @@ function LibraryPage() {
   const [mealActionError, setMealActionError] = useState('')
   const [mealActionLoading, setMealActionLoading] = useState(false)
   const [editingMealId, setEditingMealId] = useState('')
+  const [selectedMeal, setSelectedMeal] = useState(null)
+  const [mealGroupMode, setMealGroupMode] = useState('existing')
+  const [customMealGroup, setCustomMealGroup] = useState('')
 
   useEffect(() => {
     const searchValue = searchParams.get('search') || ''
+    const groupValue = searchParams.get('group') || 'all'
+    const mealId = searchParams.get('meal') || ''
+
     setMealQuery(searchValue)
-  }, [searchParams, setMealQuery])
+    setMealGroup(groupValue === 'all' ? 'all' : resolveGroupKey(groupValue))
+
+    if (mealId) {
+      const matchedMeal = meals.find((meal) => meal._id === mealId || meal.name === mealId)
+      setSelectedMeal(matchedMeal || null)
+    } else {
+      setSelectedMeal(null)
+    }
+  }, [meals, searchParams, setMealGroup, setMealQuery])
 
   const adminPreviewMeals = useMemo(() => filteredMeals.slice(0, 12), [filteredMeals])
 
@@ -50,6 +65,9 @@ function LibraryPage() {
 
   function handleEditMeal(meal) {
     setEditingMealId(meal._id)
+    const existingGroup = mealGroups.includes(meal.group)
+    setMealGroupMode(existingGroup ? 'existing' : 'custom')
+    setCustomMealGroup(existingGroup ? '' : meal.group || '')
     setMealForm({
       name: meal.name || '',
       group: meal.group || '',
@@ -67,6 +85,8 @@ function LibraryPage() {
     setEditingMealId('')
     setMealForm(initialMealForm)
     setMealActionError('')
+    setMealGroupMode('existing')
+    setCustomMealGroup('')
   }
 
   async function handleMealSubmit(event) {
@@ -76,6 +96,7 @@ function LibraryPage() {
 
     const payload = {
       ...mealForm,
+      group: mealGroupMode === 'custom' ? customMealGroup.trim() : mealForm.group,
       calories: Number(mealForm.calories) || 0,
       protein: Number(mealForm.protein) || 0,
       fat: Number(mealForm.fat) || 0,
@@ -139,8 +160,46 @@ function LibraryPage() {
 
               <label className="field">
                 <span>Meal group</span>
-                <input type="text" value={mealForm.group} onChange={(event) => handleMealFormChange('group', event.target.value)} required />
+                <select
+                  value={mealGroupMode === 'custom' ? '__other__' : mealForm.group}
+                  onChange={(event) => {
+                    const nextValue = event.target.value
+
+                    if (nextValue === '__other__') {
+                      setMealGroupMode('custom')
+                      if (!customMealGroup) setCustomMealGroup(mealForm.group || '')
+                    } else {
+                      setMealGroupMode('existing')
+                      setCustomMealGroup('')
+                      handleMealFormChange('group', nextValue)
+                    }
+                  }}
+                  required
+                >
+                  <option value="" disabled>
+                    Select a group
+                  </option>
+                  {mealGroups.map((group) => (
+                    <option key={group} value={group}>
+                      {getGroupLabel(group)}
+                    </option>
+                  ))}
+                  <option value="__other__">Other</option>
+                </select>
               </label>
+
+              {mealGroupMode === 'custom' ? (
+                <label className="field">
+                  <span>Custom group name</span>
+                  <input
+                    type="text"
+                    value={customMealGroup}
+                    onChange={(event) => setCustomMealGroup(event.target.value)}
+                    placeholder="Example: smoothies"
+                    required
+                  />
+                </label>
+              ) : null}
 
               <label className="field">
                 <span>Calories</span>
@@ -279,10 +338,12 @@ function LibraryPage() {
 
         <div className="meal-card-grid meal-card-grid--catalog">
           {filteredMeals.map((meal) => (
-            <MealCard key={meal._id} caption={meal.group} meal={meal} />
+            <MealCard key={meal._id} actionLabel="Open details" caption={meal.group} meal={meal} onClick={setSelectedMeal} />
           ))}
         </div>
       </div>
+
+      <MealDetailModal meal={selectedMeal} onClose={() => setSelectedMeal(null)} />
     </section>
   )
 }

@@ -141,14 +141,14 @@ function OverviewPage() {
             <Link
               className="collection-card"
               key={item.group}
-              to={`/library?search=${encodeURIComponent(item.group)}`}
-              onClick={() => setMealQuery(item.group)}
+              to={`/library?group=${encodeURIComponent(item.group)}`}
+              onClick={() => setMealQuery('')}
             >
               <div className="collection-card__image-wrap">
                 <img
                   alt={item.group}
                   className="collection-card__image"
-                  src={resolveImageUrl(item.cover?.image_url)}
+                  src={resolveImageUrl(item.cover?.image_url, item.cover?.name || item.group, item.group)}
                 />
               </div>
               <div className="collection-card__content">
@@ -174,15 +174,15 @@ function OverviewPage() {
 
           <div className="home-meal-grid">
             {personalizedMeals.map((meal) => (
-              <Link
-                className="home-meal-card"
-                key={meal._id || meal.name}
-                to={`/library?search=${encodeURIComponent(meal.name)}`}
-                onClick={() => setMealQuery(meal.name)}
-              >
-                <div className="home-meal-card__image-wrap">
-                  <img alt={meal.name} className="home-meal-card__image" src={resolveImageUrl(meal.image_url)} />
-                </div>
+                <Link
+                  className="home-meal-card"
+                  key={meal._id || meal.name}
+                  to={`/library?meal=${encodeURIComponent(meal._id || meal.name)}&search=${encodeURIComponent(meal.name)}`}
+                  onClick={() => setMealQuery(meal.name)}
+                >
+                  <div className="home-meal-card__image-wrap">
+                  <img alt={meal.name} className="home-meal-card__image" src={resolveImageUrl(meal.image_url, meal.name, meal.group)} />
+                  </div>
                 <div className="home-meal-card__body">
                   <span className="chip chip--outline">{getGroupLabel(meal.group)}</span>
                   <h3>{meal.name}</h3>
@@ -203,7 +203,7 @@ function OverviewPage() {
             <Link
               className="story-mini-card"
               key={meal._id || meal.name}
-              to={`/library?search=${encodeURIComponent(meal.name)}`}
+              to={`/library?meal=${encodeURIComponent(meal._id || meal.name)}&search=${encodeURIComponent(meal.name)}`}
               onClick={() => setMealQuery(meal.name)}
             >
               <div className="story-mini-card__text">
@@ -211,7 +211,7 @@ function OverviewPage() {
                 <h3>{meal.name}</h3>
                 <p>{getGroupLabel(meal.group)} meal with {meal.calories || 0} kcal and a strong visual identity.</p>
               </div>
-              <img alt={meal.name} className="story-mini-card__image" src={resolveImageUrl(meal.image_url)} />
+              <img alt={meal.name} className="story-mini-card__image" src={resolveImageUrl(meal.image_url, meal.name, meal.group)} />
             </Link>
           ))}
         </aside>
@@ -229,10 +229,10 @@ function OverviewPage() {
             <Link
               className="popular-rail__card"
               key={meal._id || meal.name}
-              to={`/library?search=${encodeURIComponent(meal.name)}`}
+              to={`/library?meal=${encodeURIComponent(meal._id || meal.name)}&search=${encodeURIComponent(meal.name)}`}
               onClick={() => setMealQuery(meal.name)}
             >
-              <img alt={meal.name} className="popular-rail__image" src={resolveImageUrl(meal.image_url)} />
+              <img alt={meal.name} className="popular-rail__image" src={resolveImageUrl(meal.image_url, meal.name, meal.group)} />
               <div className="popular-rail__content">
                 <h3>{meal.name}</h3>
                 <p>{getGroupLabel(meal.group)}</p>

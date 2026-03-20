@@ -272,7 +272,7 @@ function AppShell() {
                     <img
                       alt={featuredMeal.name}
                       className="banner-feature-card__image"
-                      src={resolveImageUrl(featuredMeal.image_url)}
+                       src={resolveImageUrl(featuredMeal.image_url, featuredMeal.name, featuredMeal.group)}
                     />
                   </div>
                   <div className="banner-feature-card__content">
@@ -288,7 +288,7 @@ function AppShell() {
                     </div>
                     <Link
                       className="banner-feature-card__link"
-                      to={`/library?search=${encodeURIComponent(featuredMeal.name)}`}
+                       to={`/library?meal=${encodeURIComponent(featuredMeal._id || featuredMeal.name)}&search=${encodeURIComponent(featuredMeal.name)}`}
                       onClick={() => setMealQuery(featuredMeal.name)}
                     >
                       View this meal
@@ -304,11 +304,11 @@ function AppShell() {
               <Link
                 className="banner-spotlight-card"
                 key={meal._id || meal.name}
-                to={`/library?search=${encodeURIComponent(meal.name)}`}
+                to={`/library?meal=${encodeURIComponent(meal._id || meal.name)}&search=${encodeURIComponent(meal.name)}`}
                 onClick={() => setMealQuery(meal.name)}
               >
                 <div className="banner-spotlight-card__image-wrap">
-                  <img alt={meal.name} className="banner-spotlight-card__image" src={resolveImageUrl(meal.image_url)} />
+                   <img alt={meal.name} className="banner-spotlight-card__image" src={resolveImageUrl(meal.image_url, meal.name, meal.group)} />
                 </div>
                 <div className="banner-spotlight-card__content">
                   <span className="chip chip--outline">{getGroupLabel(meal.group) || 'Meal'}</span>
