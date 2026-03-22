@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet, useLocation, useNavigate } from 'react-router-do
 import { resolveImageUrl } from '../../lib/api'
 import { navItems } from '../../constants/appData'
 import { useAppContext } from '../../hooks/useAppContext'
-import { getGroupLabel, normalizeSearchText, startsWithWord } from '../../utils/formatters'
+import { getGroupLabel, maskEmail, normalizeSearchText, startsWithWord } from '../../utils/formatters'
 import AppIcon from '../icons/AppIcon'
 import Notice from '../ui/Notice'
 
@@ -20,10 +20,7 @@ function AppShell() {
   const spotlightMeals = meals.slice(1, 5)
   const accountName = user ? user.email.split('@')[0] : 'guest'
   const visibleNavItems = navItems
-    .filter((item) => {
-      if (!isAdmin) return true
-      return item.to !== '/planner' && item.to !== '/family'
-    })
+    .filter(() => true)
     .map((item) => {
       if (!isAdmin) return item
 
@@ -31,6 +28,7 @@ function AppShell() {
       if (item.to === '/history') return { ...item, label: 'Users' }
       if (item.to === '/library') return { ...item, label: 'Meals' }
       if (item.to === '/pricing') return { ...item, label: 'Ingredients' }
+      if (item.to === '/family') return { ...item, label: 'Family Menu' }
       return item
     })
 
@@ -169,7 +167,7 @@ function AppShell() {
                 <>
                   <div className="user-menu__summary">
                     <span className="chip chip--accent">{isAdmin ? 'Admin' : 'User'}</span>
-                    <p>{user.email}</p>
+                    <p>{maskEmail(user.email)}</p>
                   </div>
                   <Link className="user-menu__item" to="/auth" onClick={() => setMenuOpen(false)}>
                     <AppIcon name="settings" size={16} />
@@ -373,7 +371,7 @@ function AppShell() {
 
         <div className="site-footer__bottom">
           <span>SonE Wellness Kitchen</span>
-          <span>{user ? `Signed in as ${user.email}` : 'Guest session'}</span>
+          <span>{user ? `Signed in as ${maskEmail(user.email)}` : 'Guest session'}</span>
         </div>
       </footer>
     </div>

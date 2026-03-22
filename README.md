@@ -1,109 +1,54 @@
-# SonE Architecture
+# SonE Static Demo
 
-SonE is a meal-planning app with a React frontend and an Express + MongoDB backend.
+SonE is now a frontend-only meal-planning demo built with React and Vite.
+
+## What it includes
+
+- Local sign up / sign in with `localStorage`
+- Daily meal planner based on BMI, age, gender, and activity level
+- Saved meal history by weekday
+- Shopping list generated from saved meals
+- Ingredient pricing management
+- 7-day family menu generator with budget summaries
+- Local admin mode for editing meals and ingredients
 
 ## Stack
 
-- `frontend/`: React 19, Vite 8, React Router, TailwindCSS + custom CSS
-- `food-calorie-tool/`: Express 5, MongoDB/Mongoose, bcrypt
-- Auth: MongoDB-backed session store with `HttpOnly` cookie
-
-## Main features
-
-- Register / login / logout
-- Daily meal suggestion by BMI, calories, and dislikes
-- Save meal history by weekday
-- Generate shopping list from saved meals
-- Manage ingredient pricing
-- Build 7-day family menu by weekly budget
-- Admin overview for users, saved meals, and family-menu adoption
+- `frontend/`: React 19, Vite 8, React Router, Tailwind bridge classes, custom CSS
+- Data source: static JSON in `frontend/src/data/`
+- Images: static assets in `frontend/public/images/`
+- Persistence: browser `localStorage`
 
 ## Folder map
 
 ```text
 .
 |-- frontend/
-|   |-- src/App.jsx                # top-level routes
-|   |-- src/context/AppContext.jsx # app state + async actions
-|   |-- src/lib/api.js             # shared frontend API client
-|   |-- src/pages/                 # page-level UI
-|   |-- src/components/            # reusable UI pieces
-|
-|-- food-calorie-tool/
-|   |-- index.js                   # server bootstrap
-|   |-- app.js                     # express app + middleware
-|   |-- controllers/               # HTTP handlers
-|   |-- routes/                    # route definitions
-|   |-- services/                  # business logic
-|   |-- models/                    # mongoose schemas
-|   |-- lib/auth.js                # auth/session helpers
+|   |-- public/images/              # static meal and ingredient images
+|   |-- src/App.jsx                 # routes
+|   |-- src/context/AppContext.jsx  # app state and actions
+|   |-- src/data/                   # bundled seed data and image manifest
+|   |-- src/lib/                    # local data and catalog helpers
+|   |-- src/pages/                  # page-level UI
+|   |-- src/components/             # reusable UI pieces
+|   |-- src/utils/                  # planner/family/history logic
 ```
 
-## Request flow
+## How it works
 
 ```text
-Frontend page
-   |
-   v
-AppContext action
-   |
-   v
-frontend/src/lib/api.js
-   |
-   v
-Express route -> controller -> service -> Mongoose model -> MongoDB
-   |
-   v
-JSON response -> AppContext state -> React page/components
+Static JSON data -> AppContext -> React pages/components
+Local account/session -> localStorage
+Planner/history/family menu -> localStorage + frontend logic
 ```
 
-## Auth/session flow
+## Admin mode
 
-```text
-Login/Register form
-   -> POST /login or /register
-   -> authController
-   -> sessionService creates AuthSession in MongoDB
-   -> backend sets HttpOnly cookie
-   -> frontend stores user profile in React state only
+- Admin is determined locally from `VITE_ADMIN_EMAILS`
+- Default fallback email is `admin@example.com`
+- Admin can create, edit, and delete meals and ingredient pricing in the current browser
 
-Page reload
-   -> AppContext boot
-   -> GET /auth/me with credentials
-   -> optionalAuth resolves cookie session from MongoDB
-   -> session restored into React state
-
-Logout
-   -> POST /logout
-   -> session deleted from MongoDB
-   -> cookie cleared
-```
-
-## Core API groups
-
-- Auth: `/register`, `/login`, `/logout`, `/auth/me`
-- Meals: `/meals`, `/suggest-meals`, `/admin/meals/:mealId`
-- History: `/meal-history`, `/meal-history/:userId`, `/meal-history/:userId/:day`
-- Ingredients: `/ingredients`, `/ingredients/:userId/:day`
-- Family: `/family/min-cost`, `/family/menu`
-- Admin: `/admin/users-overview`
-
-## Frontend notes
-
-- UI is now a hybrid approach: existing custom CSS in `frontend/src/index.css` and `frontend/src/App.css` still drives the design system, while shared Tailwind utility classes are used directly in components and through `@layer components` bridge classes such as `.tw-surface` and `.tw-lift`.
-- Shared API requests live in `frontend/src/lib/api.js` and now use `credentials: 'include'` so auth runs through the backend cookie session.
-
-## Local run
-
-Backend:
-
-```bash
-cd food-calorie-tool
-npm install
-npm run dev
-```
-
-Frontend:
+## Local development
 
 ```bash
 cd frontend
@@ -111,16 +56,34 @@ npm install
 npm run dev
 ```
 
+## Production build
+
+```bash
+cd frontend
+npm run build
+```
+
+Deploy `frontend/` as a Vite static site on Vercel.
+
+Recommended Vercel settings:
+
+- Framework: `Vite`
+- Root Directory: `frontend`
+- Build Command: `npm run build`
+- Output Directory: `dist`
+
 ## Environment
 
-Backend example in `food-calorie-tool/.env.example`:
+Optional frontend env:
 
 ```env
-PORT=3000
-MONGODB_URI=mongodb://localhost:27017/foodDB
-MEAL_SEED_MODE=if-empty
-ADMIN_EMAILS=admin@example.com
-FRONTEND_ORIGIN=http://localhost:5173
-SESSION_COOKIE_NAME=sone_session
-SESSION_TTL_DAYS=7
+VITE_ADMIN_EMAILS=admin@example.com
 ```
+
+Use a comma-separated list if you want more than one local admin.
+
+## Notes
+
+- All user data is browser-local. Different devices or browsers do not sync.
+- Clearing browser storage resets accounts, history, and family results for that browser.
+- The app no longer depends on a backend service.

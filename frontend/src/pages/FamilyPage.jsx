@@ -12,7 +12,6 @@ function FamilyPage() {
     familyForm,
     familyMenu,
     handleFamilySubmit,
-    isAdmin,
     loading,
     minCost,
     recommendedFamilyBudget,
@@ -22,23 +21,6 @@ function FamilyPage() {
   } = useAppContext()
   const hasBudgetInput = String(familyForm.weeklyBudget || '').trim() !== ''
   const averageDailyBudget = familyMenu ? Math.round(familyMenu.totalWeekCost / 7) : 0
-
-  if (isAdmin) {
-    return (
-      <section className="panel panel--full">
-        <SectionHeading
-          eyebrow="Admin only"
-          title="The family menu is hidden in admin mode"
-          description="Family planning is intended for regular accounts, while admin mode focuses on data and moderation tasks."
-        />
-
-        <EmptyState
-          title="This feature is hidden for admin"
-          description="Open Users to see which registered accounts already selected a family menu."
-        />
-      </section>
-    )
-  }
 
   if (!user) {
     return (

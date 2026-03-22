@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import SectionHeading from '../components/ui/SectionHeading'
 import { useAppContext } from '../hooks/useAppContext'
 import { resolveImageUrl } from '../lib/api'
-import { formatCurrency, formatNumber, getGroupLabel } from '../utils/formatters'
+import { formatCurrency, formatNumber, getGroupLabel, maskEmail } from '../utils/formatters'
 
 function OverviewPage() {
   const {
@@ -253,7 +253,7 @@ function OverviewPage() {
             <h2>Keep SonE feeling personal, practical, and consistent every week.</h2>
             <p>
               {user
-                ? `${user.email} currently has ${historyRecords.length} saved meal plans. Come back often to refine your planner, compare your history, and keep your food budget more intentional.`
+                ? `${maskEmail(user.email)} currently has ${historyRecords.length} saved meal plans. Come back often to refine your planner, compare your history, and keep your food budget more intentional.`
                 : 'Create an account to save your meal rhythm, revisit your favorite dishes, and make the homepage feel tailored to you instead of generic to everyone.'}
             </p>
           </div>

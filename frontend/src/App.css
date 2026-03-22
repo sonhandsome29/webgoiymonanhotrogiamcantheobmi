@@ -1166,6 +1166,34 @@
   justify-content: space-between;
 }
 
+.ingredient-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+}
+
+.ingredient-row > div:first-child {
+  min-width: 0;
+}
+
+.ingredient-row h3,
+.ingredient-row p {
+  overflow-wrap: anywhere;
+}
+
+.ingredient-row__meta {
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.ingredient-row--admin {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.admin-management-list .ghost-button {
+  min-width: 84px;
+}
+
 .planner-save-bar {
   flex-wrap: wrap;
 }
@@ -1585,12 +1613,19 @@
   .planner-save-bar,
   .shopping-header,
   .family-day-card__top,
-  .ingredient-row,
   .family-dish,
   .highlight-card__top,
   .meal-section__header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .ingredient-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ingredient-row__meta {
+    justify-content: flex-start;
   }
 
   .section-nav {

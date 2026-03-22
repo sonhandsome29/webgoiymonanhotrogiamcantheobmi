@@ -109,3 +109,13 @@ export function startsWithWord(value, query) {
     .filter(Boolean)
     .some((word) => word.startsWith(normalizedQuery))
 }
+
+export function maskEmail(email) {
+  const normalizedEmail = String(email || '').trim()
+  const [localPart, domainPart] = normalizedEmail.split('@')
+
+  if (!localPart || !domainPart) return normalizedEmail
+  if (localPart.length <= 2) return `${localPart[0] || '*'}*@${domainPart}`
+
+  return `${localPart[0]}${'*'.repeat(Math.max(localPart.length - 2, 1))}${localPart.slice(-1)}@${domainPart}`
+}

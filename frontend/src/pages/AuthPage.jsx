@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useAppContext } from '../hooks/useAppContext'
 import SectionHeading from '../components/ui/SectionHeading'
 import Notice from '../components/ui/Notice'
+import { maskEmail } from '../utils/formatters'
 
 function AuthPage() {
   const {
@@ -33,7 +34,7 @@ function AuthPage() {
         <div className="panel-stack auth-page__card-wrap">
           <div className="user-card auth-page__card tw-surface-soft p-6">
             <span className="chip chip--accent">Active session</span>
-            <h3>{user.email}</h3>
+            <h3>{maskEmail(user.email)}</h3>
             {isAdmin ? null : <p>User ID: {user.userId}</p>}
 
             {isAdmin ? (

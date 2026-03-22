@@ -6,7 +6,7 @@ import EmptyState from '../components/ui/EmptyState'
 import Notice from '../components/ui/Notice'
 import SectionHeading from '../components/ui/SectionHeading'
 import { useAppContext } from '../hooks/useAppContext'
-import { formatCurrency, formatNumber, getDayLabel } from '../utils/formatters'
+import { formatCurrency, formatNumber, getDayLabel, maskEmail } from '../utils/formatters'
 
 function HistoryPage() {
   const {
@@ -149,7 +149,7 @@ function HistoryPage() {
                     <td>
                       <div className="admin-table__user-cell">
                         <span className="chip chip--accent">User</span>
-                        <strong>{item.email}</strong>
+                        <strong>{maskEmail(item.email)}</strong>
                       </div>
                     </td>
                     <td>{item.createdAt ? new Date(item.createdAt).toLocaleDateString('en-GB') : 'Unknown'}</td>
