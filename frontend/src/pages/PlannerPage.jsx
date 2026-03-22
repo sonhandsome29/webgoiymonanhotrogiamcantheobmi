@@ -84,7 +84,7 @@ function PlannerPage() {
         />
 
       <div className="planner-layout gap-6 xl:grid xl:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)]">
-        <form className="panel-stack tw-surface-soft p-5 md:p-6" id="planner-form" onSubmit={handlePlannerSubmit}>
+        <form className="panel-stack tw-surface-soft p-5 md:p-6 planner-form-card" id="planner-form" onSubmit={handlePlannerSubmit}>
           <div className="field-grid field-grid--wide">
             <label className="field">
               <span>Weight (kg)</span>
@@ -204,7 +204,7 @@ function PlannerPage() {
 
           {errors.planner ? <Notice tone="error">{errors.planner}</Notice> : null}
 
-          <div className="action-row">
+          <div className="planner-actions-card">
             <button className="primary-button" type="submit" disabled={loading.planner}>
               {loading.planner ? 'Calculating...' : 'Get meal suggestions'}
             </button>
@@ -270,6 +270,7 @@ function PlannerPage() {
             </>
           ) : (
             <EmptyState
+              className="planner-empty-state"
               title="No meal plan yet"
               description="Enter your body data on the left and SonE will generate a day plan for breakfast, lunch, and dinner."
             />

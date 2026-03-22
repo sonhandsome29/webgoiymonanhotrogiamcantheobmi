@@ -90,7 +90,7 @@ function FamilyPage() {
           }
         />
 
-      <div className="panel-stack tw-surface-soft p-5 md:p-6">
+      <div className="panel-stack tw-surface-soft p-5 md:p-6 family-form-card">
         {minCost && hasBudgetInput ? (
           <div className="highlight-card">
             <div className="highlight-card__top">
@@ -147,7 +147,7 @@ function FamilyPage() {
             </label>
           </div>
 
-          <div className="action-row">
+          <div className="family-actions-card">
             <button className="primary-button" type="submit" disabled={loading.family}>
               {loading.family ? 'Generating menu...' : 'Generate family menu'}
             </button>
@@ -187,7 +187,13 @@ function FamilyPage() {
 
         {errors.family ? <Notice tone="error">{errors.family}</Notice> : null}
 
-        {familyMenu ? (
+        {loading.family ? (
+          <div className="family-loading-state">
+            <div className="family-loading-bar family-loading-bar--short" />
+            <div className="family-loading-bar family-loading-bar--full" />
+            <div className="family-loading-bar family-loading-bar--mid" />
+          </div>
+        ) : familyMenu ? (
           <div className="panel-stack">
             <div className="family-summary-grid">
               <article className="family-summary-card">
@@ -244,6 +250,7 @@ function FamilyPage() {
           </div>
         ) : (
           <EmptyState
+              className="family-empty-state"
               title="No family menu yet"
               description="Enter family size and weekly budget to generate a full 7-day family menu."
             />

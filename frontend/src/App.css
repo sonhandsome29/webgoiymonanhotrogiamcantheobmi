@@ -837,6 +837,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  min-width: 0;
 }
 
 .field span {
@@ -848,6 +849,7 @@
 .field input,
 .field select,
 .field textarea {
+  box-sizing: border-box;
   width: 100%;
   border: 1px solid rgba(47, 111, 88, 0.16);
   border-radius: 18px;
@@ -867,6 +869,74 @@
 
 .field--compact {
   min-width: 180px;
+}
+
+.planner-layout > *,
+.history-layout > * {
+  min-width: 0;
+}
+
+.planner-form-card,
+.family-form-card {
+  padding: 20px 22px;
+  border: 1px solid rgba(47, 111, 88, 0.12);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(249, 244, 236, 0.82));
+  box-shadow: 0 16px 36px rgba(38, 52, 46, 0.06);
+}
+
+.planner-actions-card,
+.family-actions-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid rgba(47, 111, 88, 0.1);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.planner-actions-card .ghost-button,
+.planner-actions-card .primary-button,
+.family-actions-card .ghost-button,
+.family-actions-card .primary-button {
+  margin: 0;
+}
+
+.planner-empty-state,
+.family-empty-state,
+.family-loading-state {
+  padding: 28px;
+  border: 1px dashed rgba(47, 111, 88, 0.18);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 240, 226, 0.76));
+}
+
+.family-loading-state {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.family-loading-bar {
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(47, 111, 88, 0.1), rgba(217, 170, 82, 0.22), rgba(47, 111, 88, 0.1));
+  background-size: 200% 100%;
+  animation: shimmer-slide 1.4s ease-in-out infinite;
+}
+
+.family-loading-bar--short {
+  width: 58%;
+}
+
+.family-loading-bar--mid {
+  width: 74%;
+}
+
+.family-loading-bar--full {
+  width: 100%;
 }
 
 .segmented-control {
@@ -1377,6 +1447,16 @@
   }
 }
 
+@keyframes shimmer-slide {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
 @media (max-width: 1180px) {
   .panel--half,
   .panel--full {
@@ -1391,6 +1471,10 @@
 
   .section-nav {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .meal-card-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1414,6 +1498,12 @@
   .overview-grid,
   .mini-metric-row {
     grid-template-columns: 1fr;
+  }
+
+  .planner-actions-card,
+  .family-actions-card {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .field--span-2 {
