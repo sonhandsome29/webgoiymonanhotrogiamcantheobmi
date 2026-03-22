@@ -189,39 +189,39 @@ function FamilyPage() {
 
         {familyMenu ? (
           <div className="panel-stack">
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              <article className="tw-surface-soft p-4">
-                <span className="text-sm font-semibold uppercase tracking-[0.08em] text-sone-muted">Weekly total</span>
-                <strong className="mt-3 block font-heading text-2xl text-sone-ink">{formatCurrency(familyMenu.totalWeekCost)}</strong>
+            <div className="family-summary-grid">
+              <article className="family-summary-card">
+                <span className="family-summary-card__label">Weekly total</span>
+                <strong className="family-summary-card__value">{formatCurrency(familyMenu.totalWeekCost)}</strong>
               </article>
-              <article className="tw-surface-soft p-4">
-                <span className="text-sm font-semibold uppercase tracking-[0.08em] text-sone-muted">Base meal cost</span>
-                <strong className="mt-3 block font-heading text-2xl text-sone-ink">{formatCurrency(familyMenu.baseWeekCost)}</strong>
+              <article className="family-summary-card">
+                <span className="family-summary-card__label">Base meal cost</span>
+                <strong className="family-summary-card__value">{formatCurrency(familyMenu.baseWeekCost)}</strong>
               </article>
-              <article className="tw-surface-soft p-4">
-                <span className="text-sm font-semibold uppercase tracking-[0.08em] text-sone-muted">Safety buffer</span>
-                <strong className="mt-3 block font-heading text-2xl text-sone-ink">{formatCurrency(familyMenu.buffer)}</strong>
+              <article className="family-summary-card">
+                <span className="family-summary-card__label">Safety buffer</span>
+                <strong className="family-summary-card__value">{formatCurrency(familyMenu.buffer)}</strong>
               </article>
-              <article className="tw-surface-soft p-4">
-                <span className="text-sm font-semibold uppercase tracking-[0.08em] text-sone-muted">Minimum budget</span>
-                <strong className="mt-3 block font-heading text-2xl text-sone-ink">{formatCurrency(familyMenu.minBudgetForFamily)}</strong>
+              <article className="family-summary-card">
+                <span className="family-summary-card__label">Minimum budget</span>
+                <strong className="family-summary-card__value">{formatCurrency(familyMenu.minBudgetForFamily)}</strong>
               </article>
             </div>
 
-            <div className="rounded-[28px] border border-sone-line bg-[linear-gradient(135deg,rgba(255,248,239,0.96),rgba(244,250,246,0.95))] p-5">
-              <div className="flex flex-wrap items-start justify-between gap-4">
-                <div className="panel-stack">
+            <div className="family-result-hero">
+              <div className="family-result-hero__top">
+                <div className="family-result-hero__copy">
                   <span className="tw-chip">Family result</span>
-                  <h3 className="m-0">7-day meal plan for {familyMenu.familySize} people</h3>
-                  <p className="m-0 text-sone-muted">
+                  <h3>7-day meal plan for {familyMenu.familySize} people</h3>
+                  <p>
                     This plan spreads your budget across the week and keeps each day readable by meal type and per-person cost.
                   </p>
                 </div>
 
-                <div className="panel-stack text-right">
-                  <strong className="text-2xl text-sone-ink">{formatCurrency(Math.round(familyMenu.totalWeekCost / 7))}</strong>
-                  <span className="text-sm text-sone-muted">average per day</span>
-                  <span className="text-sm text-sone-muted">
+                <div className="family-result-hero__stats">
+                  <strong>{formatCurrency(Math.round(familyMenu.totalWeekCost / 7))}</strong>
+                  <span>average per day</span>
+                  <span>
                     {Math.round(
                       (familyMenu.days || []).reduce(
                         (sum, day) =>
@@ -229,7 +229,8 @@ function FamilyPage() {
                           (day.meals || []).reduce((mealSum, item) => mealSum + (item.dish?.calories || 0), 0),
                         0,
                       ) / Math.max((familyMenu.days || []).length, 1),
-                    )} kcal average
+                    )}{' '}
+                    kcal average
                   </span>
                 </div>
               </div>

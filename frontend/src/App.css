@@ -1163,6 +1163,95 @@
   align-self: flex-start;
 }
 
+.family-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.family-summary-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 10px 28px rgba(38, 52, 46, 0.07);
+  min-width: 0;
+}
+
+.family-summary-card__label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.family-summary-card__value {
+  display: block;
+  margin-top: 10px;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.2rem, 2vw, 1.85rem);
+  line-height: 1.15;
+  word-break: break-word;
+}
+
+.family-result-hero {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 248, 239, 0.96), rgba(244, 250, 246, 0.95));
+  overflow: hidden;
+}
+
+.family-result-hero__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.family-result-hero__copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.family-result-hero__copy h3 {
+  margin: 14px 0 10px;
+  color: var(--ink);
+  font-size: clamp(1.55rem, 3vw, 2.2rem);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.family-result-hero__copy p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+.family-result-hero__stats {
+  flex-shrink: 0;
+  min-width: 180px;
+  text-align: right;
+}
+
+.family-result-hero__stats strong {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.family-result-hero__stats span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+}
+
 .family-day-card__stack {
   overflow: hidden;
   transition:
@@ -1382,6 +1471,20 @@
 
   .section-nav {
     position: static;
+  }
+
+  .family-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .family-result-hero__top {
+    flex-direction: column;
+  }
+
+  .family-result-hero__stats {
+    min-width: 0;
+    width: 100%;
+    text-align: left;
   }
 
   .topbar {
