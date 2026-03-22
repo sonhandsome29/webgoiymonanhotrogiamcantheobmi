@@ -825,6 +825,12 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+@media (max-width: 980px) {
+  .field-grid--wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 .field-grid--single {
   grid-template-columns: 1fr;
 }
@@ -1046,6 +1052,7 @@
 .ingredient-row,
 .empty-state {
   padding: 18px;
+  overflow: hidden;
 }
 
 .meal-section-grid,
@@ -1063,6 +1070,10 @@
 
 .meal-card-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.meal-section .meal-card-grid {
+  grid-template-columns: 1fr;
 }
 
 .meal-card-grid--catalog,
@@ -1153,6 +1164,18 @@
   gap: 12px;
   align-items: center;
   justify-content: space-between;
+}
+
+.planner-save-bar {
+  flex-wrap: wrap;
+}
+
+.planner-save-bar > * {
+  min-width: 0;
+}
+
+.planner-save-bar .primary-button {
+  min-width: 220px;
 }
 
 .mini-metric-row {
@@ -1504,6 +1527,17 @@
   .family-actions-card {
     flex-direction: column;
     align-items: stretch;
+  }
+
+  .planner-save-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .planner-save-bar .primary-button,
+  .planner-save-bar .field--compact {
+    width: 100%;
+    min-width: 0;
   }
 
   .field--span-2 {

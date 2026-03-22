@@ -151,7 +151,7 @@ function LibraryPage() {
             description="Keep the catalog accurate so planner, history, and family-budget features stay useful."
           />
 
-          <form className="panel-stack" onSubmit={handleMealSubmit}>
+          <form className="panel-stack planner-form-card" onSubmit={handleMealSubmit}>
             <div className="field-grid field-grid--wide">
               <label className="field field--span-2">
                 <span>Meal name</span>
@@ -257,7 +257,7 @@ function LibraryPage() {
             description="Search the current catalog, open a meal for editing, or remove entries that are no longer needed."
           />
 
-          <div className="field-grid field-grid--wide">
+          <div className="field-grid field-grid--wide family-form-card">
             <label className="field field--span-2">
               <span>Quick meal search</span>
               <input type="text" value={mealQuery} onChange={(event) => setMealQuery(event.target.value)} placeholder="Search a meal to edit" />
