@@ -1127,6 +1127,87 @@
   flex-wrap: wrap;
 }
 
+.family-dish--breakfast {
+  border-left: 5px solid #e6a95a;
+}
+
+.family-dish--lunch {
+  border-left: 5px solid #5f9778;
+}
+
+.family-dish--dinner {
+  border-left: 5px solid #7a6ccf;
+}
+
+.family-budget-chip--under {
+  background: rgba(82, 148, 110, 0.14);
+  color: #2f6f58;
+}
+
+.family-budget-chip--near {
+  background: rgba(214, 154, 74, 0.16);
+  color: #9a6320;
+}
+
+.family-budget-chip--over {
+  background: rgba(181, 86, 73, 0.14);
+  color: #9d473f;
+}
+
+.family-budget-chip--neutral {
+  background: rgba(87, 103, 119, 0.14);
+  color: #475569;
+}
+
+.family-day-card__toggle {
+  align-self: flex-start;
+}
+
+.family-day-card__stack {
+  overflow: hidden;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    margin-top 0.28s ease;
+  transform-origin: top;
+}
+
+.family-day-card__stack--expanded {
+  max-height: 1200px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.family-day-card__stack--collapsed {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  margin-top: 0;
+  pointer-events: none;
+}
+
+.family-dish__thumb-wrap {
+  flex-shrink: 0;
+}
+
+.family-dish__thumb {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.family-dish__thumb--fallback {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-strong);
+}
+
 .shopping-card__meta {
   display: flex;
   align-items: center;

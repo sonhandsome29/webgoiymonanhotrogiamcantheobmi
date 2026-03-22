@@ -118,15 +118,15 @@ export function buildFamilyMenuLocal({ meals, ingredients, familySize, weeklyBud
     const fruit = pickOneFruit()
     const fruitMealType = Math.random() > 0.5 ? 'Bữa trưa' : 'Bữa tối'
     const dayMeals = [
-      { mealTypeVi: 'Bữa sáng', dish: { mealId: bCost.meal._id, name: bCost.meal.name, calories: bCost.meal.calories || 0, pricePerPerson: Math.round(bCost.cost) } },
-      { mealTypeVi: 'Bữa trưa', dish: { mealId: lCost.meal._id, name: lCost.meal.name, calories: lCost.meal.calories || 0, pricePerPerson: Math.round(lCost.cost) } },
-      { mealTypeVi: 'Bữa tối', dish: { mealId: dCost.meal._id, name: dCost.meal.name, calories: dCost.meal.calories || 0, pricePerPerson: Math.round(dCost.cost) } },
+      { mealTypeVi: 'Bữa sáng', dish: { mealId: bCost.meal._id, name: bCost.meal.name, group: bCost.meal.group, image_url: bCost.meal.image_url || '', calories: bCost.meal.calories || 0, pricePerPerson: Math.round(bCost.cost) } },
+      { mealTypeVi: 'Bữa trưa', dish: { mealId: lCost.meal._id, name: lCost.meal.name, group: lCost.meal.group, image_url: lCost.meal.image_url || '', calories: lCost.meal.calories || 0, pricePerPerson: Math.round(lCost.cost) } },
+      { mealTypeVi: 'Bữa tối', dish: { mealId: dCost.meal._id, name: dCost.meal.name, group: dCost.meal.group, image_url: dCost.meal.image_url || '', calories: dCost.meal.calories || 0, pricePerPerson: Math.round(dCost.cost) } },
     ]
 
     if (fruit) {
       dayMeals.push({
         mealTypeVi: fruitMealType,
-        dish: { mealId: fruit.meal._id, name: fruit.meal.name, calories: fruit.meal.calories || 0, pricePerPerson: Math.round(fruit.cost), isFruit: true },
+        dish: { mealId: fruit.meal._id, name: fruit.meal.name, group: fruit.meal.group, image_url: fruit.meal.image_url || '', calories: fruit.meal.calories || 0, pricePerPerson: Math.round(fruit.cost), isFruit: true },
       })
     }
 

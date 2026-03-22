@@ -153,21 +153,6 @@ function PlannerPage() {
               </select>
             </label>
 
-            <label className="field">
-              <span>Custom calorie target (optional)</span>
-              <input
-                type="number"
-                min="0"
-                value={plannerForm.overrideTargetCalories}
-                onChange={(event) =>
-                  setPlannerForm((previous) => ({
-                    ...previous,
-                    overrideTargetCalories: event.target.value,
-                  }))
-                }
-                placeholder="Leave empty to auto-calculate"
-              />
-            </label>
           </div>
 
           <div className="field-grid field-grid--wide">

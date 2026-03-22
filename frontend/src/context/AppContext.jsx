@@ -30,7 +30,6 @@ const initialPlannerForm = {
   age: '27',
   gender: 'female',
   activity_level: activityOptions[1].value,
-  overrideTargetCalories: '',
   dislikedGroups: '',
   dislikedIngredients: '',
   dislikedMeals: '',
@@ -461,10 +460,8 @@ export function AppProvider({ children }) {
     }
 
     const age = parseOptionalNumber(plannerForm.age)
-    const overrideTargetCalories = parseOptionalNumber(plannerForm.overrideTargetCalories)
 
     if (age !== undefined) payload.age = age
-    if (overrideTargetCalories !== undefined) payload.overrideTargetCalories = overrideTargetCalories
 
     try {
       const result = buildMealSuggestionLocal({ allMeals: meals, ...payload })

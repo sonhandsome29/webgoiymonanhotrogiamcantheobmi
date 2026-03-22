@@ -22,7 +22,7 @@ function normalizeIngredients(items = []) {
   return items.map((item) => String(item || '').toLowerCase())
 }
 
-export function buildMealSuggestionLocal({ allMeals, weight, height, age, gender, activity_level, dislikes = {}, overrideTargetCalories }) {
+export function buildMealSuggestionLocal({ allMeals, weight, height, age, gender, activity_level, dislikes = {} }) {
   if (!weight || !height) {
     throw createHttpError('Weight and height are required.')
   }
@@ -36,18 +36,14 @@ export function buildMealSuggestionLocal({ allMeals, weight, height, age, gender
   if (bmi >= 25) goal = 'lose'
   else if (bmi < 18.5) goal = 'gain'
 
-  if (overrideTargetCalories) {
-    targetCaloriesPerDay = overrideTargetCalories
-  } else {
-    const userAge = age || 30
-    const genderConstant = gender === 'female' ? -161 : 5
-    const bmr = 10 * weight + 6.25 * height - 5 * userAge + genderConstant
-    const activityFactor = activity_level === 'frequent' ? 1.55 : 1.2
-    targetCaloriesPerDay = bmr * activityFactor
+  const userAge = age || 30
+  const genderConstant = gender === 'female' ? -161 : 5
+  const bmr = 10 * weight + 6.25 * height - 5 * userAge + genderConstant
+  const activityFactor = activity_level === 'frequent' ? 1.55 : 1.2
+  targetCaloriesPerDay = bmr * activityFactor
 
-    if (goal === 'lose') targetCaloriesPerDay *= 0.8
-    else if (goal === 'gain') targetCaloriesPerDay *= 1.3
-  }
+  if (goal === 'lose') targetCaloriesPerDay *= 0.8
+  else if (goal === 'gain') targetCaloriesPerDay *= 1.3
 
   targetCaloriesPerDay = Math.round(targetCaloriesPerDay)
 
