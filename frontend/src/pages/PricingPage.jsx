@@ -141,12 +141,12 @@ function PricingPage() {
 
           <div className="ingredient-list">
             {filteredIngredients.map((ingredient) => (
-              <article className="ingredient-row" key={ingredient._id || ingredient.name}>
-                <div>
+              <article className="price-list-row" key={ingredient._id || ingredient.name}>
+                <div className="price-list-row__content">
                   <h3>{ingredient.name}</h3>
                   <p>{ingredient.category || 'Uncategorized'}</p>
                 </div>
-                <div className="ingredient-row__meta">
+                <div className="price-list-row__meta">
                   <span>{ingredient.unit || 'kg'}</span>
                   <strong>{formatCurrency(ingredient.price)}</strong>
                   {isAdmin && ingredient._id ? (

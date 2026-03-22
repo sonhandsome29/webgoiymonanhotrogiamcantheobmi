@@ -20,7 +20,10 @@ function AppShell() {
   const spotlightMeals = meals.slice(1, 5)
   const accountName = user ? user.email.split('@')[0] : 'guest'
   const visibleNavItems = navItems
-    .filter(() => true)
+    .filter((item) => {
+      if (!isAdmin) return true
+      return item.to !== '/planner' && item.to !== '/family'
+    })
     .map((item) => {
       if (!isAdmin) return item
 
@@ -28,7 +31,6 @@ function AppShell() {
       if (item.to === '/history') return { ...item, label: 'Users' }
       if (item.to === '/library') return { ...item, label: 'Meals' }
       if (item.to === '/pricing') return { ...item, label: 'Ingredients' }
-      if (item.to === '/family') return { ...item, label: 'Family Menu' }
       return item
     })
 

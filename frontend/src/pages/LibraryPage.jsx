@@ -278,12 +278,12 @@ function LibraryPage() {
 
           <div className="ingredient-list admin-management-list">
             {adminPreviewMeals.map((meal) => (
-              <article className="ingredient-row ingredient-row--admin" key={meal._id}>
-                <div>
+              <article className="admin-catalog-row" key={meal._id}>
+                <div className="admin-catalog-row__content">
                   <h3>{meal.name}</h3>
                   <p>{getGroupLabel(meal.group) || 'No group'} · {meal.calories || 0} kcal</p>
                 </div>
-                <div className="ingredient-row__meta">
+                <div className="admin-catalog-row__actions">
                   <button className="ghost-button" type="button" onClick={() => handleEditMeal(meal)}>
                     Edit
                   </button>
