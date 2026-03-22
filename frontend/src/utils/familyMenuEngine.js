@@ -144,6 +144,7 @@ export function buildFamilyMenuLocal({ meals, ingredients, familySize, weeklyBud
     baseWeekCost: Math.round(totalWeekCost - buffer),
     buffer,
     familySize,
+    weeklyBudget,
     days,
     minBudgetPerPerson: Math.round(minTotalWeekCost / familySize),
     minBudgetForFamily: Math.round(minTotalWeekCost),

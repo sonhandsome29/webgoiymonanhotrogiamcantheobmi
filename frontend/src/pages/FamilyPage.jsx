@@ -12,6 +12,7 @@ function FamilyPage() {
     familyForm,
     familyMenu,
     handleFamilySubmit,
+    handleSaveFamilyMenu,
     loading,
     minCost,
     recommendedFamilyBudget,
@@ -140,6 +141,12 @@ function FamilyPage() {
               </button>
             ) : null}
 
+            {familyMenu ? (
+              <button className="ghost-button" type="button" onClick={handleSaveFamilyMenu}>
+                Save family menu
+              </button>
+            ) : null}
+
             <button
               className="ghost-button"
               type="button"
@@ -220,6 +227,7 @@ function FamilyPage() {
                     )}{' '}
                     kcal average
                   </span>
+                  {familyMenu.savedAt ? <span>saved {new Date(familyMenu.savedAt).toLocaleDateString('en-GB')}</span> : null}
                 </div>
               </div>
             </div>

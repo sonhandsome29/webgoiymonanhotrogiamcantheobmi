@@ -4,6 +4,7 @@ const STORAGE_KEYS = {
   plannerPlans: 'sone_local_planner_plans',
   mealHistory: 'sone_local_meal_history',
   familyMenus: 'sone_local_family_menus',
+  familyMenuHistory: 'sone_local_family_menu_history',
 }
 
 const ADMIN_EMAILS = String(import.meta.env.VITE_ADMIN_EMAILS || 'admin@example.com')
@@ -194,10 +195,31 @@ export function setStoredFamilyMenu(userId, menu) {
   writeScopedMap(STORAGE_KEYS.familyMenus, familyMenus)
 }
 
+export function getStoredFamilyMenuHistory(userId) {
+  const familyMenuHistory = readScopedMap(STORAGE_KEYS.familyMenuHistory)
+  return Array.isArray(familyMenuHistory[userId]) ? familyMenuHistory[userId] : []
+}
+
+export function saveStoredFamilyMenuHistory(userId, menu) {
+  const familyMenuHistory = readScopedMap(STORAGE_KEYS.familyMenuHistory)
+  const historyEntry = {
+    ...menu,
+    savedAt: new Date().toISOString(),
+    historyId: createId(),
+  }
+
+  const nextHistory = [historyEntry, ...getStoredFamilyMenuHistory(userId)]
+  familyMenuHistory[userId] = nextHistory
+  writeScopedMap(STORAGE_KEYS.familyMenuHistory, familyMenuHistory)
+  setStoredFamilyMenu(userId, historyEntry)
+  return historyEntry
+}
+
 export function getAdminOverviewLocal() {
   const users = getStoredUsers().filter((user) => user.role !== 'admin')
   const mealHistory = readScopedMap(STORAGE_KEYS.mealHistory)
   const familyMenus = readScopedMap(STORAGE_KEYS.familyMenus)
+  const familyMenuHistory = readScopedMap(STORAGE_KEYS.familyMenuHistory)
   const weekDays = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
 
   return {
@@ -208,6 +230,14 @@ export function getAdminOverviewLocal() {
       createdAt: user.createdAt,
       bmi: user.latestPlannerProfile?.bmi || null,
       hasFamilyMenu: Boolean(familyMenus[user.userId]),
+      familyMenuCount: (familyMenuHistory[user.userId] || []).length,
+      familyMenuHistory: (familyMenuHistory[user.userId] || []).map((entry) => ({
+        historyId: entry.historyId,
+        savedAt: entry.savedAt,
+        familySize: entry.familySize,
+        totalWeekCost: entry.totalWeekCost,
+        weeklyBudget: entry.weeklyBudget,
+      })),
       weekMeals: weekDays.reduce((result, day) => {
         const history = (mealHistory[user.userId] || []).find((entry) => entry.day === day)
         result[day] = (history?.meals || []).map((meal) => meal.mealName)

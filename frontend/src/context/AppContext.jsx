@@ -13,6 +13,7 @@ import {
   getStoredUsers,
   loginLocalUser,
   registerLocalUser,
+  saveStoredFamilyMenuHistory,
   saveStoredMealHistoryDay,
   setStoredFamilyMenu,
   setStoredPlannerPlan,
@@ -602,13 +603,9 @@ export function AppProvider({ children }) {
 
       setFamilyMenu(result)
 
-      if (user?.userId) {
-        setStoredFamilyMenu(user.userId, result)
-      }
-
       setNotice({
         tone: 'success',
-        message: `Generated a family menu for ${result.familySize} people with a total cost of ${formatCurrency(result.totalWeekCost)}.`,
+        message: `Generated a family menu for ${result.familySize} people with a total cost of ${formatCurrency(result.totalWeekCost)}. Save it if you want it tracked in admin history.`,
       })
     } catch (error) {
       setFamilyMenu(null)
@@ -616,6 +613,24 @@ export function AppProvider({ children }) {
     } finally {
       setLoadingKey('family', false)
     }
+  }
+
+  function handleSaveFamilyMenu() {
+    if (!user?.userId) {
+      setNotice({ tone: 'info', message: 'Sign in before saving a family menu.' })
+      return false
+    }
+
+    if (!familyMenu) {
+      setSectionError('family', 'Generate a family menu first.')
+      return false
+    }
+
+    const savedMenu = saveStoredFamilyMenuHistory(user.userId, familyMenu)
+    setStoredFamilyMenu(user.userId, savedMenu)
+    setFamilyMenu(savedMenu)
+    setNotice({ tone: 'success', message: 'Saved this family menu. Admin history now includes it for this user.' })
+    return true
   }
 
   const value = {
@@ -672,6 +687,7 @@ export function AppProvider({ children }) {
     resetIngredientForm,
     handlePlannerSubmit,
     handleReplaceMeal,
+    handleSaveFamilyMenu,
     handleSavePlan,
     handleIngredientSubmit,
     handleFamilySubmit,

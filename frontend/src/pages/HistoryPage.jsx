@@ -138,6 +138,7 @@ function HistoryPage() {
                   <th>Registered</th>
                   <th>BMI</th>
                   <th>Family menu</th>
+                  <th>Family history</th>
                   {adminWeekDays.map((day) => (
                     <th key={day.value}>{day.label}</th>
                   ))}
@@ -158,8 +159,21 @@ function HistoryPage() {
                     </td>
                     <td>
                       <span className="admin-table__badge">
-                        {item.hasFamilyMenu ? 'Selected' : 'Not selected'}
+                        {item.hasFamilyMenu ? `Saved (${item.familyMenuCount || 1})` : 'Not selected'}
                       </span>
+                    </td>
+                    <td>
+                      <div className="admin-table__day-cell">
+                        {item.familyMenuHistory?.length ? (
+                          item.familyMenuHistory.slice(0, 3).map((entry) => (
+                            <span className="admin-table__meal-pill" key={entry.historyId}>
+                              {new Date(entry.savedAt).toLocaleDateString('en-GB')} · {formatCurrency(entry.totalWeekCost)}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="admin-table__empty">No family saves</span>
+                        )}
+                      </div>
                     </td>
                     {adminWeekDays.map((day) => {
                       const selectedMeals = item.weekMeals?.[day.value] || []

@@ -1169,7 +1169,8 @@
 .ingredient-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
+  align-items: start;
+  gap: 14px;
 }
 
 .ingredient-row > div:first-child {
@@ -1181,13 +1182,33 @@
   overflow-wrap: anywhere;
 }
 
+.ingredient-row h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  line-height: 1.2;
+}
+
+.ingredient-row p {
+  margin-top: 6px;
+  color: var(--muted);
+  line-height: 1.35;
+}
+
 .ingredient-row__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
   justify-content: flex-end;
   flex-shrink: 0;
 }
 
 .ingredient-row--admin {
   grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.ingredient-row--admin .ingredient-row__meta {
+  min-width: 182px;
 }
 
 .admin-management-list .ghost-button {
