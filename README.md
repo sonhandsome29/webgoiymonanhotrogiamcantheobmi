@@ -45,7 +45,7 @@ Planner/history/family menu -> localStorage + frontend logic
 ## Admin mode
 
 - Admin is determined locally from `VITE_ADMIN_EMAILS`
-- Default fallback email is `admin@example.com`
+- Default fallback email is `admin@example.com` '123456'
 - Admin can create, edit, and delete meals and ingredient pricing in the current browser
 
 ## Local development
@@ -73,8 +73,7 @@ Recommended Vercel settings:
 - Output Directory: `dist`
 
 ## Environment
-admindemotest: admin@example.com
-123456
+
 Optional frontend env:
 
 ```env
