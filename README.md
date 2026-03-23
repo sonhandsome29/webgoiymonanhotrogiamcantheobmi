@@ -73,7 +73,8 @@ Recommended Vercel settings:
 - Output Directory: `dist`
 
 ## Environment
-
+admindemotest: admin@example.com
+123456
 Optional frontend env:
 
 ```env
