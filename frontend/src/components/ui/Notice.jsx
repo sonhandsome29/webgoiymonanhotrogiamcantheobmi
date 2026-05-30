@@ -1,8 +1,8 @@
 function Notice({ tone = 'info', children, onDismiss }) {
   const toneClasses = {
-    error: 'border-orange-700/20 bg-orange-500/10 text-orange-950',
-    info: 'border-sone-line bg-white/80 text-sone-ink',
-    success: 'border-emerald-700/20 bg-emerald-700/10 text-emerald-950',
+    error: 'border-orange-500/20 bg-orange-500/10 text-[var(--warm-deep)]',
+    info: 'border-[var(--line)] bg-[var(--glass-bg)] text-[var(--ink)]',
+    success: 'border-emerald-500/20 bg-emerald-500/10 text-[var(--accent-strong)]',
   }
 
   return (
@@ -12,7 +12,7 @@ function Notice({ tone = 'info', children, onDismiss }) {
       <span className="min-w-0 flex-1 leading-7">{children}</span>
       {onDismiss ? (
         <button
-          className="notice__dismiss inline-flex min-h-9 flex-shrink-0 items-center rounded-full border border-black/10 bg-white/80 px-4 text-sm font-semibold text-sone-ink transition hover:-translate-y-px hover:shadow-sm"
+          className="notice__dismiss inline-flex min-h-9 flex-shrink-0 items-center rounded-full border border-[var(--line)] bg-[var(--glass-bg)] px-4 text-sm font-semibold text-[var(--ink)] transition hover:-translate-y-px hover:shadow-sm"
           type="button"
           onClick={onDismiss}
         >

@@ -34,7 +34,8 @@ export function formatNumber(value) {
 }
 
 export function parseTagInput(value) {
-  return value
+  if (!value) return []
+  return String(value)
     .split(',')
     .map((item) => item.trim())
     .filter(Boolean)

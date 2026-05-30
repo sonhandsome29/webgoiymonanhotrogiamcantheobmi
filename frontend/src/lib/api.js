@@ -1,6 +1,4 @@
 import imageManifest from '../data/imageManifest.json'
-import { createLocalMeal, createOrUpdateLocalIngredient, deleteLocalIngredient, deleteLocalMeal, getLocalIngredients, getLocalMeals, updateLocalMeal } from './catalogData'
-import { calculateFamilyMinCostLocal } from '../utils/familyMenuEngine'
 
 function normalizeAssetName(value = '') {
   return String(value)
@@ -81,10 +79,23 @@ function findBestFuzzyImage(value = '') {
 }
 
 export function resolveImageUrl(imagePath, fallbackName = '', fallbackGroup = '') {
-  if (!imagePath && !fallbackName) return ''
-  if (/^https?:\/\//i.test(imagePath)) return imagePath
+  let path = imagePath || ''
+  let name = fallbackName || ''
 
-  const normalizedPath = imagePath ? (imagePath.startsWith('/') ? imagePath : `/${imagePath}`) : ''
+  if (path.includes('+')) path = ''
+  if (name.includes('+')) name = ''
+
+  if (!path && !name) {
+    const groupFallback = groupFallbacks[normalizeAssetName(fallbackGroup)]
+    if (groupFallback && imageLookup.get(normalizeAssetName(groupFallback))) {
+      return buildImageUrl(groupFallback)
+    }
+    return '/images/Salad%20rau%20c%E1%BB%A7.jpg'
+  }
+
+  if (/^https?:\/\//i.test(path)) return path
+
+  const normalizedPath = path ? (path.startsWith('/') ? path : `/${path}`) : ''
   const directFileName = decodeURIComponent(normalizedPath.split('/').pop() || '')
   const directMatch = imageLookup.get(normalizeAssetName(directFileName))
 
@@ -92,13 +103,13 @@ export function resolveImageUrl(imagePath, fallbackName = '', fallbackGroup = ''
     return buildImageUrl(directMatch)
   }
 
-  const fallbackMatch = imageLookup.get(normalizeAssetName(fallbackName))
+  const fallbackMatch = imageLookup.get(normalizeAssetName(name))
 
   if (fallbackMatch) {
     return buildImageUrl(fallbackMatch)
   }
 
-  const fuzzyMatch = findBestFuzzyImage(directFileName || fallbackName)
+  const fuzzyMatch = findBestFuzzyImage(directFileName || name)
 
   if (fuzzyMatch) {
     return buildImageUrl(fuzzyMatch)
@@ -110,49 +121,123 @@ export function resolveImageUrl(imagePath, fallbackName = '', fallbackGroup = ''
     return buildImageUrl(groupFallback)
   }
 
-  return ''
+  return '/images/Salad%20rau%20c%E1%BB%A7.jpg'
+}
+
+const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
+
+async function request(endpoint, options = {}) {
+  const url = `${BASE_URL}${endpoint}`
+  const headers = {
+    'Content-Type': 'application/json',
+    ...options.headers,
+  }
+  const config = {
+    ...options,
+    headers,
+  }
+  if (config.body && typeof config.body === 'object') {
+    config.body = JSON.stringify(config.body)
+  }
+  
+  const response = await fetch(url, config)
+  const data = await response.json()
+  
+  if (!response.ok) {
+    const error = new Error(data.error || data.message || 'Something went wrong')
+    error.status = response.status
+    throw error
+  }
+  
+  return data
 }
 
 export const api = {
+  // Auth & Profile
+  async register(payload) {
+    return request('/register', { method: 'POST', body: payload })
+  },
+  
+  async login(payload) {
+    return request('/login', { method: 'POST', body: payload })
+  },
+  
+  async updateProfile(userId, payload) {
+    return request(`/users/${userId}/profile`, { method: 'PUT', body: payload })
+  },
+
+  // Meals
   async getMeals() {
-    return getLocalMeals().slice().sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')))
-  },
-
-  async getIngredients() {
-    return getLocalIngredients().slice().sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')))
-  },
-
-  async getFamilyMinCost() {
-    return calculateFamilyMinCostLocal(getLocalMeals(), getLocalIngredients())
+    const meals = await request('/meals')
+    return meals.slice().sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')))
   },
 
   async createMeal(payload) {
-    return { meal: createLocalMeal(payload), message: 'Meal created successfully' }
+    return request('/meals', { method: 'POST', body: payload })
   },
 
   async updateMeal(mealId, payload) {
-    const meal = updateLocalMeal(mealId, payload)
-
-    if (!meal) {
-      const error = new Error('Meal not found')
-      error.status = 404
-      throw error
-    }
-
-    return { meal, message: 'Meal updated successfully' }
+    return request(`/meals/${mealId}`, { method: 'PUT', body: payload })
   },
 
   async deleteMeal(mealId) {
-    deleteLocalMeal(mealId)
-    return { message: 'Meal deleted successfully' }
+    return request(`/meals/${mealId}`, { method: 'DELETE' })
+  },
+
+  // Ingredients
+  async getIngredients() {
+    const ingredients = await request('/ingredients')
+    return ingredients.slice().sort((left, right) => String(left.name || '').localeCompare(String(right.name || '')))
   },
 
   async upsertIngredient(payload) {
-    return createOrUpdateLocalIngredient(payload)
+    return request('/ingredients', { method: 'POST', body: payload })
   },
 
   async deleteIngredient(ingredientId) {
-    deleteLocalIngredient(ingredientId)
-    return { message: 'Ingredient deleted successfully' }
+    return request(`/ingredients/${ingredientId}`, { method: 'DELETE' })
   },
+
+  // Family Menu & Budget
+  async getFamilyMinCost() {
+    return request('/family/min-cost')
+  },
+
+  async generateFamilyMenu(payload) {
+    return request('/family/generate-menu', { method: 'POST', body: payload })
+  },
+
+  async getFamilyMenuHistory(userId) {
+    return request(`/family/menu/${userId}`)
+  },
+
+  // Meal history
+  async getMealHistory(userId) {
+    return request(`/meal-history/${userId}`)
+  },
+
+  async getMealHistoryDay(userId, day) {
+    try {
+      return await request(`/meal-history/${userId}/${day}`)
+    } catch (err) {
+      if (err.status === 404) {
+        return null
+      }
+      throw err
+    }
+  },
+
+  async saveMealHistoryDay(userId, day, meals) {
+    return request('/meal-history', { method: 'POST', body: { userId, day, meals } })
+  },
+
+  // Admin Dashboard
+  async getAdminOverview() {
+    return request('/admin/overview')
+  },
+
+  // Genetic Algorithm Suggestions
+  async suggestMeals(payload) {
+    return request('/suggest-meals', { method: 'POST', body: payload })
+  }
 }

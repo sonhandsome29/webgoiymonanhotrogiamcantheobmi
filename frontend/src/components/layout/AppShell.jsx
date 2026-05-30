@@ -6,11 +6,12 @@ import { useAppContext } from '../../hooks/useAppContext'
 import { getGroupLabel, maskEmail, normalizeSearchText, startsWithWord } from '../../utils/formatters'
 import AppIcon from '../icons/AppIcon'
 import Notice from '../ui/Notice'
+import ThemeToggle from '../ui/ThemeToggle'
 
 function AppShell() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { clearNotice, errors, isAdmin, meals, notice, setMealQuery, summaryStats, user, handleLogout } = useAppContext()
+  const { clearNotice, errors, isAdmin, meals, notice, setMealQuery, summaryStats, user, handleLogout, language, setLanguage, t } = useAppContext()
   const searchValue = new URLSearchParams(location.search).get('search') || ''
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchInput, setSearchInput] = useState(searchValue)
@@ -25,13 +26,15 @@ function AppShell() {
       return item.to !== '/planner' && item.to !== '/family'
     })
     .map((item) => {
-      if (!isAdmin) return item
-
-      if (item.to === '/auth') return { ...item, label: 'Admin' }
-      if (item.to === '/history') return { ...item, label: 'Users' }
-      if (item.to === '/library') return { ...item, label: 'Meals' }
-      if (item.to === '/pricing') return { ...item, label: 'Ingredients' }
-      return item
+      const key = item.to === '/' ? 'home' : item.label.toLowerCase().replace(' ', '_')
+      let label = t(key)
+      if (isAdmin) {
+        if (item.to === '/auth') label = t('admin')
+        if (item.to === '/history') label = t('users')
+        if (item.to === '/library') label = t('meals')
+        if (item.to === '/pricing') label = t('ingredients')
+      }
+      return { ...item, label }
     })
 
   useEffect(() => {
@@ -110,7 +113,7 @@ function AppShell() {
           <input
             aria-label="Search meals"
             name="search"
-            placeholder="Search your favorite meals..."
+            placeholder={t('search_placeholder')}
             type="search"
             value={searchInput}
             onBlur={() => {
@@ -123,7 +126,7 @@ function AppShell() {
             onFocus={() => setShowSearchSuggestions(true)}
           />
           <button className="header-search__button" type="submit">
-            Search
+            {language === 'vi' ? 'Tìm' : 'Search'}
           </button>
 
           {showSearchSuggestions && searchSuggestions.length ? (
@@ -146,20 +149,48 @@ function AppShell() {
           ) : null}
         </form>
 
-        <div className="user-menu">
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', gridArea: 'user', justifySelf: 'end' }}>
           <button
-            aria-expanded={menuOpen}
-            aria-label={user ? 'Open account menu' : 'Open sign-in menu'}
-            className="user-menu__trigger"
+            onClick={() => setLanguage(language === 'vi' ? 'en' : 'vi')}
+            className="language-toggle-btn"
+            style={{
+              background: 'var(--glass-bg)',
+              border: '1px solid var(--glass-border)',
+              color: 'var(--ink)',
+              padding: '6px 12px',
+              borderRadius: '20px',
+              fontSize: '12px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '4px',
+              transition: 'all 0.2s ease',
+              backdropFilter: 'blur(8px)',
+              boxShadow: 'var(--shadow-soft)'
+            }}
             type="button"
-            onClick={() => setMenuOpen((previous) => !previous)}
           >
-            <span className="user-menu__avatar">
+            🌐 {language === 'vi' ? 'VI' : 'EN'}
+          </button>
+
+          <ThemeToggle />
+          
+          <div className="user-menu" style={{ gridArea: 'unset', justifySelf: 'unset' }}>
+            <button
+              aria-expanded={menuOpen}
+              aria-label={user ? 'Open account menu' : 'Open sign-in menu'}
+              className="user-menu__trigger"
+              type="button"
+              onClick={() => setMenuOpen((previous) => !previous)}
+            >
+              <span className="user-menu__avatar">
               <AppIcon name="auth" size={18} />
             </span>
             <span className="user-menu__meta">
-              <strong>{user ? user.email.split('@')[0] : 'Guest'}</strong>
-              <span>{user ? (isAdmin ? 'Admin account' : 'Personal account') : 'Sign in / Create account'}</span>
+              <strong>{user ? user.email.split('@')[0] : t('guest')}</strong>
+              <span>{user ? (isAdmin ? t('admin') : t('account')) : t('sign_in')}</span>
             </span>
           </button>
 
@@ -168,16 +199,16 @@ function AppShell() {
               {user ? (
                 <>
                   <div className="user-menu__summary">
-                    <span className="chip chip--accent">{isAdmin ? 'Admin' : 'User'}</span>
+                    <span className="chip chip--accent">{isAdmin ? t('admin') : t('account')}</span>
                     <p>{maskEmail(user.email)}</p>
                   </div>
                   <Link className="user-menu__item" to="/auth" onClick={() => setMenuOpen(false)}>
                     <AppIcon name="settings" size={16} />
-                    <span>{isAdmin ? 'Admin overview' : 'Profile'}</span>
+                    <span>{isAdmin ? t('admin_dashboard') : t('account')}</span>
                   </Link>
                   <Link className="user-menu__item" to="/history" onClick={() => setMenuOpen(false)}>
                     <AppIcon name="history" size={16} />
-                    <span>{isAdmin ? 'User management' : 'Meal history'}</span>
+                    <span>{isAdmin ? t('users') : t('history')}</span>
                   </Link>
                   <button
                     className="user-menu__item user-menu__item--button"
@@ -188,17 +219,18 @@ function AppShell() {
                     }}
                   >
                     <AppIcon name="logout" size={16} />
-                    <span>Log out</span>
+                    <span>{t('sign_out')}</span>
                   </button>
                 </>
               ) : (
                 <Link className="user-menu__item" to="/auth" onClick={() => setMenuOpen(false)}>
                   <AppIcon name="auth" size={16} />
-                  <span>Sign in / Create account</span>
+                  <span>{t('sign_in')}</span>
                 </Link>
               )}
             </div>
           ) : null}
+          </div>
         </div>
       </header>
 
@@ -272,7 +304,11 @@ function AppShell() {
                     <img
                       alt={featuredMeal.name}
                       className="banner-feature-card__image"
-                       src={resolveImageUrl(featuredMeal.image_url, featuredMeal.name, featuredMeal.group)}
+                      src={resolveImageUrl(featuredMeal.image_url, featuredMeal.name, featuredMeal.group)}
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = '/images/Salad%20rau%20c%E1%BB%A7.jpg';
+                      }}
                     />
                   </div>
                   <div className="banner-feature-card__content">
@@ -308,7 +344,15 @@ function AppShell() {
                 onClick={() => setMealQuery(meal.name)}
               >
                 <div className="banner-spotlight-card__image-wrap">
-                   <img alt={meal.name} className="banner-spotlight-card__image" src={resolveImageUrl(meal.image_url, meal.name, meal.group)} />
+                   <img
+                      alt={meal.name}
+                      className="banner-spotlight-card__image"
+                      src={resolveImageUrl(meal.image_url, meal.name, meal.group)}
+                      onError={(event) => {
+                        event.currentTarget.onerror = null;
+                        event.currentTarget.src = '/images/Salad%20rau%20c%E1%BB%A7.jpg';
+                      }}
+                    />
                 </div>
                 <div className="banner-spotlight-card__content">
                   <span className="chip chip--outline">{getGroupLabel(meal.group) || 'Meal'}</span>
@@ -335,15 +379,15 @@ function AppShell() {
       <footer className="site-footer">
         <div className="site-footer__top">
           <div className="site-footer__brand">
-            <span className="eyebrow eyebrow--soft">Contact SonE</span>
-            <h2>Stay connected with our cooking space.</h2>
+            <span className="eyebrow eyebrow--soft">{t('footer_contact')} SonE</span>
+            <h2>{t('footer_brand_title')}</h2>
             <p>
-              SonE helps each account plan meals clearly, track choices with less friction, and build healthier routines over time.
+              {t('footer_tagline')}
             </p>
           </div>
 
           <div className="site-footer__column">
-            <strong>Contact</strong>
+            <strong>{t('footer_contact')}</strong>
             <a href="mailto:hello@sone.vn">hello@sone.vn</a>
             <a href="tel:+84987654321">(+84) 987 654 321</a>
             <span>Ho Chi Minh City, Vietnam</span>
@@ -351,17 +395,17 @@ function AppShell() {
           </div>
 
           <div className="site-footer__column">
-            <strong>Explore</strong>
-            <Link to="/library">Meal library</Link>
-            {isAdmin ? <Link to="/history">User management</Link> : <Link to="/planner">Meal planner</Link>}
-            {isAdmin ? null : <Link to="/family">Family menu</Link>}
-            <Link to="/pricing">Ingredient pricing</Link>
+            <strong>{t('footer_explore')}</strong>
+            <Link to="/library">{t('meals')}</Link>
+            {isAdmin ? <Link to="/history">{t('footer_user_mgmt')}</Link> : <Link to="/planner">{t('meal_planner')}</Link>}
+            {isAdmin ? null : <Link to="/family">{t('family_menu')}</Link>}
+            <Link to="/pricing">{t('pricing')}</Link>
           </div>
 
           <div className="site-footer__column">
-            <strong>Support</strong>
-            <Link to="/auth">Your account</Link>
-            <Link to="/history">Meal history</Link>
+            <strong>{t('footer_support')}</strong>
+            <Link to="/auth">{t('your_account')}</Link>
+            <Link to="/history">{t('meal_history')}</Link>
             <a href="https://www.instagram.com" rel="noreferrer" target="_blank">
               Instagram
             </a>
@@ -373,7 +417,7 @@ function AppShell() {
 
         <div className="site-footer__bottom">
           <span>SonE Wellness Kitchen</span>
-          <span>{user ? `Signed in as ${maskEmail(user.email)}` : 'Guest session'}</span>
+          <span>{user ? `${t('footer_signed_in')} ${maskEmail(user.email)}` : t('footer_guest')}</span>
         </div>
       </footer>
     </div>

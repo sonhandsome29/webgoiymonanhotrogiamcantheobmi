@@ -1,29 +1,15 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { activityOptions, dayOptions, mealTypeLabels } from '../constants/appData'
+import { activityOptions, mealTypeLabels } from '../constants/appData'
 import { AppContext } from './app-context'
-import { api } from '../lib/api'
-import {
-  clearStoredSession,
-  getAdminOverviewLocal,
-  getStoredFamilyMenu,
-  getStoredMealHistory,
-  getStoredMealHistoryDay,
-  getStoredPlannerPlan,
-  getStoredSession,
-  getStoredUsers,
-  loginLocalUser,
-  registerLocalUser,
-  saveStoredFamilyMenuHistory,
-  saveStoredMealHistoryDay,
-  setStoredFamilyMenu,
-  setStoredPlannerPlan,
-  updateStoredUserProfile,
-} from '../lib/localData'
-import { formatCurrency, formatNumber, getDayLabel, getGroupLabel, normalizeSearchText, parseOptionalNumber } from '../utils/formatters'
+import { formatCurrency, formatNumber, getGroupLabel, normalizeSearchText, parseOptionalNumber } from '../utils/formatters'
 import { buildDislikesPayload, flattenPlanMeals } from '../utils/planner'
-import { buildFamilyMenuLocal } from '../utils/familyMenuEngine'
-import { buildShoppingListFromMeals } from '../utils/ingredientCost'
-import { buildMealSuggestionLocal } from '../utils/plannerEngine'
+
+// Redux & Zustand stores
+import { Provider, useDispatch, useSelector } from 'react-redux'
+import { store } from '../store'
+import { loginUser, registerUser, updateUserProfile, logout, fetchAdminOverview, clearAuthError } from '../store/authSlice'
+import { useAppStore } from '../store/useAppStore'
+import { translations } from '../constants/translations'
 
 const initialPlannerForm = {
   weight: '62',
@@ -44,127 +30,124 @@ const initialIngredientForm = {
   image_url: '',
 }
 
-const initialFamilyForm = {
-  familySize: '4',
-  weeklyBudget: '',
-}
+function InnerAppProvider({ children }) {
+  // Extract state & actions from Zustand
+  const {
+    meals,
+    ingredients,
+    minCost,
+    plannerForm,
+    selectedSaveDay,
+    mealPlan,
+    mealQuery,
+    mealGroup,
+    historyDay,
+    historyRecords,
+    dailyHistory,
+    shoppingList,
+    ingredientForm,
+    ingredientQuery,
+    familyForm,
+    familyMenu,
+    notice,
+    errors,
+    loading,
+    setPlannerForm,
+    setSelectedSaveDay,
+    setMealQuery,
+    setMealGroup,
+    setHistoryDay,
+    setIngredientForm,
+    setIngredientQuery,
+    setFamilyForm,
+    setNotice,
+    clearNotice,
+    setErrors,
+    clearErrors,
+    setLoadingKey,
+    fetchMeals,
+    fetchIngredients,
+    fetchFamilyMinCost,
+    generateMealPlan,
+    fetchMealHistory,
+    fetchMealHistoryDay,
+    saveMealHistoryDay,
+    generateFamilyMenuAction,
+    fetchFamilyMenuHistory,
+    upsertIngredientAction,
+    language,
+    setLanguage,
+  } = useAppStore()
 
-export function AppProvider({ children }) {
-  const [session, setSessionState] = useState(getStoredSession)
-  const [authMode, setAuthMode] = useState('login')
-  const [authForm, setAuthForm] = useState({ email: '', password: '' })
-  const [plannerForm, setPlannerForm] = useState(initialPlannerForm)
-  const [selectedSaveDay, setSelectedSaveDay] = useState(dayOptions[0].value)
-  const [mealPlan, setMealPlan] = useState(null)
-  const [meals, setMeals] = useState([])
-  const [mealQuery, setMealQuery] = useState('')
-  const [mealGroup, setMealGroup] = useState('all')
-  const [historyDay, setHistoryDay] = useState(dayOptions[0].value)
-  const [historyRecords, setHistoryRecords] = useState([])
-  const [dailyHistory, setDailyHistory] = useState(null)
-  const [shoppingList, setShoppingList] = useState(null)
-  const [adminUsersOverview, setAdminUsersOverview] = useState([])
-  const [registeredUsersCount, setRegisteredUsersCount] = useState(0)
-  const [ingredients, setIngredients] = useState([])
-  const [ingredientForm, setIngredientForm] = useState(initialIngredientForm)
-  const [ingredientQuery, setIngredientQuery] = useState('')
-  const [familyForm, setFamilyForm] = useState(initialFamilyForm)
-  const [familyMenu, setFamilyMenu] = useState(null)
-  const [minCost, setMinCost] = useState(null)
-  const [notice, setNotice] = useState(null)
-  const [errors, setErrors] = useState({})
-  const [loading, setLoading] = useState({
-    boot: true,
-    auth: false,
-    planner: false,
-    savePlan: false,
-    history: false,
-    ingredient: false,
-    family: false,
-    adminOverview: false,
-  })
+  const t = useCallback((key) => {
+    return translations[language]?.[key] || translations['vi']?.[key] || key
+  }, [language])
 
-  const user = session?.user || null
+  // Redux Auth state & Dispatcher
+  const dispatch = useDispatch()
+  const auth = useSelector((state) => state.auth)
+  const user = auth.user
+  const session = useMemo(() => (user ? { user } : null), [user])
   const isAdmin = user?.role === 'admin'
 
-  const updateSession = useCallback((nextSession) => {
-    setSessionState(nextSession)
-  }, [])
+  // Local UI state for authentication
+  const [authMode, setAuthMode] = useState('login')
+  const [authForm, setAuthForm] = useState({ email: '', password: '' })
 
-  const clearNotice = useCallback(() => setNotice(null), [])
+  // Combine Redux loading & errors into context format
+  const combinedLoading = useMemo(() => ({
+    ...loading,
+    auth: auth.loading,
+    adminOverview: auth.adminLoading,
+  }), [loading, auth.loading, auth.adminLoading])
 
-  const setLoadingKey = useCallback((key, value) => {
-    setLoading((previous) => ({ ...previous, [key]: value }))
-  }, [])
-
-  const resetHistoryState = useCallback(() => {
-    setHistoryRecords([])
-    setDailyHistory(null)
-    setShoppingList(null)
-  }, [])
-
-  const resetGuestLockedState = useCallback(() => {
-    setMealPlan(null)
-    setFamilyMenu(null)
-  }, [])
-
-  const resetAdminState = useCallback(() => {
-    setAdminUsersOverview([])
-    setRegisteredUsersCount(getStoredUsers().length)
-  }, [])
-
-  const setSectionError = useCallback((key, message) => {
-    setErrors((previous) => {
-      const next = { ...previous }
-
-      if (message) next[key] = message
-      else delete next[key]
-
-      return next
-    })
-  }, [])
+  const combinedErrors = useMemo(() => ({
+    ...errors,
+    auth: auth.error || errors.auth || '',
+    adminOverview: auth.adminError || errors.adminError || '',
+  }), [errors, auth.error, auth.adminError])
 
   const summaryStats = useMemo(() => {
     if (isAdmin) {
       return [
         {
-          label: 'Registered users',
-          value: formatNumber(registeredUsersCount),
+          label: t('stat_registered_users'),
+          value: formatNumber(auth.adminOverview.registeredUsersCount),
         },
         {
-          label: 'Meals available',
-          value: formatNumber(meals.length),
+          label: t('stat_meals_available'),
+          value: formatNumber(auth.adminOverview.mealCount || meals.length),
         },
         {
-          label: 'Ingredients',
-          value: formatNumber(ingredients.length),
+          label: t('stat_ingredients'),
+          value: formatNumber(auth.adminOverview.ingredientCount || ingredients.length),
         },
         {
-          label: 'Mode',
-          value: 'Admin',
+          label: t('stat_mode'),
+          value: t('mode_admin'),
         },
       ]
     }
 
     return [
       {
-        label: 'Meals available',
+        label: t('stat_meals_available'),
         value: formatNumber(meals.length),
       },
       {
-        label: 'Priced ingredients',
+        label: t('stat_priced_ingredients'),
         value: formatNumber(ingredients.length),
       },
       {
-        label: 'Saved days',
+        label: t('stat_saved_days'),
         value: user ? formatNumber(historyRecords.length) : '--',
       },
       {
-        label: 'Minimum budget',
-        value: minCost ? formatCurrency(minCost.minCostPerPerson) : 'Updating...',
+        label: t('stat_min_budget'),
+        value: minCost ? formatCurrency(minCost.minCostPerPerson) : t('stat_updating'),
       },
     ]
-  }, [historyRecords.length, ingredients.length, isAdmin, meals.length, minCost, registeredUsersCount, user])
+  }, [auth.adminOverview, historyRecords.length, ingredients.length, isAdmin, meals.length, minCost, user, t])
 
   const mealGroups = useMemo(
     () =>
@@ -209,8 +192,8 @@ export function AppProvider({ children }) {
   const historyMeals = useMemo(
     () =>
       (dailyHistory?.meals || []).map((meal) => ({
-        name: meal.mealName || meal.mealId?.name || 'Meal',
-        group: meal.mealId?.group || meal.mealType || 'history',
+        name: meal.name || meal.mealName || meal.mealId?.name || 'Meal',
+        group: meal.group || meal.mealId?.group || meal.mealType || 'history',
         image_url: meal.image_url || meal.mealId?.image_url || '',
         calories: meal.calories ?? meal.mealId?.calories ?? 0,
         protein: meal.protein ?? meal.mealId?.protein ?? 0,
@@ -218,9 +201,9 @@ export function AppProvider({ children }) {
         carbs: meal.carbs ?? meal.mealId?.carbs ?? 0,
         ingredients: meal.ingredients || meal.mealId?.ingredients || [],
         instructions: meal.mealId?.instructions || '',
-        caption: mealTypeLabels[meal.mealType] || 'Saved meal',
+        caption: mealTypeLabels[meal.mealType] || t('history'),
       })),
-    [dailyHistory],
+    [dailyHistory, t],
   )
 
   const historyCalories = useMemo(
@@ -233,164 +216,214 @@ export function AppProvider({ children }) {
     return minCost ? minCost.minCostPerPerson * members : 0
   }, [familyForm.familySize, minCost])
 
+  // Load initial backend catalog data on mount
   useEffect(() => {
     async function loadInitialData() {
       setLoadingKey('boot', true)
-      setSectionError('boot', '')
-      setSectionError('familyMinCost', '')
-      setRegisteredUsersCount(getStoredUsers().length)
-      updateSession(getStoredSession())
+      setErrors({ ...errors, boot: '' })
 
-      const requests = [api.getMeals(), api.getIngredients(), api.getFamilyMinCost()]
-
-      const [mealsResult, ingredientsResult, minCostResult] = await Promise.allSettled(requests)
-      const bootIssues = []
-
-      if (mealsResult.status === 'fulfilled') setMeals(mealsResult.value)
-      else bootIssues.push(`Unable to load meals: ${mealsResult.reason.message}`)
-
-      if (ingredientsResult.status === 'fulfilled') setIngredients(ingredientsResult.value)
-      else bootIssues.push(`Unable to load ingredient pricing: ${ingredientsResult.reason.message}`)
-
-      if (minCostResult.status === 'fulfilled') setMinCost(minCostResult.value)
-      else setSectionError('familyMinCost', minCostResult.reason.message)
-
-      if (bootIssues.length) setSectionError('boot', bootIssues.join(' | '))
-      setLoadingKey('boot', false)
+      try {
+        await Promise.all([
+          fetchMeals(),
+          fetchIngredients(),
+          fetchFamilyMinCost()
+        ])
+      } catch (err) {
+        console.error('Boot error:', err)
+        setErrors({ ...errors, boot: t('err_boot') })
+      } finally {
+        setLoadingKey('boot', false)
+      }
     }
 
     loadInitialData()
-  }, [setLoadingKey, setSectionError, updateSession])
-
-  const refreshMeals = useCallback(async () => {
-    const result = await api.getMeals()
-    setMeals(result)
-    return result
   }, [])
 
+  // Sync user profile & data when user logs in/out
   useEffect(() => {
     if (!user?.userId) {
-      resetHistoryState()
-      resetGuestLockedState()
+      useAppStore.setState({
+        historyRecords: [],
+        dailyHistory: null,
+        shoppingList: null,
+        mealPlan: null,
+        familyMenu: null,
+      })
       return
     }
 
-    setSectionError('historyOverview', '')
-    setHistoryRecords(getStoredMealHistory(user.userId))
-    setMealPlan(getStoredPlannerPlan(user.userId))
-    setFamilyMenu(getStoredFamilyMenu(user.userId))
-  }, [resetGuestLockedState, resetHistoryState, setSectionError, user])
+    if (user.latestPlannerProfile) {
+      const profile = user.latestPlannerProfile
+      setPlannerForm({
+        weight: profile.weight || '62',
+        height: profile.height || '165',
+        age: profile.age || '27',
+        gender: profile.gender || 'female',
+        activity_level: profile.activity_level || activityOptions[1].value,
+        dislikedGroups: profile.dislikedGroups || '',
+        dislikedIngredients: profile.dislikedIngredients || '',
+        dislikedMeals: profile.dislikedMeals || '',
+      })
+    }
 
+    fetchMealHistory(user.userId)
+    fetchFamilyMenuHistory(user.userId)
+  }, [user])
+
+  // Fetch daily history details when day or ingredients catalog changes
   useEffect(() => {
     if (!user?.userId) return
+    fetchMealHistoryDay(user.userId, historyDay)
+  }, [historyDay, user, fetchMealHistoryDay, ingredients])
 
-    setLoadingKey('history', true)
-    setSectionError('historyDay', '')
-
-    const history = getStoredMealHistoryDay(user.userId, historyDay)
-    setDailyHistory(history)
-    setShoppingList(history ? buildShoppingListFromMeals(history.meals || [], ingredients) : null)
-
-    setLoadingKey('history', false)
-  }, [historyDay, ingredients, setLoadingKey, setSectionError, user])
-
+  // Admin Dashboard stats
   const refreshAdminOverview = useCallback(async () => {
-    setLoadingKey('adminOverview', true)
-    setSectionError('adminOverview', '')
-
-    try {
-      const result = getAdminOverviewLocal()
-      setAdminUsersOverview(result.users || [])
-      setRegisteredUsersCount(result.registeredUsersCount || 0)
-    } catch (error) {
-      setSectionError('adminOverview', error.message)
-    } finally {
-      setLoadingKey('adminOverview', false)
-    }
-  }, [setLoadingKey, setSectionError])
+    if (!user?.userId || !isAdmin) return
+    dispatch(fetchAdminOverview())
+  }, [user, isAdmin, dispatch])
 
   useEffect(() => {
-    if (!user?.userId || !isAdmin) {
-      resetAdminState()
-      return
-    }
-
     refreshAdminOverview()
-  }, [isAdmin, refreshAdminOverview, resetAdminState, user])
+  }, [user, isAdmin, refreshAdminOverview])
 
-  async function refreshHistory(userId, day) {
-    const records = getStoredMealHistory(userId)
-    const history = getStoredMealHistoryDay(userId, day)
-
-    setHistoryRecords(records)
-    setDailyHistory(history)
-    setShoppingList(history ? buildShoppingListFromMeals(history.meals || [], ingredients) : null)
-  }
-
-  async function refreshPricing() {
-    const [ingredientsResult, minCostResult] = await Promise.allSettled([
-      api.getIngredients(),
-      api.getFamilyMinCost(),
-    ])
-
-    if (ingredientsResult.status === 'fulfilled') setIngredients(ingredientsResult.value)
-    if (minCostResult.status === 'fulfilled') {
-      setMinCost(minCostResult.value)
-      setSectionError('familyMinCost', '')
-    } else {
-      setSectionError('familyMinCost', minCostResult.reason.message)
-    }
-  }
-
+  // Authentication Submission
   async function handleAuthSubmit(event) {
     event.preventDefault()
-    setLoadingKey('auth', true)
-    setSectionError('auth', '')
+    dispatch(clearAuthError())
+
+    if (authMode === 'register') {
+      const password = authForm.password || ''
+      if (password.length < 8) {
+        setErrors({ ...errors, auth: t('err_pass_length') })
+        return
+      }
+      if (!/[a-z]/.test(password)) {
+        setErrors({ ...errors, auth: t('err_pass_lower') })
+        return
+      }
+      if (!/[A-Z]/.test(password)) {
+        setErrors({ ...errors, auth: t('err_pass_upper') })
+        return
+      }
+      if (!/\d/.test(password)) {
+        setErrors({ ...errors, auth: t('err_pass_number') })
+        return
+      }
+      if (!/[^a-zA-Z0-9]/.test(password)) {
+        setErrors({ ...errors, auth: t('err_pass_special') })
+        return
+      }
+    }
 
     try {
-      const nextUser = authMode === 'register' ? registerLocalUser(authForm) : loginLocalUser(authForm)
-
-      updateSession({ user: nextUser })
-      setRegisteredUsersCount(getStoredUsers().length)
+      const action = authMode === 'register' ? registerUser(authForm) : loginUser(authForm)
+      const nextUser = await dispatch(action).unwrap()
 
       setNotice({
         tone: 'success',
         message:
           authMode === 'register'
-            ? `Account created and signed in as ${nextUser.email}.`
-            : `Signed in as ${nextUser.email}.`,
+            ? `${t('notice_account_created')} ${nextUser.email}.`
+            : `${t('notice_signed_in')} ${nextUser.email}.`,
       })
       setAuthForm((previous) => ({ ...previous, password: '' }))
       setAuthMode('login')
     } catch (error) {
-      setSectionError('auth', error.message)
-    } finally {
-      setLoadingKey('auth', false)
+      setErrors({ ...errors, auth: error || t('err_auth_failed') })
     }
   }
 
+  // Logout
   async function handleLogout() {
-    clearStoredSession()
-    setSectionError('auth', '')
-    updateSession(null)
-    resetAdminState()
-    resetHistoryState()
-    resetGuestLockedState()
-    setNotice({ tone: 'info', message: 'You have signed out of the current session.' })
+    dispatch(logout())
+    clearErrors()
+    setNotice({ tone: 'info', message: t('notice_signed_out') })
   }
 
   function resetPlannerForm() {
     setPlannerForm(initialPlannerForm)
   }
 
-  function persistMealPlan(nextPlan) {
-    setMealPlan(nextPlan)
+  function resetIngredientForm() {
+    setIngredientForm(initialIngredientForm)
+  }
 
-    if (user?.userId) {
-      setStoredPlannerPlan(user.userId, nextPlan)
+  // Suggest Meals (using backend GA API)
+  async function handlePlannerSubmit(event) {
+    event.preventDefault()
+    setErrors({ ...errors, planner: '' })
+
+    const payload = {
+      weight: Number(plannerForm.weight),
+      height: Number(plannerForm.height),
+      gender: plannerForm.gender,
+      activity_level: plannerForm.activity_level,
+      dislikes: buildDislikesPayload(plannerForm),
+    }
+
+    const age = parseOptionalNumber(plannerForm.age)
+    if (age !== undefined) payload.age = age
+
+    try {
+      await generateMealPlan(payload)
+
+      const result = useAppStore.getState().mealPlan
+      if (!result) {
+        throw new Error(t('err_gen_failed'))
+      }
+
+      if (user?.userId) {
+        await dispatch(updateUserProfile({
+          userId: user.userId,
+          profileData: {
+            weight: String(payload.weight),
+            height: String(payload.height),
+            age: String(payload.age ?? ''),
+            gender: String(payload.gender),
+            activity_level: String(payload.activity_level),
+            dislikedGroups: plannerForm.dislikedGroups,
+            dislikedIngredients: plannerForm.dislikedIngredients,
+            dislikedMeals: plannerForm.dislikedMeals
+          }
+        })).unwrap()
+      }
+
+      setNotice({
+        tone: 'success',
+        message: `${t('notice_meal_created')} ${formatNumber(result.selectedCalories)} kcal.`,
+      })
+    } catch (error) {
+      useAppStore.setState({ mealPlan: null })
+      setErrors({ ...errors, planner: error.message || t('err_boot') })
     }
   }
 
+  // Save Meal plan to daily history
+  async function handleSavePlan() {
+    if (!user?.userId) {
+      setNotice({
+        tone: 'info',
+        message: t('notice_sign_in_first'),
+      })
+      return false
+    }
+
+    const mealsToSave = flattenPlanMeals(mealPlan)
+    if (!mealsToSave.length) {
+      setErrors({ ...errors, planner: t('err_no_plan') })
+      return false
+    }
+
+    try {
+      await saveMealHistoryDay(user.userId, selectedSaveDay, mealsToSave)
+      return true
+    } catch (error) {
+      setErrors({ ...errors, planner: error.message })
+      return false
+    }
+  }
+
+  // Replace a single meal in suggested plan
   function findReplacementMeal(sectionName, currentMealId) {
     const dislikes = buildDislikesPayload(plannerForm)
     const takenMealIds = new Set(
@@ -423,7 +456,7 @@ export function AppProvider({ children }) {
     })
 
     if (!candidates.length) {
-      throw new Error('No similar replacement meal is available for this slot.')
+      throw new Error(t('err_no_replacement'))
     }
 
     return candidates[Math.floor(Math.random() * candidates.length)]
@@ -442,103 +475,6 @@ export function AppProvider({ children }) {
     }
   }
 
-  function resetIngredientForm() {
-    setIngredientForm(initialIngredientForm)
-  }
-
-  async function handlePlannerSubmit(event) {
-    event.preventDefault()
-
-    setLoadingKey('planner', true)
-    setSectionError('planner', '')
-
-    const payload = {
-      weight: Number(plannerForm.weight),
-      height: Number(plannerForm.height),
-      gender: plannerForm.gender,
-      activity_level: plannerForm.activity_level,
-      dislikes: buildDislikesPayload(plannerForm),
-    }
-
-    const age = parseOptionalNumber(plannerForm.age)
-
-    if (age !== undefined) payload.age = age
-
-    try {
-      const result = buildMealSuggestionLocal({ allMeals: meals, ...payload })
-      setMealPlan(result)
-
-      if (user?.userId) {
-        setStoredPlannerPlan(user.userId, result)
-        const updatedUser = updateStoredUserProfile(user.userId, {
-          latestPlannerProfile: {
-            weight: payload.weight,
-            height: payload.height,
-            age: payload.age ?? null,
-            gender: payload.gender,
-            activity_level: payload.activity_level,
-            goal: result.goal,
-            bmi: Number.parseFloat(result.bmi),
-            targetCaloriesPerDay: result.targetCaloriesPerDay,
-            updatedAt: new Date().toISOString(),
-          },
-        })
-
-        if (updatedUser) {
-          updateSession({ user: updatedUser })
-        }
-      }
-
-      setNotice({
-        tone: 'success',
-        message: `Created a meal suggestion with ${formatNumber(result.selectedCalories)} kcal for the day.`,
-      })
-    } catch (error) {
-      setMealPlan(null)
-      setSectionError('planner', error.message)
-    } finally {
-      setLoadingKey('planner', false)
-    }
-  }
-
-  async function handleSavePlan() {
-    if (!user?.userId) {
-      setNotice({
-        tone: 'info',
-        message: 'Sign in before saving a plan into meal history.',
-      })
-      return false
-    }
-
-    const mealsToSave = flattenPlanMeals(mealPlan)
-
-    if (!mealsToSave.length) {
-      setSectionError('planner', 'No plan data is available to save into history.')
-      return false
-    }
-
-    setLoadingKey('savePlan', true)
-    setSectionError('planner', '')
-
-    try {
-      saveStoredMealHistoryDay(user.userId, selectedSaveDay, mealsToSave)
-
-      await refreshHistory(user.userId, selectedSaveDay)
-      setHistoryDay(selectedSaveDay)
-      setNotice({
-        tone: 'success',
-        message: `Saved this plan to ${getDayLabel(selectedSaveDay)}. Your shopping list is ready in History.`,
-      })
-
-      return true
-    } catch (error) {
-      setSectionError('planner', error.message)
-      return false
-    } finally {
-      setLoadingKey('savePlan', false)
-    }
-  }
-
   function handleReplaceMeal(sectionName, currentMealId) {
     try {
       const replacement = findReplacementMeal(sectionName, currentMealId)
@@ -552,17 +488,17 @@ export function AppProvider({ children }) {
       })
 
       const nextPlan = recalculateMealPlan(nextSections)
-      persistMealPlan(nextPlan)
-      setNotice({ tone: 'success', message: `Replaced one ${sectionName.toLowerCase()} item with ${replacement.name}.` })
+      useAppStore.setState({ mealPlan: nextPlan })
+      setNotice({ tone: 'success', message: `${t('notice_replaced')} ${replacement.name}.` })
     } catch (error) {
-      setSectionError('planner', error.message)
+      setErrors({ ...errors, planner: error.message })
     }
   }
 
+  // Catalog Ingredient Pricing Submit
   async function handleIngredientSubmit(event) {
     event.preventDefault()
-    setLoadingKey('ingredient', true)
-    setSectionError('ingredient', '')
+    setErrors({ ...errors, ingredient: '' })
 
     const payload = {
       name: ingredientForm.name.trim(),
@@ -573,63 +509,43 @@ export function AppProvider({ children }) {
     }
 
     try {
-      await api.upsertIngredient(payload)
-      await refreshPricing()
+      await upsertIngredientAction(payload)
+      await fetchFamilyMinCost()
       resetIngredientForm()
-      setNotice({
-        tone: 'success',
-        message: `Updated pricing for ingredient ${payload.name}.`,
-      })
     } catch (error) {
-      setSectionError('ingredient', error.message)
-    } finally {
-      setLoadingKey('ingredient', false)
+      setErrors({ ...errors, ingredient: error.message })
     }
   }
 
+  // Family Menu Generate (calls backend combo generator)
   async function handleFamilySubmit(event) {
     event.preventDefault()
-
-    setLoadingKey('family', true)
-    setSectionError('family', '')
+    setErrors({ ...errors, family: '' })
 
     try {
-      const result = buildFamilyMenuLocal({
-        meals,
-        ingredients,
+      await generateFamilyMenuAction({
         familySize: Number(familyForm.familySize),
         weeklyBudget: Number(familyForm.weeklyBudget),
-      })
-
-      setFamilyMenu(result)
-
-      setNotice({
-        tone: 'success',
-        message: `Generated a family menu for ${result.familySize} people with a total cost of ${formatCurrency(result.totalWeekCost)}. Save it if you want it tracked in admin history.`,
+        userId: user?.userId || undefined
       })
     } catch (error) {
-      setFamilyMenu(null)
-      setSectionError('family', error.message)
-    } finally {
-      setLoadingKey('family', false)
+      setErrors({ ...errors, family: error.message })
     }
   }
 
+  // Save Family Menu Result
   function handleSaveFamilyMenu() {
     if (!user?.userId) {
-      setNotice({ tone: 'info', message: 'Sign in before saving a family menu.' })
+      setNotice({ tone: 'info', message: t('notice_sign_in_family') })
       return false
     }
 
     if (!familyMenu) {
-      setSectionError('family', 'Generate a family menu first.')
+      setErrors({ ...errors, family: t('err_gen_family_first') })
       return false
     }
 
-    const savedMenu = saveStoredFamilyMenuHistory(user.userId, familyMenu)
-    setStoredFamilyMenu(user.userId, savedMenu)
-    setFamilyMenu(savedMenu)
-    setNotice({ tone: 'success', message: 'Saved this family menu. Admin history now includes it for this user.' })
+    setNotice({ tone: 'success', message: t('notice_family_saved') })
     return true
   }
 
@@ -656,8 +572,8 @@ export function AppProvider({ children }) {
     historyRecords,
     dailyHistory,
     shoppingList,
-    adminUsersOverview,
-    registeredUsersCount,
+    adminUsersOverview: auth.adminOverview.users,
+    registeredUsersCount: auth.adminOverview.registeredUsersCount,
     ingredients,
     ingredientForm,
     setIngredientForm,
@@ -670,8 +586,8 @@ export function AppProvider({ children }) {
     notice,
     setNotice,
     clearNotice,
-    errors,
-    loading,
+    errors: combinedErrors,
+    loading: combinedLoading,
     summaryStats,
     mealGroups,
     filteredMeals,
@@ -691,9 +607,20 @@ export function AppProvider({ children }) {
     handleSavePlan,
     handleIngredientSubmit,
     handleFamilySubmit,
-    refreshPricing,
-    refreshMeals,
+    refreshPricing: fetchFamilyMinCost,
+    refreshMeals: fetchMeals,
+    language,
+    setLanguage,
+    t,
   }
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>
+}
+
+export function AppProvider({ children }) {
+  return (
+    <Provider store={store}>
+      <InnerAppProvider>{children}</InnerAppProvider>
+    </Provider>
+  )
 }

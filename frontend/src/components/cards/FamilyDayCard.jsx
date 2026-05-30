@@ -50,7 +50,7 @@ function FamilyDayCard({ averageDailyBudget, day }) {
   }
 
   return (
-    <article className="family-day-card tw-surface-soft tw-lift">
+    <article className="family-day-card tw-surface-soft tw-lift caustic-orange">
       <div className="family-day-card__top">
         <div>
           <h3>{dayLabelMap[day.dayKeyVi] || day.dayKeyVi}</h3>
@@ -58,7 +58,7 @@ function FamilyDayCard({ averageDailyBudget, day }) {
         </div>
         <div className="text-right">
           <span className={`tw-chip family-budget-chip family-budget-chip--${budgetState}`}>{budgetLabelMap[budgetState]}</span>
-          <strong className="mt-3 block text-xl text-sone-ink">{formatCurrency(day.totalCost)}</strong>
+          <strong className="mt-3 block text-xl text-[var(--ink)]">{formatCurrency(day.totalCost)}</strong>
         </div>
       </div>
 
@@ -68,7 +68,7 @@ function FamilyDayCard({ averageDailyBudget, day }) {
 
       <div className={expanded ? 'family-day-card__stack family-day-card__stack--expanded' : 'family-day-card__stack family-day-card__stack--collapsed'}>
         {(day.meals || []).map((item, index) => (
-          <div className={`family-dish rounded-[22px] border border-sone-line/70 bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(248,243,233,0.82))] px-4 py-4 ${mealAccentClassMap[mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || ''}`} key={`${day.dayKeyVi}-${item.dish?.mealId || index}`}>
+          <div className={`family-dish rounded-[22px] border border-[var(--line)] bg-gradient-to-b from-[var(--paper-bright)] to-[rgba(148,163,184,0.05)] px-4 py-4 ${mealAccentClassMap[mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || ''}`} key={`${day.dayKeyVi}-${item.dish?.mealId || index}`}>
             <div className="flex items-start gap-3">
               <div className="family-dish__thumb-wrap">
                 {item.dish?.image_url ? (
@@ -76,6 +76,10 @@ function FamilyDayCard({ averageDailyBudget, day }) {
                     alt={item.dish?.name || 'Meal'}
                     className="family-dish__thumb"
                     src={resolveImageUrl(item.dish.image_url, item.dish.name, item.dish.group)}
+                    onError={(event) => {
+                      event.currentTarget.onerror = null;
+                      event.currentTarget.src = '/images/Salad%20rau%20c%E1%BB%A7.jpg';
+                    }}
                   />
                 ) : (
                   <div className="family-dish__thumb family-dish__thumb--fallback">

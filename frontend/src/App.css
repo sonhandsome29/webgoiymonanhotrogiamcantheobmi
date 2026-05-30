@@ -309,12 +309,17 @@
 .summary-band,
 .inline-stats,
 .macro-row,
-.tag-row,
 .mini-metric-row,
 .day-chip-row {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .hero-note {
@@ -556,10 +561,11 @@
   min-height: 88px;
   padding: 12px 14px;
   border-radius: 24px;
-  border: 1px solid rgba(47, 111, 88, 0.12);
+  border: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.84);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -568,14 +574,15 @@
 }
 
 .shell-nav__link:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-soft);
+  transform: translateY(-2px);
+  box-shadow: var(--caustic-emerald);
 }
 
 .shell-nav__link--active {
   color: #fff;
   border-color: transparent;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  box-shadow: var(--shadow-glow);
 }
 
 .shell-nav__icon-shell {
@@ -1092,10 +1099,11 @@
 
 .meal-card__visual {
   position: relative;
-  min-height: 160px;
-  border-radius: 22px;
+  width: 140px;
+  height: 140px;
+  border-radius: var(--radius-md) !important;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(217, 170, 82, 0.24), rgba(47, 111, 88, 0.18));
+  background: var(--paper-mid);
 }
 
 .visual-fallback,
@@ -1107,7 +1115,7 @@
 .visual-fallback {
   display: grid;
   place-items: center;
-  color: rgba(255, 255, 255, 0.86);
+  color: var(--ink-2);
   font-family: var(--font-heading);
   font-size: 2rem;
 }
@@ -1147,12 +1155,16 @@
 .tag {
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
-  padding: 0 12px;
-  border-radius: 999px;
-  background: rgba(247, 240, 226, 0.92);
-  color: var(--ink);
-  font-size: 0.86rem;
+  min-height: 26px;
+  padding: 0 8px;
+  border-radius: var(--radius-sm);
+  background: var(--paper-mid);
+  color: var(--ink-2);
+  font-size: 0.76rem;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .planner-save-bar,
@@ -1558,6 +1570,26 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes modal-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.93) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
   }
 }
 
@@ -2521,3 +2553,357 @@
     flex-direction: column;
   }
 }
+
+/* ==========================================================================
+   MODERN UX/UI OVERRIDES & DARK MODE ENHANCEMENTS
+   ========================================================================== */
+
+/* 1. Global Focus & Selection */
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
+
+html.dark input:focus, html.dark select:focus, html.dark textarea:focus {
+  box-shadow: 0 0 0 3px var(--accent-soft) !important;
+}
+
+/* 2. Warm Minimal Shell & Components (No glassmorphism, no neon) */
+.topbar {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: none !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+.panel {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: none !important;
+  box-shadow: var(--shadow-sm) !important;
+  border-radius: var(--radius-lg) !important;
+}
+
+.section-nav {
+  background: var(--paper-mid) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: none !important;
+  box-shadow: var(--shadow-xs) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.shell-nav__link {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.shell-nav__link--active {
+  background: var(--accent) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* 3. Sleek Typography */
+h1 {
+  background: none !important;
+  color: var(--ink) !important;
+  -webkit-text-fill-color: initial !important;
+  font-family: var(--font-heading) !important;
+}
+
+html.dark h1 {
+  background: none !important;
+  color: var(--ink) !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* 4. Banner Card (Hero) Upgrades */
+.banner-card {
+  background: var(--paper-mid) !important;
+  border: 1px solid var(--line) !important;
+  backdrop-filter: none !important;
+  border-radius: var(--radius-lg) !important;
+  position: relative;
+}
+
+html.dark .banner-card {
+  background: var(--paper-mid) !important;
+}
+
+.banner-card::before {
+  display: none !important;
+}
+
+.banner-metric {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.banner-metric:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.banner-feature-card {
+  border: 1px solid var(--line) !important;
+  background: var(--paper-bright) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+/* 5. Inputs & Buttons (Minimal & Solid Accent) */
+input, select, textarea {
+  background-color: var(--paper-bright) !important;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+  padding: 10px 14px !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary-button {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: var(--shadow-xs) !important;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease !important;
+}
+
+.primary-button:hover {
+  background: var(--accent-strong) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.primary-button:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+.ghost-button {
+  border: 1px solid var(--line) !important;
+  background: var(--paper-bright) !important;
+  color: var(--ink) !important;
+  border-radius: var(--radius-sm) !important;
+  transition: background-color 0.2s ease, transform 0.1s ease !important;
+}
+
+.ghost-button:hover {
+  background: var(--paper-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+.ghost-button:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+/* 6. Form Styling details */
+.form-group label {
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* 7. Hover effects on meal cards */
+.meal-card {
+  overflow: hidden;
+  border-radius: var(--radius-md) !important;
+}
+
+.meal-card__image-wrap {
+  overflow: hidden;
+}
+
+.meal-card__image {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.meal-card:hover .meal-card__image {
+  transform: scale(1.04);
+}
+
+/* 8. UI Panels and Menus (No neon glow on active/hover) */
+.user-menu__trigger {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.user-menu__panel {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: var(--shadow-md) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.user-menu__item {
+  background: transparent !important;
+  color: var(--ink) !important;
+  transition: background-color 0.15s ease;
+}
+
+.user-menu__item:hover {
+  background: var(--paper-hover) !important;
+  color: var(--ink) !important;
+}
+
+.header-search {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.header-search__suggestions {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-md) !important;
+}
+
+.header-search__suggestion {
+  background: transparent !important;
+  transition: background-color 0.15s ease;
+}
+
+.header-search__suggestion:hover {
+  background: var(--paper-hover) !important;
+}
+
+/* 9. Segmented Control & Navigation chips */
+.segmented-control {
+  background: var(--paper-mid);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  display: inline-flex;
+}
+
+.segmented-control button {
+  background: transparent !important;
+  border: none !important;
+  border-radius: calc(var(--radius-sm) - 2px);
+  padding: 6px 12px !important;
+  color: var(--muted) !important;
+  font-weight: 550;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.segmented-control button.active {
+  background: var(--paper-bright) !important;
+  color: var(--ink) !important;
+  box-shadow: var(--shadow-xs) !important;
+}
+
+/* 10. Admin details theme adjustments */
+.admin-summary-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--paper-bright);
+}
+
+.admin-user-card {
+  border: 1px solid var(--line);
+  background: var(--paper-mid);
+  border-radius: var(--radius-md);
+}
+
+/* 11. Custom scrollbar for premium look */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--subtle);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--paper);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+}
+
+/* ==========================================================================
+   ULTIMATE AESTHETICS (CLEAN, WARM SHADOWS, NO NEON, NO SHIMMER OVERLOAD)
+   ========================================================================== */
+
+/* 1. Subtle Minimal Transitions */
+.caustic-emerald, .caustic-orange, .caustic-purple, .caustic-blue {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.caustic-emerald:hover, .caustic-emerald.active,
+.caustic-orange:hover, .caustic-orange.active,
+.caustic-purple:hover, .caustic-purple.active,
+.caustic-blue:hover, .caustic-blue.active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm) !important;
+  border-color: var(--line-strong) !important;
+}
+
+/* 2. Flat Clean Border Cards */
+.gradient-border-card {
+  position: relative;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--radius-md) !important;
+}
+
+.gradient-border-card::before {
+  display: none !important;
+}
+
+/* 3. Floating Animation for featured badges */
+.hero-floating-badge {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* 4. Skeleton Loader Card layout */
+.skeleton-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+  background: var(--paper-mid);
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: var(--radius-xs);
+  background: var(--line);
+}
+
+.skeleton-line--title {
+  width: 65%;
+  height: 24px;
+}
+
+.skeleton-line--subtitle {
+  width: 40%;
+}
+
+.skeleton-line--text {
+  width: 90%;
+}
+
+.skeleton-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  background: var(--line);
+}
+
+

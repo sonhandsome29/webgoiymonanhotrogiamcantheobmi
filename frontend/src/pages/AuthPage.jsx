@@ -19,21 +19,22 @@ function AuthPage() {
     setAuthForm,
     setAuthMode,
     user,
+    t,
   } = useAppContext()
 
   return (
     <section className="panel panel--auth">
       <div className="auth-page__intro">
         <SectionHeading
-          eyebrow="Authentication"
-          title={user ? (isAdmin ? 'Admin Overview' : 'Your Account') : 'Sign in to continue'}
+          eyebrow={t('account')}
+          title={user ? (isAdmin ? t('admin_dashboard') : t('account')) : t('sign_in')}
         />
       </div>
 
       {user ? (
         <div className="panel-stack auth-page__card-wrap">
           <div className="user-card auth-page__card tw-surface-soft p-6">
-            <span className="chip chip--accent">Active session</span>
+            <span className="chip chip--accent">{t('account')}</span>
             <h3>{maskEmail(user.email)}</h3>
             {isAdmin ? null : <p>User ID: {user.userId}</p>}
 
@@ -41,29 +42,29 @@ function AuthPage() {
               <div className="mini-metric-row mini-metric-row--single">
                 <div className="mini-metric">
                   <strong>{registeredUsersCount}</strong>
-                  <span>registered users</span>
+                  <span>{t('stat_registered_users')}</span>
                 </div>
               </div>
             ) : (
               <div className="mini-metric-row">
                 <div className="mini-metric">
                   <strong>{historyRecords.length}</strong>
-                  <span>saved days</span>
+                  <span>{t('stat_saved_days')}</span>
                 </div>
                 <div className="mini-metric">
                   <strong>{savedDays.size}</strong>
-                  <span>days with data</span>
+                  <span>{t('stat_saved_days')}</span>
                 </div>
               </div>
             )}
 
             <div className="action-row auth-page__actions">
               <button className="ghost-button" type="button" onClick={handleLogout}>
-                Log out
+                {t('sign_out')}
               </button>
               {isAdmin ? null : (
                 <Link className="primary-button" to="/history">
-                  Open meal history
+                  {t('meal_history')}
                 </Link>
               )}
             </div>
@@ -78,21 +79,21 @@ function AuthPage() {
                 type="button"
                 onClick={() => setAuthMode('login')}
               >
-                Sign in
+                {t('login')}
               </button>
               <button
                 className={authMode === 'register' ? 'is-active' : ''}
                 type="button"
                 onClick={() => setAuthMode('register')}
               >
-                Create account
+                {t('register')}
               </button>
             </div>
           </div>
 
           <div className="field-grid field-grid--single">
             <label className="field">
-              <span>Email</span>
+              <span>{t('email_label')}</span>
               <input
                 type="email"
                 value={authForm.email}
@@ -105,14 +106,14 @@ function AuthPage() {
             </label>
 
             <label className="field">
-              <span>Password</span>
+              <span>{t('password_label')}</span>
               <input
                 type="password"
                 value={authForm.password}
                 onChange={(event) =>
                   setAuthForm((previous) => ({ ...previous, password: event.target.value }))
                 }
-                placeholder="Enter your password"
+                placeholder={t('password_help')}
                 required
               />
             </label>
@@ -123,12 +124,16 @@ function AuthPage() {
           <div className="action-row auth-page__actions">
             <button className="primary-button" type="submit" disabled={loading.auth}>
               {loading.auth
-                ? 'Processing...'
+                ? t('loading')
                 : authMode === 'login'
-                  ? 'Sign in'
-                  : 'Create account'}
+                  ? t('login_btn')
+                  : t('register_btn')}
             </button>
           </div>
+
+          <p className="subtle-text" style={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => setAuthMode(authMode === 'login' ? 'register' : 'login')}>
+            {authMode === 'login' ? t('switch_to_register') : t('switch_to_login')}
+          </p>
         </form>
       )}
     </section>

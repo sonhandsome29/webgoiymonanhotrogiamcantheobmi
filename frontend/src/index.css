@@ -1,81 +1,163 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap');
+/* ─── Warm Minimal Design System — Option C ─── */
+/* Inspired by: Notion, Linear light, Craft      */
+/* Fonts: Lora (heading) + Inter (body)           */
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Colour Tokens ─── */
 :root {
-  --paper: #f7f2e8;
-  --paper-bright: #fffdf8;
-  --ink: #1f2a24;
-  --muted: #62706a;
-  --line: rgba(41, 69, 58, 0.12);
-  --accent: #2f6f58;
-  --accent-strong: #1d4a3a;
-  --warm: #c56d42;
-  --warm-deep: #8f4a2d;
-  --shadow-soft: 0 20px 60px rgba(38, 52, 46, 0.12);
-  --font-body: 'Manrope', 'Segoe UI', sans-serif;
-  --font-heading: 'Fraunces', Georgia, serif;
+  /* Backgrounds — warm cream spectrum */
+  --paper:        #F9F6EE;   /* page background — warm cream */
+  --paper-mid:    #F4F0E6;   /* card surface — slightly deeper cream */
+  --paper-bright: #FEFCF7;   /* elevated surface (modal, input) */
+  --paper-hover:  #EDE8DB;   /* hover state for rows */
 
+  /* Ink — warm stone, not cold slate */
+  --ink:          #1C1917;   /* stone-900 — primary text */
+  --ink-2:        #44403C;   /* stone-700 — secondary headings */
+  --muted:        #78716C;   /* stone-500 — captions, placeholders */
+  --subtle:       #A8A29E;   /* stone-400 — disabled, dividers */
+
+  /* Borders */
+  --line:         #E7E0D0;   /* warm border — not blue-tinted */
+  --line-strong:  #C9C0AE;   /* pressed, active borders */
+
+  /* Accent — sage forest green */
+  --accent:       #4A7C59;   /* sage green — primary action */
+  --accent-soft:  #EBF2EC;   /* green tint for hover/badges */
+  --accent-mid:   #6A9E79;   /* lighter shade */
+  --accent-strong:#2F5E3C;   /* deeper for text on light bg */
+
+  /* Warm accent — terracotta for nutrition/calories */
+  --warm:         #C0694A;   /* terracotta */
+  --warm-soft:    #F7EDE8;   /* terracotta tint */
+  --warm-deep:    #8F3E26;   /* deep terracotta */
+
+  /* Ambers for budget/warning */
+  --amber:        #B5830A;
+  --amber-soft:   #FEF5DC;
+
+  /* Shadow — subtle, warm-toned, NO glow */
+  --shadow-xs:    0 1px 3px rgba(28, 25, 23, 0.06), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-sm:    0 2px 8px rgba(28, 25, 23, 0.06), 0 1px 3px rgba(28, 25, 23, 0.04);
+  --shadow-md:    0 6px 24px rgba(28, 25, 23, 0.08), 0 2px 8px rgba(28, 25, 23, 0.04);
+  --shadow-soft:  var(--shadow-md);
+  --shadow-glow:  none; /* removed — no neon glow */
+
+  /* Legacy aliases (keep for component compat) */
+  --glass-bg:     var(--paper-mid);
+  --glass-border: var(--line);
+  --caustic-emerald: var(--shadow-sm);
+  --caustic-orange:  var(--shadow-sm);
+  --caustic-purple:  var(--shadow-sm);
+  --caustic-blue:    var(--shadow-sm);
+
+  /* Typography */
+  --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Lora', 'Georgia', serif;
+
+  /* Radii — smaller, more precise than before */
+  --radius-xs:  4px;
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+
+  /* Base */
   color: var(--ink);
   font-family: var(--font-body);
   font-synthesis: none;
-  line-height: 1.55;
-  font-weight: 500;
+  line-height: 1.65;
+  font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ─── Dark Mode — warm dark, not cold navy ─── */
+html.dark {
+  --paper:        #1A1714;
+  --paper-mid:    #222019;
+  --paper-bright: #2A2720;
+  --paper-hover:  #302D26;
+
+  --ink:          #F5F0E8;
+  --ink-2:        #D6CFBF;
+  --muted:        #9B9488;
+  --subtle:       #66605A;
+
+  --line:         #332F29;
+  --line-strong:  #4A453D;
+
+  --accent:       #6AAD7A;
+  --accent-soft:  #1F2E22;
+  --accent-mid:   #8CC49A;
+  --accent-strong:#A8D4B4;
+
+  --warm:         #D4806A;
+  --warm-soft:    #2E1F1A;
+  --warm-deep:    #F0A898;
+
+  --amber:        #E5A82A;
+  --amber-soft:   #2C2210;
+
+  --shadow-xs:    0 1px 3px rgba(0,0,0,0.25), 0 1px 2px rgba(0,0,0,0.18);
+  --shadow-sm:    0 2px 8px rgba(0,0,0,0.28), 0 1px 3px rgba(0,0,0,0.18);
+  --shadow-md:    0 6px 24px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.20);
+  --shadow-soft:  var(--shadow-md);
+}
+
+/* ─── Tailwind Component Layer ─── */
 @layer components {
+  /* Surface cards — solid warm, not glass */
   .tw-surface {
-    border: 1px solid;
-    border-radius: 28px;
-    border-color: var(--line);
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-soft);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xl);
+    background: var(--paper-bright);
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
   }
 
   .tw-surface-soft {
-    border: 1px solid;
-    border-radius: 24px;
-    border-color: var(--line);
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 12px 32px rgba(38, 52, 46, 0.08);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: var(--paper-mid);
+    transition: border-color 0.18s ease;
   }
 
+  /* Hover lift — subtle, no spring overshoot */
   .tw-lift {
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease,
-      border-color 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
 
   .tw-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--line-strong);
   }
 
+  /* Chip / badge — tight, readable */
   .tw-chip {
     display: inline-flex;
     align-items: center;
-    padding: 0.25rem 0.75rem;
-    border: 1px solid;
-    border-radius: 999px;
-    border-color: var(--line);
-    background: rgba(255, 255, 255, 0.7);
-    color: var(--ink);
-    font-size: 0.75rem;
+    padding: 0.2rem 0.65rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-xs);
+    background: var(--paper-hover);
+    color: var(--ink-2);
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
   }
 }
 
-* {
+/* ─── Reset ─── */
+*, *::before, *::after {
   box-sizing: border-box;
 }
 
@@ -83,26 +165,23 @@ html {
   scroll-behavior: smooth;
 }
 
+/* ─── Body — warm cream background, NO grid overlay, NO radial glow ─── */
 body {
   min-height: 100vh;
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(217, 170, 82, 0.22), transparent 34%),
-    radial-gradient(circle at top right, rgba(47, 111, 88, 0.18), transparent 36%),
-    linear-gradient(180deg, #f2ebdc 0%, #f7f2e8 44%, #fffdf8 100%);
+  background-color: var(--paper);
 }
 
+html.dark body {
+  background-color: var(--paper);
+}
+
+/* Remove the pseudo-element grid overlay from old design */
 body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
-  background-size: 56px 56px;
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.18), transparent 85%);
-  pointer-events: none;
+  content: none;
 }
 
+/* ─── Form Elements ─── */
 body,
 button,
 input,
@@ -127,47 +206,104 @@ img {
   max-width: 100%;
 }
 
+/* ─── Root Container ─── */
 #root {
-  width: min(1360px, 100%);
+  width: min(1320px, 100%);
   margin: 0 auto;
-  padding: 28px 20px 60px;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  color: var(--ink);
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.08;
-}
-
-h1 {
-  font-size: clamp(2.6rem, 5vw, 4.75rem);
-  letter-spacing: -0.06em;
-}
-
-h2 {
-  font-size: clamp(1.7rem, 3vw, 2.35rem);
-  margin: 10px 0 8px;
-}
-
-h3 {
-  font-size: 1.3rem;
-}
-
-h4 {
-  font-size: 1.05rem;
-}
-
-a {
-  color: inherit;
+  padding: 24px 20px 80px;
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 640px) {
   #root {
-    padding-inline: 14px;
-    padding-top: 18px;
+    padding-inline: 16px;
+    padding-top: 16px;
   }
+}
+
+/* ─── Typography — Lora for headings, Inter for body ─── */
+h1, h2, h3, h4 {
+  color: var(--ink);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0 0 1em;
+  color: var(--ink-2);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Skeleton Loader — warm tone ─── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+.shimmer-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--paper-mid) 25%,
+    var(--paper-hover) 37%,
+    var(--paper-mid) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite linear;
+  border-radius: var(--radius-md);
+}
+
+html.dark .shimmer-skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--paper-mid) 25%,
+    var(--paper-bright) 37%,
+    var(--paper-mid) 63%
+  );
+  background-size: 200% 100%;
+}
+
+/* ─── Modal overlay animation ─── */
+@keyframes modal-overlay-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modal-card-in {
+  from { opacity: 0; transform: scale(0.97) translateY(12px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+
+/* ─── Page entry animation ─── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

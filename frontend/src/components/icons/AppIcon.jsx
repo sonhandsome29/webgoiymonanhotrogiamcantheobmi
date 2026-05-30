@@ -5,10 +5,12 @@ import {
   HomeOutlined,
   LockOutlined,
   LogoutOutlined,
+  MoonOutlined,
   ReadOutlined,
   SearchOutlined,
   SettingOutlined,
   StarOutlined,
+  SunOutlined,
   TeamOutlined,
   UserOutlined,
 } from '@ant-design/icons'
@@ -26,6 +28,8 @@ const iconMap = {
   search: SearchOutlined,
   settings: SettingOutlined,
   spark: StarOutlined,
+  sun: SunOutlined,
+  moon: MoonOutlined,
 }
 
 function AppIcon({ className = '', name, size = 20 }) {
