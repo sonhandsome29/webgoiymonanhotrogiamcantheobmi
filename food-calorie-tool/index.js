@@ -18,6 +18,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  return sendSuccess(res, {
+    service: 'food-calorie-tool-api',
+    status: 'ok',
+  });
+});
+
+app.get('/api/health', (req, res) => {
+  return sendSuccess(res, {
+    service: 'food-calorie-tool-api',
+    status: 'ok',
+    databaseState: mongoose.connection.readyState,
+  });
+});
+
 const FAMILY_MEAL_TYPE_MAP = {
   'Bữa sáng': 'breakfast',
   'Bá»¯a sÃ¡ng': 'breakfast',
