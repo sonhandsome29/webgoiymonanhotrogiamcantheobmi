@@ -9,12 +9,94 @@ const bcrypt = require('bcrypt');
 const path = require('path');
 const seedIngredients = require('./seedIngredients');
 const FamilyMenuResult = require('./models/FamilyMenuResult');
+const { extractBearerToken, signAuthToken, verifyAuthToken } = require('./utils/auth');
+const { sendError, sendSuccess } = require('./utils/http');
 
 const cors = require('cors');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const FAMILY_MEAL_TYPE_MAP = {
+  'Bữa sáng': 'breakfast',
+  'Bá»¯a sÃ¡ng': 'breakfast',
+  'Bữa trưa': 'lunch',
+  'Bá»¯a trÆ°a': 'lunch',
+  'Bữa tối': 'dinner',
+  'Bá»¯a tá»‘i': 'dinner',
+};
+
+function serializeUser(user) {
+  return {
+    userId: user._id,
+    email: user.email,
+    role: user.role || 'user',
+    latestPlannerProfile: user.latestPlannerProfile || {},
+    createdAt: user.createdAt || null,
+    updatedAt: user.updatedAt || null,
+  };
+}
+
+function computeBmiFromProfile(profile = {}) {
+  const weight = Number(profile.weight);
+  const height = Number(profile.height);
+
+  if (!weight || !height) {
+    return null;
+  }
+
+  const heightInMeters = height / 100;
+  if (!heightInMeters) {
+    return null;
+  }
+
+  return (weight / (heightInMeters * heightInMeters)).toFixed(2);
+}
+
+function requireAuth(req, res, next) {
+  const token = extractBearerToken(req.headers.authorization);
+
+  if (!token) {
+    return sendError(res, 401, 'AUTH_REQUIRED', 'Authentication is required.');
+  }
+
+  try {
+    const payload = verifyAuthToken(token);
+    req.auth = {
+      token,
+      userId: payload.sub,
+      role: payload.role,
+    };
+    next();
+  } catch (error) {
+    return sendError(res, 401, 'INVALID_TOKEN', error.message || 'Invalid authentication token.');
+  }
+}
+
+function requireAdmin(req, res, next) {
+  if (req.auth?.role !== 'admin') {
+    return sendError(res, 403, 'ADMIN_REQUIRED', 'Admin access is required.');
+  }
+
+  next();
+}
+
+function requireSelfOrAdmin(paramName = 'userId') {
+  return (req, res, next) => {
+    const targetUserId = req.params[paramName] || req.body?.[paramName];
+
+    if (!targetUserId) {
+      return sendError(res, 400, 'MISSING_USER_ID', `Missing ${paramName}.`);
+    }
+
+    if (req.auth?.role === 'admin' || String(req.auth?.userId) === String(targetUserId)) {
+      return next();
+    }
+
+    return sendError(res, 403, 'FORBIDDEN', 'You do not have access to this resource.');
+  };
+}
 
 // Phục vụ tệp tĩnh từ thư mục public
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
@@ -53,6 +135,116 @@ app.use((req, res, next) => {
   }
 });
 
+app.use((req, res, next) => {
+  const pathName = req.path || '';
+  const method = (req.method || 'GET').toUpperCase();
+
+  let needsAuth = false;
+  let needsAdmin = false;
+  let ownedUserId = null;
+  let bodyUserKey = null;
+
+  const profileMatch = pathName.match(/^\/users\/([^/]+)\/profile$/);
+  const familyHistoryMatch = pathName.match(/^\/family\/menu\/([^/]+)$/);
+  const mealHistoryMatch = pathName.match(/^\/meal-history\/([^/]+)(?:\/[^/]+)?$/);
+  const ingredientDayMatch = pathName.match(/^\/ingredients\/([^/]+)\/[^/]+$/);
+  const mealItemMatch = pathName.match(/^\/meals\/([^/]+)$/);
+  const ingredientItemMatch = pathName.match(/^\/ingredients\/([^/]+)$/);
+
+  if (method === 'POST' && pathName === '/suggest-meals') {
+    needsAuth = true;
+  }
+
+  if (method === 'GET' && pathName === '/admin/overview') {
+    needsAuth = true;
+    needsAdmin = true;
+  }
+
+  if (profileMatch && method === 'PUT') {
+    needsAuth = true;
+    ownedUserId = profileMatch[1];
+  }
+
+  if (familyHistoryMatch && method === 'GET') {
+    needsAuth = true;
+    ownedUserId = familyHistoryMatch[1];
+  }
+
+  if ((pathName === '/family/menu' || pathName === '/family/generate-menu') && method === 'POST') {
+    needsAuth = true;
+    bodyUserKey = 'userId';
+  }
+
+  if (pathName === '/meal-history' && method === 'POST') {
+    needsAuth = true;
+    bodyUserKey = 'userId';
+  }
+
+  if (mealHistoryMatch && method === 'GET') {
+    needsAuth = true;
+    ownedUserId = mealHistoryMatch[1];
+  }
+
+  if (ingredientDayMatch && method === 'GET') {
+    needsAuth = true;
+    ownedUserId = ingredientDayMatch[1];
+  }
+
+  if (pathName === '/meals' && method === 'POST') {
+    needsAuth = true;
+    needsAdmin = true;
+  }
+
+  if (mealItemMatch && ['PUT', 'DELETE'].includes(method)) {
+    needsAuth = true;
+    needsAdmin = true;
+  }
+
+  if (pathName === '/ingredients' && method === 'POST') {
+    needsAuth = true;
+    needsAdmin = true;
+  }
+
+  if (ingredientItemMatch && method === 'DELETE') {
+    needsAuth = true;
+    needsAdmin = true;
+  }
+
+  if (!needsAuth) {
+    return next();
+  }
+
+  const token = extractBearerToken(req.headers.authorization);
+  if (!token) {
+    return sendError(res, 401, 'AUTH_REQUIRED', 'Authentication is required.');
+  }
+
+  try {
+    const payload = verifyAuthToken(token);
+    req.auth = {
+      token,
+      userId: payload.sub,
+      role: payload.role,
+    };
+  } catch (error) {
+    return sendError(res, 401, 'INVALID_TOKEN', error.message || 'Invalid authentication token.');
+  }
+
+  if (needsAdmin && req.auth.role !== 'admin') {
+    return sendError(res, 403, 'ADMIN_REQUIRED', 'Admin access is required.');
+  }
+
+  if (ownedUserId && req.auth.role !== 'admin' && String(req.auth.userId) !== String(ownedUserId)) {
+    return sendError(res, 403, 'FORBIDDEN', 'You do not have access to this resource.');
+  }
+
+  if (bodyUserKey && req.body?.[bodyUserKey] && req.auth.role !== 'admin' && String(req.auth.userId) !== String(req.body[bodyUserKey])) {
+    return sendError(res, 403, 'FORBIDDEN', 'You do not have access to this resource.');
+  }
+
+  next();
+});
+
 const seedDatabase = async () => {
     try {
         const count = await Meal.countDocuments();
@@ -71,6 +263,206 @@ mongoose.connection.once('open', () => {
     seedDatabase();
 });
 
+app.post('/register', async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return sendError(res, 400, 'VALIDATION_ERROR', 'Email and password are required.');
+  }
+
+  if (password.length < 8) {
+    return sendError(res, 400, 'WEAK_PASSWORD', 'Password must be at least 8 characters long.');
+  }
+  if (!/[a-z]/.test(password)) {
+    return sendError(res, 400, 'WEAK_PASSWORD', 'Password must include at least one lowercase letter.');
+  }
+  if (!/[A-Z]/.test(password)) {
+    return sendError(res, 400, 'WEAK_PASSWORD', 'Password must include at least one uppercase letter.');
+  }
+  if (!/\d/.test(password)) {
+    return sendError(res, 400, 'WEAK_PASSWORD', 'Password must include at least one number.');
+  }
+  if (!/[^a-zA-Z0-9]/.test(password)) {
+    return sendError(res, 400, 'WEAK_PASSWORD', 'Password must include at least one special character.');
+  }
+
+  try {
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const existingUser = await User.findOne({ email: normalizedEmail });
+    if (existingUser) {
+      return sendError(res, 409, 'EMAIL_TAKEN', 'User already exists.');
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const userCount = await User.countDocuments();
+    const role = userCount === 0 ? 'admin' : 'user';
+    const user = await User.create({ email: normalizedEmail, password: hashedPassword, role });
+    const token = signAuthToken(user);
+
+    return sendSuccess(res, {
+      token,
+      user: serializeUser(user),
+    }, 201);
+  } catch (error) {
+    console.error('Register error:', error);
+    return sendError(res, 500, 'REGISTER_FAILED', 'Server error while registering user.', error.message);
+  }
+});
+
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return sendError(res, 400, 'VALIDATION_ERROR', 'Email and password are required.');
+  }
+
+  try {
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const user = await User.findOne({ email: normalizedEmail });
+    if (!user) {
+      return sendError(res, 404, 'USER_NOT_FOUND', 'User not found.');
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return sendError(res, 401, 'INVALID_CREDENTIALS', 'Invalid email or password.');
+    }
+
+    const token = signAuthToken(user);
+
+    return sendSuccess(res, {
+      token,
+      user: serializeUser(user),
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    return sendError(res, 500, 'LOGIN_FAILED', 'Server error while logging in.', error.message);
+  }
+});
+
+app.get('/auth/me', requireAuth, async (req, res) => {
+  try {
+    const user = await User.findById(req.auth.userId);
+
+    if (!user) {
+      return sendError(res, 404, 'USER_NOT_FOUND', 'User not found.');
+    }
+
+    return sendSuccess(res, {
+      user: serializeUser(user),
+    });
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+    return sendError(res, 500, 'AUTH_ME_FAILED', 'Server error while loading current user.', error.message);
+  }
+});
+
+app.put('/users/:userId/profile', requireAuth, requireSelfOrAdmin('userId'), async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { weight, height, age, gender, activity_level, dislikedGroups, dislikedIngredients, dislikedMeals } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      {
+        latestPlannerProfile: {
+          weight: String(weight || ''),
+          height: String(height || ''),
+          age: String(age || ''),
+          gender: String(gender || ''),
+          activity_level: String(activity_level || ''),
+          dislikedGroups: String(dislikedGroups || ''),
+          dislikedIngredients: String(dislikedIngredients || ''),
+          dislikedMeals: String(dislikedMeals || ''),
+        },
+      },
+      { new: true },
+    );
+
+    if (!user) {
+      return sendError(res, 404, 'USER_NOT_FOUND', 'User not found.');
+    }
+
+    return sendSuccess(res, {
+      user: serializeUser(user),
+    });
+  } catch (error) {
+    console.error('Error updating user profile:', error);
+    return sendError(res, 500, 'PROFILE_UPDATE_FAILED', 'Server error while updating profile.', error.message);
+  }
+});
+
+app.get('/family/menu/:userId', requireAuth, requireSelfOrAdmin('userId'), async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const results = await FamilyMenuResult.find({ userId }).sort({ createdAt: -1 });
+    return sendSuccess(res, results);
+  } catch (error) {
+    console.error('Error fetching family menus for user:', error);
+    return sendError(res, 500, 'FAMILY_MENU_HISTORY_FAILED', 'Server error while fetching family menus.', error.message);
+  }
+});
+
+app.get('/admin/overview', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const [users, mealCount, ingredientCount, histories, familyMenus] = await Promise.all([
+      User.find({}, { password: 0 }).sort({ createdAt: -1 }).lean(),
+      Meal.countDocuments(),
+      Ingredient.countDocuments(),
+      MealHistory.find({}).lean(),
+      FamilyMenuResult.find({}).sort({ createdAt: -1 }).lean(),
+    ]);
+
+    const historyByUser = new Map();
+    histories.forEach((entry) => {
+      const key = String(entry.userId);
+      if (!historyByUser.has(key)) {
+        historyByUser.set(key, []);
+      }
+      historyByUser.get(key).push(entry);
+    });
+
+    const familyMenusByUser = new Map();
+    familyMenus.forEach((entry) => {
+      const key = String(entry.userId);
+      if (!familyMenusByUser.has(key)) {
+        familyMenusByUser.set(key, []);
+      }
+      familyMenusByUser.get(key).push(entry);
+    });
+
+    const usersOverview = users.map((user) => {
+      const userHistories = historyByUser.get(String(user._id)) || [];
+      const userFamilyMenus = familyMenusByUser.get(String(user._id)) || [];
+      const weekMeals = userHistories.reduce((accumulator, entry) => {
+        accumulator[entry.day] = (entry.meals || []).map((meal) => meal.mealName).filter(Boolean);
+        return accumulator;
+      }, {});
+
+      return {
+        ...serializeUser(user),
+        bmi: computeBmiFromProfile(user.latestPlannerProfile),
+        hasFamilyMenu: userFamilyMenus.length > 0,
+        familyMenuCount: userFamilyMenus.length,
+        familyMenuHistory: userFamilyMenus.slice(0, 3).map((entry) => ({
+          historyId: entry._id,
+          totalWeekCost: entry.totalWeekCost,
+          savedAt: entry.createdAt,
+        })),
+        weekMeals,
+      };
+    });
+
+    return sendSuccess(res, {
+      users: usersOverview,
+      registeredUsersCount: usersOverview.length,
+      mealCount,
+      ingredientCount,
+    });
+  } catch (error) {
+    console.error('Error getting admin overview:', error);
+    return sendError(res, 500, 'ADMIN_OVERVIEW_FAILED', 'Server error while loading admin overview.', error.message);
+  }
+});
+
 // ======================================================
 // =============== API GỢI Ý BỮA ĂN (GA) ===============
 // ======================================================
@@ -79,7 +471,7 @@ mongoose.connection.once('open', () => {
 // ========= CẢI TIẾN THUẬT TOÁN GA GỢI Ý MÓN ĂN =========
 // ======================================================
 
-app.post('/suggest-meals', async (req, res) => {
+app.post('/suggest-meals', requireAuth, async (req, res) => {
   const { 
     weight, 
     height, 
@@ -91,17 +483,17 @@ app.post('/suggest-meals', async (req, res) => {
   } = req.body;
 
   if (!weight || !height) {
-    return res.status(400).json({ error: 'Weight and height are required' });
+    return sendError(res, 400, 'VALIDATION_ERROR', 'Weight and height are required.');
   }
 
   let targetCaloriesPerDay;
-  let goal = "maintain";
+  let goal = "maintenance";
   let bmi = 0;
 
   const heightInMeters = height / 100;
   bmi = weight / (heightInMeters * heightInMeters);
-  if (bmi >= 25) goal = "lose";
-  else if (bmi < 18.5) goal = "gain";
+  if (bmi >= 25) goal = "weight_loss";
+  else if (bmi < 18.5) goal = "weight_gain";
 
   if (overrideTargetCalories) {
     targetCaloriesPerDay = overrideTargetCalories;
@@ -112,8 +504,8 @@ app.post('/suggest-meals', async (req, res) => {
     const activityFactor = (activity_level === 'frequent') ? 1.55 : 1.2;
     targetCaloriesPerDay = bmr * activityFactor;
 
-    if (goal === "lose") targetCaloriesPerDay *= 0.8;
-    else if (goal === "gain") targetCaloriesPerDay *= 1.3;
+    if (goal === "weight_loss") targetCaloriesPerDay *= 0.8;
+    else if (goal === "weight_gain") targetCaloriesPerDay *= 1.3;
   }
 
   targetCaloriesPerDay = Math.round(targetCaloriesPerDay);
@@ -131,6 +523,10 @@ app.post('/suggest-meals', async (req, res) => {
     if (meal.ingredients && dislikedIngredients.some(ing => meal.ingredients.includes(ing))) return false;
     return true;
   });
+
+  if (filteredMeals.length < 5) {
+    return sendError(res, 400, 'INSUFFICIENT_MEALS', 'Not enough meals are available after filtering.');
+  }
 
   if (filteredMeals.length < 5) {
     return res.status(500).json({ error: 'Không đủ món ăn để gợi ý' });
@@ -522,30 +918,37 @@ app.post('/suggest-meals', async (req, res) => {
   const bestMeal = runImprovedGA(filteredMeals, targetCaloriesPerDay, dislikes);
   
   if (!bestMeal || !bestMeal.breakfast || bestMeal.breakfast.length === 0) {
+    return sendError(res, 500, 'MEAL_PLAN_NOT_FOUND', 'Could not generate a matching meal plan.');
+  }
+
+  if (!bestMeal || !bestMeal.breakfast || bestMeal.breakfast.length === 0) {
     return res.status(500).json({ error: 'Không thể tìm thấy thực đơn phù hợp' });
   }
 
   const selectedCalories = [...bestMeal.breakfast, ...bestMeal.lunch, ...bestMeal.dinner]
     .reduce((sum, m) => sum + (m.calories || 0), 0);
 
-  res.json({
+  return sendSuccess(res, {
     targetCaloriesPerDay,
     selectedCalories: Math.round(selectedCalories),
     goal,
     bmi: bmi.toFixed(2),
     meals: [
       {
-        meal: 'Bữa sáng',
+        meal: 'breakfast',
+        mealLabelVi: 'Bữa sáng',
         targetCalories: null,
         details: bestMeal.breakfast
       },
       {
-        meal: 'Bữa chiều',
+        meal: 'lunch',
+        mealLabelVi: 'Bữa trưa',
         targetCalories: null,
         details: bestMeal.lunch
       },
       {
-        meal: 'Bữa tối',
+        meal: 'dinner',
+        mealLabelVi: 'Bữa tối',
         targetCalories: null,
         details: bestMeal.dinner
       },
@@ -1117,6 +1520,24 @@ app.post('/ingredients', async (req, res) => {
 });
 
 // Lấy tất cả nguyên liệu
+app.delete('/ingredients/:ingredientId', async (req, res) => {
+    try {
+        const { ingredientId } = req.params;
+        const deletedIngredient = await Ingredient.findByIdAndDelete(ingredientId);
+
+        if (!deletedIngredient) {
+            return sendError(res, 404, 'INGREDIENT_NOT_FOUND', 'Ingredient not found.');
+        }
+
+        return sendSuccess(res, {
+            ingredientId,
+        });
+    } catch (error) {
+        console.error('Error deleting ingredient:', error);
+        return sendError(res, 500, 'INGREDIENT_DELETE_FAILED', 'Failed to delete ingredient.', error.message);
+    }
+});
+
 app.get('/ingredients', async (req, res) => {
     try {
         const ingredients = await Ingredient.find().sort({ name: 1 });
@@ -1221,7 +1642,7 @@ app.get('/meals/:mealId/ingredient-costs', async (req, res) => {
             }
         }
 
-        return res.json({
+        return sendSuccess(res, {
             mealId: meal._id,
             name: meal.name,
             calories: meal.calories || 0,
@@ -1244,6 +1665,10 @@ app.get('/family/min-cost', async (req, res) => {
         const ingredients = await Ingredient.find().lean();
 
         if (!meals.length || !ingredients.length) {
+            return sendError(res, 400, 'MISSING_DATA', 'Meals or ingredients data is missing.');
+        }
+
+        if (!meals.length || !ingredients.length) {
             return res
                 .status(400)
                 .json({ message: 'Thiếu dữ liệu món ăn hoặc nguyên liệu.' });
@@ -1263,6 +1688,10 @@ app.get('/family/min-cost', async (req, res) => {
         }
 
         if (mealCosts.length < 3) {
+            return sendError(res, 500, 'INSUFFICIENT_MEALS', 'Not enough meals are available to build a family menu.');
+        }
+
+        if (mealCosts.length < 3) {
             return res
                 .status(400)
                 .json({ message: 'Không đủ món có thể tính được giá.' });
@@ -1279,7 +1708,7 @@ app.get('/family/min-cost', async (req, res) => {
         const buffer = 50000;
         const weeklyCostPerPerson = baseWeeklyCostPerPerson + buffer;
 
-        return res.json({
+        return sendSuccess(res, {
             minCostPerPerson: Math.round(weeklyCostPerPerson),
             baseWeeklyCostPerPerson: Math.round(baseWeeklyCostPerPerson),
             buffer,
@@ -1304,6 +1733,11 @@ app.get('/family/min-cost', async (req, res) => {
 async function generateFamilyMenuHandler(req, res) {
     try {
         const { familySize, weeklyBudget, userId } = req.body;
+        const resolvedUserId = req.auth?.role === 'admin' && userId ? userId : req.auth?.userId;
+
+        if (!familySize || !weeklyBudget) {
+            return sendError(res, 400, 'VALIDATION_ERROR', 'familySize and weeklyBudget are required.');
+        }
 
         if (!familySize || !weeklyBudget) {
             return res
@@ -1344,6 +1778,10 @@ async function generateFamilyMenuHandler(req, res) {
         // ❌ KHÔNG dùng rau củ làm món chính (Su su luộc, bông cải xào... )
         const mainMealCosts = mealCosts.filter(mc => mc.meal.group !== 'rau củ ' && mc.meal.group !== 'trái cây');
         if (mainMealCosts.length < 3) {
+            return sendError(res, 500, 'INSUFFICIENT_MAIN_MEALS', 'Not enough main dishes are available to build a family menu.');
+        }
+
+        if (mainMealCosts.length < 3) {
             return res
                 .status(500)
                 .json({ message: 'Không đủ món chính (không tính rau củ) để tạo menu.' });
@@ -1371,6 +1809,16 @@ async function generateFamilyMenuHandler(req, res) {
         const fruitMealCosts = mealCosts.filter(mc => mc.meal.group === 'trái cây');
 
         // Nếu ngay cả combo rẻ nhất còn không đủ ngân sách => báo lỗi
+        if (weeklyBudget < minTotalWeekCost) {
+            return sendError(
+                res,
+                400,
+                'BUDGET_TOO_LOW',
+                `Weekly budget is below the minimum required ${Math.round(minTotalWeekCost)} VND.`,
+                { minBudget: Math.round(minTotalWeekCost) }
+            );
+        }
+
         if (weeklyBudget < minTotalWeekCost) {
             return res.status(400).json({
                 message: `Ngân sách không đủ. Tối thiểu khoảng ${Math.round(
@@ -1517,7 +1965,25 @@ async function generateFamilyMenuHandler(req, res) {
     };
 });
 
-        const totalWeekCost = days.reduce(
+        const mealById = new Map(meals.map((meal) => [String(meal._id), meal]));
+        const normalizedDays = days.map((day) => ({
+            ...day,
+            meals: (day.meals || []).map((item) => {
+                const sourceMeal = mealById.get(String(item.dish?.mealId));
+
+                return {
+                    ...item,
+                    mealType: item.mealType || FAMILY_MEAL_TYPE_MAP[item.mealTypeVi] || item.mealTypeVi,
+                    dish: {
+                        ...item.dish,
+                        group: item.dish?.group || sourceMeal?.group || null,
+                        image_url: item.dish?.image_url || sourceMeal?.image_url || null,
+                    },
+                };
+            }),
+        }));
+
+        const totalWeekCost = normalizedDays.reduce(
             (sum, d) => sum + (d.totalCost || 0),
             0
         ) + buffer;
@@ -1528,7 +1994,7 @@ async function generateFamilyMenuHandler(req, res) {
 
         // ---------- LƯU KẾT QUẢ VÀO DATABASE ----------
         const saved = await FamilyMenuResult.create({
-            userId,
+            userId: resolvedUserId,
             familySize,
             weeklyBudget,
             minBudgetPerPerson,
@@ -1537,7 +2003,7 @@ async function generateFamilyMenuHandler(req, res) {
             baseWeekCost: Math.round(baseWeekCost),
             buffer,
             totalWeekCost: Math.round(totalWeekCost),
-            days
+            days: normalizedDays
         });
 
         // ---------- TRẢ VỀ CHO APP ----------
@@ -1547,13 +2013,15 @@ async function generateFamilyMenuHandler(req, res) {
             baseWeekCost: Math.round(baseWeekCost),
             buffer,
             familySize,
-            days,
+            days: normalizedDays,
             minBudgetPerPerson,
             minBudgetForFamily,
-            savedId: saved._id
+            savedId: saved._id,
+            savedAt: saved.createdAt
         });
     } catch (err) {
         console.error('Error /family/menu:', err);
+        return sendError(res, 500, 'FAMILY_MENU_FAILED', 'Server error while generating family menu.', err.message);
         return res
             .status(500)
             .json({ message: 'Lỗi server khi tạo menu gia đình.' });

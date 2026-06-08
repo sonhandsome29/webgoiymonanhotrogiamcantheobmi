@@ -92,8 +92,10 @@ export const useAppStore = create((set, get) => ({
     try {
       const meals = await api.getMeals()
       set({ meals })
+      return meals
     } catch (err) {
       console.error('Error fetching meals:', err)
+      throw err
     }
   },
 
@@ -101,8 +103,10 @@ export const useAppStore = create((set, get) => ({
     try {
       const ingredients = await api.getIngredients()
       set({ ingredients })
+      return ingredients
     } catch (err) {
       console.error('Error fetching ingredients:', err)
+      throw err
     }
   },
 
@@ -110,8 +114,10 @@ export const useAppStore = create((set, get) => ({
     try {
       const minCost = await api.getFamilyMinCost()
       set({ minCost })
+      return minCost
     } catch (err) {
       console.error('Error fetching family min cost:', err)
+      throw err
     }
   },
 
@@ -122,8 +128,10 @@ export const useAppStore = create((set, get) => ({
     try {
       const plan = await api.suggestMeals(payload)
       set({ mealPlan: plan })
+      return plan
     } catch (err) {
       set({ errors: { planner: err.message || 'Lỗi khi tạo thực đơn gợi ý.' } })
+      throw err
     } finally {
       get().setLoadingKey('planner', false)
     }
@@ -174,6 +182,7 @@ export const useAppStore = create((set, get) => ({
       if (get().historyDay === day) {
         await get().fetchMealHistoryDay(userId, day)
       }
+      return true
     } catch (err) {
       console.error('Error saving meal history:', err)
       set({ notice: `Lỗi: ${err.message || 'Không thể lưu thực đơn.'}` })

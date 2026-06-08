@@ -1,15 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { api } from '../lib/api'
-
-// Helper to load session from localStorage initially
-const getInitialSession = () => {
-  try {
-    const raw = localStorage.getItem('sone_local_session')
-    return raw ? JSON.parse(raw) : null
-  } catch {
-    return null
-  }
-}
+import { clearStoredSession, getStoredSession, setStoredSession } from '../lib/session'
 
 // Async Thunks
 export const registerUser = createAsyncThunk(
@@ -48,6 +39,18 @@ export const updateUserProfile = createAsyncThunk(
   }
 )
 
+export const fetchCurrentUser = createAsyncThunk(
+  'auth/fetchCurrentUser',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await api.getCurrentUser()
+      return response
+    } catch (err) {
+      return rejectWithValue(err.message || 'Failed to load current user')
+    }
+  }
+)
+
 export const fetchAdminOverview = createAsyncThunk(
   'auth/fetchAdminOverview',
   async (_, { rejectWithValue }) => {
@@ -63,7 +66,8 @@ export const fetchAdminOverview = createAsyncThunk(
 const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    user: getInitialSession()?.user || null,
+    user: getStoredSession()?.user || null,
+    token: getStoredSession()?.token || null,
     loading: false,
     error: null,
     adminOverview: {
@@ -78,8 +82,9 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
       state.user = null
+      state.token = null
       state.error = null
-      localStorage.removeItem('sone_local_session')
+      clearStoredSession()
     },
     clearAuthError(state) {
       state.error = null
@@ -94,7 +99,8 @@ const authSlice = createSlice({
     builder.addCase(registerUser.fulfilled, (state, action) => {
       state.loading = false
       state.user = action.payload.user
-      localStorage.setItem('sone_local_session', JSON.stringify({ user: action.payload.user }))
+      state.token = action.payload.token
+      setStoredSession({ user: action.payload.user, token: action.payload.token })
     })
     builder.addCase(registerUser.rejected, (state, action) => {
       state.loading = false
@@ -109,17 +115,35 @@ const authSlice = createSlice({
     builder.addCase(loginUser.fulfilled, (state, action) => {
       state.loading = false
       state.user = action.payload.user
-      localStorage.setItem('sone_local_session', JSON.stringify({ user: action.payload.user }))
+      state.token = action.payload.token
+      setStoredSession({ user: action.payload.user, token: action.payload.token })
     })
     builder.addCase(loginUser.rejected, (state, action) => {
       state.loading = false
       state.error = action.payload
     })
 
+    builder.addCase(fetchCurrentUser.pending, (state) => {
+      state.loading = true
+      state.error = null
+    })
+    builder.addCase(fetchCurrentUser.fulfilled, (state, action) => {
+      state.loading = false
+      state.user = action.payload.user
+      setStoredSession({ user: action.payload.user, token: state.token })
+    })
+    builder.addCase(fetchCurrentUser.rejected, (state, action) => {
+      state.loading = false
+      state.error = action.payload
+      state.user = null
+      state.token = null
+      clearStoredSession()
+    })
+
     // Update Profile
     builder.addCase(updateUserProfile.fulfilled, (state, action) => {
       state.user = action.payload.user
-      localStorage.setItem('sone_local_session', JSON.stringify({ user: action.payload.user }))
+      setStoredSession({ user: action.payload.user, token: state.token })
     })
 
     // Admin Overview

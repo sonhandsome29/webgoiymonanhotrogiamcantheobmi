@@ -14,6 +14,8 @@ const userSchema = new mongoose.Schema({
         dislikedIngredients: { type: String, default: '' },
         dislikedMeals: { type: String, default: '' },
     }
+}, {
+    timestamps: true,
 });
 
 module.exports = mongoose.model('User', userSchema);

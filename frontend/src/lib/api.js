@@ -1,4 +1,5 @@
 import imageManifest from '../data/imageManifest.json'
+import { clearStoredSession, getStoredSession } from './session'
 
 function normalizeAssetName(value = '') {
   return String(value)
@@ -128,8 +129,10 @@ const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
 async function request(endpoint, options = {}) {
   const url = `${BASE_URL}${endpoint}`
+  const session = getStoredSession()
   const headers = {
-    'Content-Type': 'application/json',
+    ...(options.body ? { 'Content-Type': 'application/json' } : {}),
+    ...(session?.token ? { Authorization: `Bearer ${session.token}` } : {}),
     ...options.headers,
   }
   const config = {
@@ -139,16 +142,39 @@ async function request(endpoint, options = {}) {
   if (config.body && typeof config.body === 'object') {
     config.body = JSON.stringify(config.body)
   }
-  
+
   const response = await fetch(url, config)
-  const data = await response.json()
-  
+  const rawText = await response.text()
+  const data = rawText ? (() => {
+    try {
+      return JSON.parse(rawText)
+    } catch {
+      return rawText
+    }
+  })() : null
+
   if (!response.ok) {
-    const error = new Error(data.error || data.message || 'Something went wrong')
+    if (response.status === 401) {
+      clearStoredSession()
+    }
+
+    const errorMessage =
+      data?.error?.message ||
+      data?.error ||
+      data?.message ||
+      (typeof data === 'string' && data) ||
+      'Something went wrong'
+    const error = new Error(errorMessage)
     error.status = response.status
+    error.code = data?.error?.code || null
+    error.details = data?.error?.details || null
     throw error
   }
-  
+
+  if (data && typeof data === 'object' && 'success' in data && 'data' in data) {
+    return data.data
+  }
+
   return data
 }
 
@@ -160,6 +186,10 @@ export const api = {
   
   async login(payload) {
     return request('/login', { method: 'POST', body: payload })
+  },
+
+  async getCurrentUser() {
+    return request('/auth/me')
   },
   
   async updateProfile(userId, payload) {

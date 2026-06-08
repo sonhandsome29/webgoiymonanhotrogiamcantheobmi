@@ -7,7 +7,7 @@ import { buildDislikesPayload, flattenPlanMeals } from '../utils/planner'
 // Redux & Zustand stores
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import { store } from '../store'
-import { loginUser, registerUser, updateUserProfile, logout, fetchAdminOverview, clearAuthError } from '../store/authSlice'
+import { loginUser, registerUser, updateUserProfile, logout, fetchAdminOverview, clearAuthError, fetchCurrentUser } from '../store/authSlice'
 import { useAppStore } from '../store/useAppStore'
 import { translations } from '../constants/translations'
 
@@ -238,6 +238,12 @@ function InnerAppProvider({ children }) {
 
     loadInitialData()
   }, [])
+
+  useEffect(() => {
+    if (auth.token) {
+      dispatch(fetchCurrentUser())
+    }
+  }, [auth.token, dispatch])
 
   // Sync user profile & data when user logs in/out
   useEffect(() => {
@@ -609,6 +615,7 @@ function InnerAppProvider({ children }) {
     handleFamilySubmit,
     refreshPricing: fetchFamilyMinCost,
     refreshMeals: fetchMeals,
+    refreshIngredients: fetchIngredients,
     language,
     setLanguage,
     t,

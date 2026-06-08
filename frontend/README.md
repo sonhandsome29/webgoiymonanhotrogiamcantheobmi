@@ -1,23 +1,19 @@
 # SonE Frontend
 
-SonE is a static React + Vite meal-planning demo.
+Frontend React/Vite cua SonE giao tiep voi backend Express thong qua HTTP API.
 
-## Features
-
-- Local sign up / sign in
-- Meal planner with BMI-based calorie guidance
-- Saved meal history by weekday
-- Shopping list from saved meals
-- Ingredient pricing management
-- Family menu generator with weekly budget summaries
-- Local admin editing for meals and ingredient prices
-
-## Run locally
+## Development
 
 ```bash
 cd frontend
 npm install
 npm run dev
+```
+
+## Environment
+
+```env
+VITE_API_URL=http://localhost:3000
 ```
 
 ## Build
@@ -27,28 +23,7 @@ cd frontend
 npm run build
 ```
 
-## Deploy
+## Luu y
 
-Deploy `frontend/` to Vercel with:
-
-- Framework: `Vite`
-- Root Directory: `frontend`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-
-## Data model
-
-- Seed meals: `src/data/seedMeals.json`
-- Seed ingredients: `src/data/seedIngredients.json`
-- Images: `public/images/`
-- Local persistence: `localStorage`
-
-## Optional env
-
-```env
-VITE_ADMIN_EMAILS=admin@example.com
-```
-
-## Important note
-
-This app is browser-local. Accounts, history, planner results, and family menus are stored only in the current browser.
+- Frontend can backend hoat dong de dang nhap, planner, history, pricing va family menu hoat dong day du.
+- Session duoc luu local o client chi de giu bearer token va thong tin user dang dang nhap.

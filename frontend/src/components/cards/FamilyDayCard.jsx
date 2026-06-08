@@ -20,6 +20,10 @@ function FamilyDayCard({ averageDailyBudget, day }) {
     'Bữa tối': 'Dinner',
   }
 
+  mealTypeMap.breakfast = 'Breakfast'
+  mealTypeMap.lunch = 'Lunch'
+  mealTypeMap.dinner = 'Dinner'
+
   const mealAccentClassMap = {
     Breakfast: 'family-dish--breakfast',
     Lunch: 'family-dish--lunch',
@@ -68,7 +72,7 @@ function FamilyDayCard({ averageDailyBudget, day }) {
 
       <div className={expanded ? 'family-day-card__stack family-day-card__stack--expanded' : 'family-day-card__stack family-day-card__stack--collapsed'}>
         {(day.meals || []).map((item, index) => (
-          <div className={`family-dish rounded-[22px] border border-[var(--line)] bg-gradient-to-b from-[var(--paper-bright)] to-[rgba(148,163,184,0.05)] px-4 py-4 ${mealAccentClassMap[mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || ''}`} key={`${day.dayKeyVi}-${item.dish?.mealId || index}`}>
+          <div className={`family-dish rounded-[22px] border border-[var(--line)] bg-gradient-to-b from-[var(--paper-bright)] to-[rgba(148,163,184,0.05)] px-4 py-4 ${mealAccentClassMap[mealTypeMap[item.mealType] || mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || ''}`} key={`${day.dayKeyVi}-${item.dish?.mealId || index}`}>
             <div className="flex items-start gap-3">
               <div className="family-dish__thumb-wrap">
                 {item.dish?.image_url ? (
@@ -83,15 +87,15 @@ function FamilyDayCard({ averageDailyBudget, day }) {
                   />
                 ) : (
                   <div className="family-dish__thumb family-dish__thumb--fallback">
-                    <AppIcon name={mealIconMap[mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || 'spark'} size={18} />
+                    <AppIcon name={mealIconMap[mealTypeMap[item.mealType] || mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || 'spark'} size={18} />
                   </div>
                 )}
               </div>
 
               <div className="min-w-0 flex-1">
               <span className="family-dish__label">
-                <AppIcon name={mealIconMap[mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || 'spark'} size={14} />{' '}
-                {mealTypeMap[item.mealTypeVi] || item.mealTypeVi}
+                <AppIcon name={mealIconMap[mealTypeMap[item.mealType] || mealTypeMap[item.mealTypeVi] || item.mealTypeVi] || 'spark'} size={14} />{' '}
+                {mealTypeMap[item.mealType] || mealTypeMap[item.mealTypeVi] || item.mealTypeVi}
               </span>
               <h4>{item.dish?.name || 'Meal'}</h4>
               </div>

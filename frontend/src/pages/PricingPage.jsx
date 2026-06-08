@@ -15,6 +15,7 @@ function PricingPage() {
     ingredientQuery,
     isAdmin,
     loading,
+    refreshIngredients,
     refreshPricing,
     resetIngredientForm,
     setIngredientForm,
@@ -27,6 +28,7 @@ function PricingPage() {
     try {
       setDeleteError('')
       await api.deleteIngredient(ingredientId)
+      await refreshIngredients()
       await refreshPricing()
     } catch (error) {
       setDeleteError(error.message)

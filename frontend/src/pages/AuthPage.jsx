@@ -36,7 +36,6 @@ function AuthPage() {
           <div className="user-card auth-page__card tw-surface-soft p-6">
             <span className="chip chip--accent">{t('account')}</span>
             <h3>{maskEmail(user.email)}</h3>
-            {isAdmin ? null : <p>User ID: {user.userId}</p>}
 
             {isAdmin ? (
               <div className="mini-metric-row mini-metric-row--single">

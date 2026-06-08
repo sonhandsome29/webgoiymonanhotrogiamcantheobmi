@@ -1,54 +1,53 @@
-# SonE Static Demo
+# SonE Fullstack App
 
-SonE is now a frontend-only meal-planning demo built with React and Vite.
+SonE la ung dung goi y mon an va lap ke hoach dinh duong theo mo hinh fullstack:
 
-## What it includes
+- `frontend/`: React + Vite client
+- `food-calorie-tool/`: Express API + MongoDB
 
-- Local sign up / sign in with `localStorage`
-- Daily meal planner based on BMI, age, gender, and activity level
-- Saved meal history by weekday
-- Shopping list generated from saved meals
-- Ingredient pricing management
-- 7-day family menu generator with budget summaries
-- Local admin mode for editing meals and ingredients
+Frontend goi API backend de xu ly dang nhap, ho so nguoi dung, goi y thuc don, lich su mon an, bang gia nguyen lieu va menu gia dinh.
 
-## Stack
-
-- `frontend/`: React 19, Vite 8, React Router, Tailwind bridge classes, custom CSS
-- Data source: static JSON in `frontend/src/data/`
-- Images: static assets in `frontend/public/images/`
-- Persistence: browser `localStorage`
-
-## Folder map
+## Kien truc
 
 ```text
-.
-|-- frontend/
-|   |-- public/images/              # static meal and ingredient images
-|   |-- src/App.jsx                 # routes
-|   |-- src/context/AppContext.jsx  # app state and actions
-|   |-- src/data/                   # bundled seed data and image manifest
-|   |-- src/lib/                    # local data and catalog helpers
-|   |-- src/pages/                  # page-level UI
-|   |-- src/components/             # reusable UI pieces
-|   |-- src/utils/                  # planner/family/history logic
+React/Vite frontend
+    -> HTTP API
+Express backend
+    -> MongoDB
 ```
 
-## How it works
+## Tinh nang chinh
 
-```text
-Static JSON data -> AppContext -> React pages/components
-Local account/session -> localStorage
-Planner/history/family menu -> localStorage + frontend logic
+- Dang ky / dang nhap tai khoan
+- Xac thuc bearer token o backend
+- Phan quyen `admin` / `user`
+- Goi y thuc don theo BMI va muc van dong
+- Luu lich su mon an theo ngay
+- Quan ly meal / ingredient tu trang admin
+- Lap menu gia dinh 7 ngay theo ngan sach
+
+## Chay backend
+
+```bash
+cd food-calorie-tool
+npm install
+npm start
 ```
 
-## Admin mode
+Mac dinh backend chay o `http://localhost:3000`.
 
-- Admin is determined locally from `VITE_ADMIN_EMAILS`
-- Default fallback email is `admin@example.com` '123456'
-- Admin can create, edit, and delete meals and ingredient pricing in the current browser
+### Backend env
 
-## Local development
+Tao file `.env` trong `food-calorie-tool/`:
+
+```env
+MONGODB_URI=mongodb://localhost:27017/foodDB
+PORT=3000
+AUTH_SECRET=replace-this-in-production
+AUTH_TOKEN_TTL_MS=604800000
+```
+
+## Chay frontend
 
 ```bash
 cd frontend
@@ -56,34 +55,30 @@ npm install
 npm run dev
 ```
 
+### Frontend env
+
+Tao file `.env` trong `frontend/` neu backend khong chay o port mac dinh:
+
+```env
+VITE_API_URL=http://localhost:3000
+```
+
 ## Production build
+
+Frontend:
 
 ```bash
 cd frontend
 npm run build
 ```
 
-Deploy `frontend/` as a Vite static site on Vercel.
+Backend:
 
-Recommended Vercel settings:
+- Deploy `food-calorie-tool/` nhu mot Node.js service
+- Cau hinh `MONGODB_URI` va `AUTH_SECRET` tren moi truong deploy
 
-- Framework: `Vite`
-- Root Directory: `frontend`
-- Build Command: `npm run build`
-- Output Directory: `dist`
+## Ghi chu
 
-## Environment
-
-Optional frontend env:
-
-```env
-VITE_ADMIN_EMAILS=admin@example.com
-```
-
-Use a comma-separated list if you want more than one local admin.
-
-## Notes
-
-- All user data is browser-local. Different devices or browsers do not sync.
-- Clearing browser storage resets accounts, history, and family results for that browser.
-- The app no longer depends on a backend service.
+- App nay khong phai frontend-only.
+- Logic nghiep vu va du lieu duoc xu ly o backend.
+- `localStorage` tren frontend chi dung de luu session token/user cho client, khong phai nguon su that cua du lieu.
