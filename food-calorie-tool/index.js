@@ -30,6 +30,29 @@ try {
     console.error('Failed to load seed meals from seedMeals.json:', err);
 }
 
+const mongoose = require('mongoose');
+// Middleware đảm bảo kết nối DB trước khi xử lý request
+app.use((req, res, next) => {
+  if (mongoose.connection.readyState === 1) {
+    next();
+  } else {
+    // Nếu chưa kết nối, đợi kết nối hoàn tất
+    const interval = setInterval(() => {
+      if (mongoose.connection.readyState === 1) {
+        clearInterval(interval);
+        next();
+      }
+    }, 100);
+    // Timeout sau 5 giây nếu không kết nối được
+    setTimeout(() => {
+      if (mongoose.connection.readyState !== 1) {
+        clearInterval(interval);
+        res.status(500).json({ error: 'Database connection timeout' });
+      }
+    }, 5000);
+  }
+});
+
 const seedDatabase = async () => {
     try {
         const count = await Meal.countDocuments();
@@ -43,7 +66,10 @@ const seedDatabase = async () => {
         console.error('Error seeding database:', error);
     }
 };
-seedDatabase();
+// Đợi connection sẵn sàng rồi mới seed
+mongoose.connection.once('open', () => {
+    seedDatabase();
+});
 
 // ======================================================
 // =============== API GỢI Ý BỮA ĂN (GA) ===============
