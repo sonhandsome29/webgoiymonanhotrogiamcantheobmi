@@ -19,7 +19,7 @@ app.use(express.json());
 // Phục vụ tệp tĩnh từ thư mục public
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-// Kết nối MongoDB
+// Kết nối MongoDB - Forced fresh Vercel rebuild trigger
 connectDB();
 const fs = require('fs');
 
