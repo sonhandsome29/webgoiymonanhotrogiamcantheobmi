@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://localhost:27017/foodDB', {
+        const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/foodDB';
+        await mongoose.connect(uri, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
