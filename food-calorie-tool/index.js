@@ -1540,5 +1540,8 @@ app.post('/family/generate-menu', generateFamilyMenuHandler);
 // ================== KHỞI ĐỘNG SERVER ==================
 // ======================================================
 
-const PORT = 3000;
-app.listen(3000, "0.0.0.0", () => console.log("Server running"));
+const PORT = process.env.PORT || 3000;
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, "0.0.0.0", () => console.log("Server running"));
+}
+module.exports = app;
