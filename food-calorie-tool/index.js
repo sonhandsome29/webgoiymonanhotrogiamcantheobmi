@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const connectDB = require('./db');
 const Meal = require('./models/Meal');
@@ -10,7 +11,6 @@ const seedIngredients = require('./seedIngredients');
 const FamilyMenuResult = require('./models/FamilyMenuResult');
 
 const cors = require('cors');
-require('dotenv').config();
 
 const app = express();
 app.use(cors());
