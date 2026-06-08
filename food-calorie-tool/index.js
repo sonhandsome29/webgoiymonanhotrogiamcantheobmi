@@ -2035,7 +2035,7 @@ app.post('/family/generate-menu', generateFamilyMenuHandler);
 // ======================================================
 
 const PORT = process.env.PORT || 3000;
-if (process.env.NODE_ENV !== 'production') {
+if (!process.env.VERCEL) {
   app.listen(PORT, "0.0.0.0", () => console.log("Server running"));
 }
 module.exports = app;
