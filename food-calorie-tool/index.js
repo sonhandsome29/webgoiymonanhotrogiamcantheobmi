@@ -262,12 +262,20 @@ app.use((req, res, next) => {
 
 const seedDatabase = async () => {
     try {
-        const count = await Meal.countDocuments();
-        if (count === 0) {
+        const mealCount = await Meal.countDocuments();
+        if (mealCount === 0) {
             await Meal.insertMany(initialMeals);
             console.log('Database seeded with', initialMeals.length, 'meals');
         } else {
-            console.log('Database already has', count, 'meals. Skipping seed.');
+            console.log('Database already has', mealCount, 'meals. Skipping seed.');
+        }
+
+        const ingredientCount = await Ingredient.countDocuments();
+        if (ingredientCount === 0) {
+            await seedIngredients({ reset: false, exitOnDone: false, connect: false });
+            console.log('Ingredient catalog was empty, seeded starter data.');
+        } else {
+            console.log('Database already has', ingredientCount, 'ingredients. Skipping ingredient seed.');
         }
     } catch (error) {
         console.error('Error seeding database:', error);
